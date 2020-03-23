@@ -27,7 +27,7 @@ public class JFraLogin extends javax.swing.JFrame {
                                         "Gotham XLight",
                                         18);
         
-        PlaceHolder c = new PlaceHolder(jTxtContra, 
+        PlaceHolder c = new PlaceHolder(jPFContraseña, 
                                         new Color(55,73,87),
                                         Color.BLACK,
                                         "Contraseña",
@@ -56,9 +56,9 @@ public class JFraLogin extends javax.swing.JFrame {
         jTxtUsuario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTxtContra = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPFContraseña = new javax.swing.JPasswordField();
         jBtnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,12 +127,12 @@ public class JFraLogin extends javax.swing.JFrame {
 
         jTxtUsuario.setBackground(new java.awt.Color(223, 234, 228));
         jTxtUsuario.setFont(new java.awt.Font("Gotham XLight", 1, 18)); // NOI18N
-        jTxtUsuario.setForeground(new java.awt.Color(55, 73, 87));
-        jTxtUsuario.setToolTipText("");
+        jTxtUsuario.setToolTipText("Ingrese su usuario");
         jTxtUsuario.setBorder(null);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
         jLabel6.setText("jLabel6");
+        jLabel6.setToolTipText("Ingrese su usuario");
         jLabel6.setPreferredSize(new java.awt.Dimension(32, 32));
 
         javax.swing.GroupLayout jPUsuarioLayout = new javax.swing.GroupLayout(jPUsuario);
@@ -160,17 +160,18 @@ public class JFraLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(223, 234, 228));
 
-        jTxtContra.setBackground(new java.awt.Color(223, 234, 228));
-        jTxtContra.setFont(new java.awt.Font("Gotham XLight", 1, 20)); // NOI18N
-        jTxtContra.setForeground(new java.awt.Color(55, 73, 87));
-        jTxtContra.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTxtContra.setBorder(null);
-        jTxtContra.setPreferredSize(new java.awt.Dimension(0, 20));
-
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contra.png"))); // NOI18N
+        jLabel8.setToolTipText("Ingrese su contraseña de usuario");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ojoVer.png"))); // NOI18N
+        jLabel7.setToolTipText("Ver la contraseña ingresada");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jPFContraseña.setBackground(new java.awt.Color(223, 234, 228));
+        jPFContraseña.setFont(new java.awt.Font("Gotham XLight", 1, 18)); // NOI18N
+        jPFContraseña.setToolTipText("Ingrese su contraseña de usuario");
+        jPFContraseña.setBorder(null);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,17 +179,17 @@ public class JFraLogin extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-            .addComponent(jTxtContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPFContraseña, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jPFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 290, 50));
@@ -196,7 +197,7 @@ public class JFraLogin extends javax.swing.JFrame {
         jBtnIngresar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnIngresar.setFont(new java.awt.Font("Gotham Black", 0, 18)); // NOI18N
         jBtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnIngresar.setText("Ingresar");
+        jBtnIngresar.setText("INGRESAR");
         jBtnIngresar.setBorder(null);
         jBtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnIngresar.setOpaque(false);
@@ -261,11 +262,11 @@ public class JFraLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPasswordField jPFContraseña;
     private javax.swing.JPanel jPFondo;
     private javax.swing.JPanel jPSaludoAzulIzquierda;
     private javax.swing.JPanel jPUsuario;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTxtContra;
     private javax.swing.JTextField jTxtUsuario;
     // End of variables declaration//GEN-END:variables
 }
