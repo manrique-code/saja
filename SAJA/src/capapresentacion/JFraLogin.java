@@ -6,7 +6,7 @@
 package capapresentacion;
 import com.placeholder.PlaceHolder ;
 import java.awt.Color;
-
+///Se importo una libreria placeHolder para el diseño
 /**
  *
  * @author Manrique
