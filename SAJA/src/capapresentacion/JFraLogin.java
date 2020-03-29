@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package capapresentacion;
-import com.placeholder.PlaceHolder ;
+import com.placeholder.PlaceHolder;
 import java.awt.Color;
 ///Se importo una libreria placeHolder para el diseño
 /**
@@ -46,6 +46,7 @@ public class JFraLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPFondo = new javax.swing.JPanel();
+        jBtnIngresar = new javax.swing.JButton();
         jPSaludoAzulIzquierda = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         LOGO = new javax.swing.JLabel();
@@ -59,17 +60,24 @@ public class JFraLogin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPFContraseña = new javax.swing.JPasswordField();
-        jBtnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
-        setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setResizable(false);
 
         jPFondo.setBackground(new java.awt.Color(255, 255, 255));
         jPFondo.setMaximumSize(new java.awt.Dimension(704, 500));
         jPFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBtnIngresar.setBackground(new java.awt.Color(9, 132, 227));
+        jBtnIngresar.setFont(new java.awt.Font("Gotham Black", 0, 18)); // NOI18N
+        jBtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnIngresar.setText("INGRESAR");
+        jBtnIngresar.setBorder(null);
+        jBtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnIngresar.setOpaque(false);
+        jPFondo.add(jBtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 290, 50));
 
         jPSaludoAzulIzquierda.setBackground(new java.awt.Color(9, 132, 227));
 
@@ -114,7 +122,6 @@ public class JFraLogin extends javax.swing.JFrame {
         jPFondo.add(jPSaludoAzulIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 500));
 
         jLabel2.setFont(new java.awt.Font("Gotham Black", 0, 40)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Iniciar sesión");
         jPFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 300, 58));
 
@@ -194,15 +201,6 @@ public class JFraLogin extends javax.swing.JFrame {
         );
 
         jPFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 290, 50));
-
-        jBtnIngresar.setBackground(new java.awt.Color(9, 132, 227));
-        jBtnIngresar.setFont(new java.awt.Font("Gotham Black", 0, 18)); // NOI18N
-        jBtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnIngresar.setText("INGRESAR");
-        jBtnIngresar.setBorder(null);
-        jBtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnIngresar.setOpaque(false);
-        jPFondo.add(jBtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 290, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
