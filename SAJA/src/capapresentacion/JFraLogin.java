@@ -15,6 +15,7 @@ public class JFraLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form JFraLogin
+     * pego
      */
     public JFraLogin() {
         initComponents();
