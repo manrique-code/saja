@@ -36,6 +36,10 @@ public class JFraLogin extends javax.swing.JFrame {
                                         "Gotham XLight",
                                         18);
     }
+    
+    public void iniciarSesion(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,12 +88,12 @@ public class JFraLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Gotham Black", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html>\nal Sistema \nAdministrador de \nJuntas de Agua\n</html>");
+        jLabel1.setText("<html>al Sistema  Administrador de  Juntas de Agua</html>");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO SAJA.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Gotham Black", 0, 35)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 35)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Bienvenido");
 
@@ -122,13 +126,13 @@ public class JFraLogin extends javax.swing.JFrame {
 
         jPFondo.add(jPSaludoAzulIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 500));
 
-        jLabel2.setFont(new java.awt.Font("Gotham Black", 0, 40)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 40)); // NOI18N
         jLabel2.setText("Iniciar sesión");
         jPFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 300, 58));
 
-        jLabel4.setFont(new java.awt.Font("Gotham XLight", 1, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Gotham Black", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(77, 77, 77));
-        jLabel4.setText("<html>Ingrese su información de\nusuario, abajo.</html>\n");
+        jLabel4.setText("<html>Ingrese su información de \nusuario, abajo.</html>\n");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 290, 80));
 

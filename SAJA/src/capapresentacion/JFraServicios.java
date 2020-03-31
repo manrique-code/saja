@@ -10,17 +10,17 @@ import java.awt.Color;
 
 /**
  *
- * @author Juan
+ * @author Pablo
  */
-public class JFraEstadoContrato extends javax.swing.JFrame {
+public class JFraServicios extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFraEstadoContrato
+     * Creates new form JFraServicios
      */
-    public JFraEstadoContrato() {
+    public JFraServicios() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.jTfNombreEstadoContrato.requestFocus();
+        this.jTfNombreServicio.requestFocus();
         PlaceHolder ph = new PlaceHolder(this.jTfBuscar, 
                                         new Color(153,153,153),
                                         Color.BLACK,
@@ -44,15 +44,15 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jLblTitulo = new javax.swing.JLabel();
         jLblMenu = new javax.swing.JLabel();
         jLblIdentificador = new javax.swing.JLabel();
-        jTfEstadoContrato = new javax.swing.JTextField();
+        jTfIdServicio = new javax.swing.JTextField();
         jLblNombre = new javax.swing.JLabel();
-        jTfNombreEstadoContrato = new javax.swing.JTextField();
+        jTfNombreServicio = new javax.swing.JTextField();
         jBtnGuardar = new javax.swing.JButton();
         jBtnEditar = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
         jPnlSeparator = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTblEstadoContrato = new javax.swing.JTable();
+        jTblServicio = new javax.swing.JTable();
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
@@ -60,8 +60,6 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(new java.awt.Dimension(820, 500));
 
         jPnlCancelar.setBackground(new java.awt.Color(255, 255, 255));
         jPnlCancelar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,7 +68,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
 
         jLblTitulo.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
         jLblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLblTitulo.setText("Estado del contrato");
+        jLblTitulo.setText("Servicios de la Junta de Agua");
 
         jLblMenu.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
         jLblMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,7 +82,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jLblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(jLblMenu)
                 .addGap(30, 30, 30))
         );
@@ -103,29 +101,29 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Identificador");
-        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 30));
+        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
 
-        jTfEstadoContrato.setEditable(false);
-        jTfEstadoContrato.setBackground(new java.awt.Color(255, 255, 255));
-        jTfEstadoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jTfEstadoContrato.setForeground(new java.awt.Color(0, 0, 0));
-        jTfEstadoContrato.setText(" 1");
-        jTfEstadoContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfEstadoContrato.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfEstadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
+        jTfIdServicio.setEditable(false);
+        jTfIdServicio.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdServicio.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfIdServicio.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdServicio.setText(" 1");
+        jTfIdServicio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdServicio.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jPnlCancelar.add(jTfIdServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
 
         jLblNombre.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLblNombre.setText("Nombre");
-        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 280, 30));
+        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 300, 30));
 
-        jTfNombreEstadoContrato.setBackground(new java.awt.Color(255, 255, 255));
-        jTfNombreEstadoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jTfNombreEstadoContrato.setForeground(new java.awt.Color(0, 0, 0));
-        jTfNombreEstadoContrato.setToolTipText("Ingrese aquí un estado del contrato");
-        jTfNombreEstadoContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfNombreEstadoContrato.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfNombreEstadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
+        jTfNombreServicio.setBackground(new java.awt.Color(255, 255, 255));
+        jTfNombreServicio.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfNombreServicio.setForeground(new java.awt.Color(0, 0, 0));
+        jTfNombreServicio.setToolTipText("Ingrese aqui un servicio");
+        jTfNombreServicio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfNombreServicio.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jPnlCancelar.add(jTfNombreServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -167,8 +165,8 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 1, 360));
 
-        jTblEstadoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 15)); // NOI18N
-        jTblEstadoContrato.setModel(new javax.swing.table.DefaultTableModel(
+        jTblServicio.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 15)); // NOI18N
+        jTblServicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -176,7 +174,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
                 "ID", "Nombre"
             }
         ));
-        jScrollPane1.setViewportView(jTblEstadoContrato);
+        jScrollPane1.setViewportView(jTblServicio);
 
         jPnlCancelar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 350, 310));
 
@@ -217,12 +215,12 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("permanecer el contrato de un abonado.");
+        jLabel7.setText("un abonado.");
         jPnlCancelar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 280, 20));
 
         jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Ingrese aquí los estados en los que puede");
+        jLabel9.setText("Ingrese aquí los servicios que puede contratar");
         jPnlCancelar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,20 +254,20 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFraEstadoContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFraServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFraEstadoContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFraServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFraEstadoContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFraServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFraEstadoContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFraServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraEstadoContrato().setVisible(true);
+                new JFraServicios().setVisible(true);
             }
         });
     }
@@ -290,9 +288,9 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
     private javax.swing.JPanel jPnlCancelar;
     private javax.swing.JPanel jPnlSeparator;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTblEstadoContrato;
+    private javax.swing.JTable jTblServicio;
     private javax.swing.JTextField jTfBuscar;
-    private javax.swing.JTextField jTfEstadoContrato;
-    private javax.swing.JTextField jTfNombreEstadoContrato;
+    private javax.swing.JTextField jTfIdServicio;
+    private javax.swing.JTextField jTfNombreServicio;
     // End of variables declaration//GEN-END:variables
 }
