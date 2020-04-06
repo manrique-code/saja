@@ -36,10 +36,10 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         PlaceHolder ph = new PlaceHolder(this.jTfBuscar, 
                                         new Color(153,153,153),
                                         Color.BLACK,
-                                        "Buscar",
+                                        "Buscar por nombre o identificador",
                                         false,
                                         "HelveticaNowDisplay Regular",
-                                        18);
+                                        16);
     }
     
     private boolean estadEditando = false;
@@ -66,6 +66,22 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
             fila[1] = cltpp.getNombreTipoPlanPago();
             dtm.addRow(fila);  
         }    
+    }
+    
+    public void llenarTablaPorID(String nombreTPP) throws SQLException{
+        vaciarTabla(); 
+        
+        CDTipoPlanPago cdtpp = new CDTipoPlanPago();
+        
+        List<CLTipoPlanPago> miLista = cdtpp.mostrarTipoPlanPagoPorID(nombreTPP);
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblTipoPlanPago.getModel();
+        
+        for(CLTipoPlanPago cltpp: miLista){
+            Object[] fila = new Object[2];
+            fila[0] = cltpp.getIdTipoPlanPago();
+            fila[1] = cltpp.getNombreTipoPlanPago();
+            dtm.addRow(fila);  
+        } 
     }
     
     public void habilitarBotones(boolean guardar, boolean editar, boolean eliminar, boolean buscar){
@@ -115,6 +131,51 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al guardar" + e);
         }
     }
+    
+    public void actualizarTipoPlanPago(){
+        try{
+            
+            CDTipoPlanPago cdtpp = new CDTipoPlanPago();
+            CLTipoPlanPago cltpp = new CLTipoPlanPago();
+            
+            cltpp.setNombreTipoPlanPago(this.jTxtNombreTipoPlanPago.getText().trim());
+            cltpp.setIdTipoPlanPago(Integer.parseInt(this.jTxtIdTipoPlanPago.getText().trim()));
+            cdtpp.actualizarTipoPlanPago(cltpp);
+            
+            JOptionPane.showMessageDialog(null,
+                                          String.format("Se guardó: %s, exitosamente", this.jTxtNombreTipoPlanPago.getText()),
+                                          "SAJA",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            this.jTxtNombreTipoPlanPago.setText("");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al guardar" + e);
+        }
+    }
+    
+    public void eliminarTipoPlanPago(){
+        try{
+            int result = JOptionPane.showConfirmDialog(null,
+                                                      String.format("¿Desea cancelar la edición: \"%s\"?", this.jTxtNombreTipoPlanPago.getText()), 
+                                                       "SAJA",
+                                                       JOptionPane.YES_NO_OPTION);
+            if(result == JOptionPane.YES_OPTION){
+                CDTipoPlanPago cdtpp = new CDTipoPlanPago();
+                CLTipoPlanPago cltpp = new CLTipoPlanPago();
+
+                cltpp.setIdTipoPlanPago(Integer.parseInt(this.jTxtIdTipoPlanPago.getText().trim()));
+                cdtpp.eliminarTipoPlanPago(cltpp);
+
+                JOptionPane.showMessageDialog(null,
+                                              String.format("Se guardó: %s, exitosamente", this.jTxtNombreTipoPlanPago.getText()),
+                                              "SAJA",
+                                              JOptionPane.INFORMATION_MESSAGE);
+                this.jTxtNombreTipoPlanPago.setText("");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al guardar" + e);
+        }
+    }
+    
 
     public void limpiarFormulario() throws SQLException{
         this.siguienteId();
@@ -242,6 +303,11 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jBtnEditar.setText("EDITAR");
         jBtnEditar.setBorder(null);
         jBtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEliminar.setBackground(new java.awt.Color(9, 132, 227));
@@ -251,6 +317,11 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jBtnEliminar.setText("ELIMINAR");
         jBtnEliminar.setBorder(null);
         jBtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 140, 50));
 
         jTblTipoPlanPago.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 15)); // NOI18N
@@ -259,7 +330,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre"
+                "#", "Nombre"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -270,6 +341,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTblTipoPlanPago.setRowHeight(30);
         jTblTipoPlanPago.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTblTipoPlanPagoMouseClicked(evt);
@@ -295,7 +367,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Identificador");
+        jLabel6.setText("Cód. Tipo Pago");
         jPnlCancelar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 30));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -306,6 +378,14 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyTyped(evt);
+            }
+        });
 
         jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
@@ -383,10 +463,21 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            insertarTipoPlanPago();
-            siguienteId();
-            llenarTabla();
-            habilitarBotones(true, false, false, true);
+            
+            if(!this.jTxtNombreTipoPlanPago.getText().trim().isEmpty()){
+                insertarTipoPlanPago();
+                siguienteId();
+                llenarTabla();
+                habilitarBotones(true, false, false, true);
+            } else {
+                
+                JOptionPane.showMessageDialog(null,
+                                              "Por favor, ingrese un nombre.", 
+                                              "SAJA",
+                                               JOptionPane.INFORMATION_MESSAGE);
+                this.jTxtNombreTipoPlanPago.requestFocus();             
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -415,6 +506,63 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_jPnlCancelarMouseClicked
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+            if(!this.jTxtNombreTipoPlanPago.getText().trim().isEmpty()){
+                actualizarTipoPlanPago();
+                siguienteId();
+                llenarTabla();
+                habilitarBotones(true, false, false, true);
+            } else {
+                
+                JOptionPane.showMessageDialog(null,
+                                              "Por favor, ingrese un nombre.", 
+                                              "SAJA",
+                                               JOptionPane.INFORMATION_MESSAGE);
+                this.jTxtNombreTipoPlanPago.requestFocus();                   
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        // TODO add your handling code here:
+        try {           
+
+            eliminarTipoPlanPago();
+            siguienteId();
+            llenarTabla();
+            habilitarBotones(true, false, false, true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jTfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyTyped
+        // TODO add your handling code here:        
+        /*try {
+            this.llenarTablaPorID(this.jTfBuscar.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }//GEN-LAST:event_jTfBuscarKeyTyped
+
+    private void jTfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyReleased
+        // TODO add your handling code here:
+        try {
+            this.llenarTablaPorID(this.jTfBuscar.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTfBuscarKeyReleased
 
     /**
      * @param args the command line arguments

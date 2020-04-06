@@ -47,7 +47,7 @@ public class CDTipoPlanPago {
     }
     
     public void eliminarTipoPlanPago(CLTipoPlanPago cltpp) throws SQLException {
-        String sql = "{call sp_eliminarTipoPlanPago}";
+        String sql = "{call sp_eliminarTipoPlanPago(?)}";
         
         try(PreparedStatement ps = cn.prepareCall(sql)) {
             ps.setInt(1, cltpp.getIdTipoPlanPago());
@@ -102,16 +102,15 @@ public class CDTipoPlanPago {
     }
     
     
-    public List<CLTipoPlanPago> mostrarTipoPlanPagoPorID(int idTipoPlanPago) throws SQLException{
+    public List<CLTipoPlanPago> mostrarTipoPlanPagoPorID(String nombreTPP) throws SQLException{
         String sql;
         
-        sql = "{call sp_mostrarTipoPlanPagoPorID(?)}";
+        sql = "{call sp_mostrarTipoPlanPagoPorNombre(?)}";
         
         List<CLTipoPlanPago> miLista;
         
         try(PreparedStatement ps = cn.prepareStatement(sql)){
-            
-            ps.setInt(1, idTipoPlanPago);
+            ps.setString(1, nombreTPP);
             ResultSet rs = ps.executeQuery();            
             
             miLista = new ArrayList<>();

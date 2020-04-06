@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 package capapresentacion;
+import capadatos.CDLogin;
+import capalogica.CLLogin;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 ///Se importo una libreria placeHolder para el diseño
 /**
  *
@@ -20,7 +26,7 @@ public class JFraLogin extends javax.swing.JFrame {
     public JFraLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
-        PlaceHolder u = new PlaceHolder(jTxtUsuario, 
+        PlaceHolder u = new PlaceHolder(jTfUsuario, 
                                         new Color(55,73,87),
                                         Color.BLACK,
                                         "Usuario",
@@ -35,10 +41,46 @@ public class JFraLogin extends javax.swing.JFrame {
                                         false,
                                         "Gotham XLight",
                                         18);
+        //this.jLblVer.setVisible(false);
     }
     
-    public void iniciarSesion(){
-        
+    public void iniciarSesion() throws SQLException{
+        if(this.jTfUsuario.getText().equals("Usuario") && this.jPFContraseña.getText().equals("Contraseña")){
+            JOptionPane.showMessageDialog(null,
+                                          "Por favor ingrese los datos que se le solicitan",
+                                          "SAJA",
+                                          JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            if(this.jTfUsuario.getText().trim().length() > 0 && this.jPFContraseña.getText().trim().length() > 0){
+                CLLogin ll = new CLLogin();
+                
+                try{
+                    CDLogin cdl = new CDLogin();
+                    
+                    ll.setNombreUsuario(this.jTfUsuario.getText().trim());
+                    ll.setContra(this.jPFContraseña.getText().trim());
+                    
+                    String[] valor = cdl.iniciarSesion(ll).split("-");
+                    ll.setIdUsuario(Integer.parseInt(valor[0]));
+                    ll.setNombreUsuario(valor[1]);
+                    
+                   if(ll.getIdUsuario() == 0 && ll.getNombreUsuario().equals("null")){
+                        JOptionPane.showMessageDialog(null,
+                                                      "Usuario o contraseña incorrectos.",
+                                                      "SAJA",
+                                                      JOptionPane.INFORMATION_MESSAGE);                    
+                    } else {
+                        
+                        JFraTipoPlanPago jftpp = new JFraTipoPlanPago();
+                        
+                        jftpp.setVisible(true);
+                        this.setVisible(false);                        
+                    }
+                } catch(SQLException e){
+                    throw new SQLException(e.getMessage());
+                }
+            }
+        }
     }
 
     /**
@@ -53,18 +95,21 @@ public class JFraLogin extends javax.swing.JFrame {
         jPFondo = new javax.swing.JPanel();
         jBtnIngresar = new javax.swing.JButton();
         jPSaludoAzulIzquierda = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         LOGO = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPUsuario = new javax.swing.JPanel();
-        jTxtUsuario = new javax.swing.JTextField();
+        jTfUsuario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLblNoVer = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jPFContraseña = new javax.swing.JPasswordField();
+        jLblPrueba = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
@@ -82,20 +127,37 @@ public class JFraLogin extends javax.swing.JFrame {
         jBtnIngresar.setBorder(null);
         jBtnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnIngresar.setOpaque(false);
-        jPFondo.add(jBtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 290, 50));
+        jBtnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnIngresarActionPerformed(evt);
+            }
+        });
+        jPFondo.add(jBtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 290, 50));
 
         jPSaludoAzulIzquierda.setBackground(new java.awt.Color(9, 132, 227));
-
-        jLabel1.setFont(new java.awt.Font("Gotham Black", 0, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html>al Sistema  Administrador de  Juntas de Agua</html>");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO SAJA.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 35)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Bienvenido");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("al Sistema ");
+        jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel10.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 20)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Administrador de");
+        jLabel10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel11.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 20)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Juntas de Agua");
+        jLabel11.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPSaludoAzulIzquierdaLayout = new javax.swing.GroupLayout(jPSaludoAzulIzquierda);
         jPSaludoAzulIzquierda.setLayout(jPSaludoAzulIzquierdaLayout);
@@ -103,23 +165,26 @@ public class JFraLogin extends javax.swing.JFrame {
             jPSaludoAzulIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPSaludoAzulIzquierdaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPSaludoAzulIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    .addGroup(jPSaludoAzulIzquierdaLayout.createSequentialGroup()
-                        .addGroup(jPSaludoAzulIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LOGO)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPSaludoAzulIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LOGO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPSaludoAzulIzquierdaLayout.setVerticalGroup(
             jPSaludoAzulIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPSaludoAzulIzquierdaLayout.createSequentialGroup()
                 .addGap(78, 78, 78)
-                .addComponent(jLabel3)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addComponent(LOGO)
                 .addContainerGap(125, Short.MAX_VALUE))
         );
@@ -128,20 +193,20 @@ public class JFraLogin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 40)); // NOI18N
         jLabel2.setText("Iniciar sesión");
-        jPFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 300, 58));
+        jPFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 300, 40));
 
-        jLabel4.setFont(new java.awt.Font("Gotham Black", 0, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(77, 77, 77));
-        jLabel4.setText("<html>Ingrese su información de \nusuario, abajo.</html>\n");
+        jLabel4.setText("usuario, abajo.");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 290, 80));
+        jPFondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 290, 20));
 
         jPUsuario.setBackground(new java.awt.Color(223, 234, 228));
 
-        jTxtUsuario.setBackground(new java.awt.Color(223, 234, 228));
-        jTxtUsuario.setFont(new java.awt.Font("Gotham XLight", 1, 18)); // NOI18N
-        jTxtUsuario.setToolTipText("Ingrese su usuario");
-        jTxtUsuario.setBorder(null);
+        jTfUsuario.setBackground(new java.awt.Color(223, 234, 228));
+        jTfUsuario.setFont(new java.awt.Font("Gotham XLight", 1, 18)); // NOI18N
+        jTfUsuario.setToolTipText("Ingrese su usuario");
+        jTfUsuario.setBorder(null);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -156,7 +221,7 @@ public class JFraLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPUsuarioLayout.setVerticalGroup(
@@ -164,7 +229,7 @@ public class JFraLogin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPUsuarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTxtUsuario)
+                    .addComponent(jTfUsuario)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -173,13 +238,18 @@ public class JFraLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(223, 234, 228));
 
+        jLblNoVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ojoVer.png"))); // NOI18N
+        jLblNoVer.setToolTipText("Ver la contraseña ingresada");
+        jLblNoVer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblNoVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblNoVerMouseClicked(evt);
+            }
+        });
+
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contra.png"))); // NOI18N
         jLabel8.setToolTipText("Ingrese su contraseña de usuario");
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ojoVer.png"))); // NOI18N
-        jLabel7.setToolTipText("Ver la contraseña ingresada");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPFContraseña.setBackground(new java.awt.Color(223, 234, 228));
         jPFContraseña.setFont(new java.awt.Font("Gotham XLight", 1, 18)); // NOI18N
@@ -193,19 +263,25 @@ public class JFraLogin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18))
+                .addComponent(jPFContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLblNoVer)
+                .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPFContraseña, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jLblNoVer, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 290, 50));
+
+        jLblPrueba.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 20)); // NOI18N
+        jLblPrueba.setForeground(new java.awt.Color(77, 77, 77));
+        jLblPrueba.setText("Ingrese su información de");
+        jLblPrueba.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPFondo.add(jLblPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 290, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,6 +296,19 @@ public class JFraLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIngresarActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.iniciarSesion();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnIngresarActionPerformed
+
+    private void jLblNoVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblNoVerMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLblNoVerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -259,18 +348,21 @@ public class JFraLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LOGO;
     private javax.swing.JButton jBtnIngresar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblNoVer;
+    private javax.swing.JLabel jLblPrueba;
     private javax.swing.JPasswordField jPFContraseña;
     private javax.swing.JPanel jPFondo;
     private javax.swing.JPanel jPSaludoAzulIzquierda;
     private javax.swing.JPanel jPUsuario;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTxtUsuario;
+    private javax.swing.JTextField jTfUsuario;
     // End of variables declaration//GEN-END:variables
 }
