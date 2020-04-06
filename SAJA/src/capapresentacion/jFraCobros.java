@@ -65,15 +65,6 @@ public class jFraCobros extends javax.swing.JFrame {
         jLblIdentificador7 = new javax.swing.JLabel();
         jLblIdentificador8 = new javax.swing.JLabel();
         jTabContrato = new javax.swing.JTabbedPane();
-        jPnlListadoPagos = new javax.swing.JPanel();
-        jLblIdentificador11 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jPnlBuscar = new javax.swing.JPanel();
-        jTfBuscar = new javax.swing.JTextField();
-        jBtnBuscar = new javax.swing.JLabel();
         jPnlFinanzaAbonado = new javax.swing.JPanel();
         jLblIdentificador43 = new javax.swing.JLabel();
         jLblIdentificador44 = new javax.swing.JLabel();
@@ -101,6 +92,15 @@ public class jFraCobros extends javax.swing.JFrame {
         jLblIdentificador54 = new javax.swing.JLabel();
         jBtnEditar1 = new javax.swing.JButton();
         jLblIdentificador55 = new javax.swing.JLabel();
+        jPnlListadoPagos = new javax.swing.JPanel();
+        jLblIdentificador11 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jPnlBuscar = new javax.swing.JPanel();
+        jTfBuscar = new javax.swing.JTextField();
+        jBtnBuscar = new javax.swing.JLabel();
         jPnlAMECobros = new javax.swing.JPanel();
         jLblIdentificador15 = new javax.swing.JLabel();
         jLblIdentificador16 = new javax.swing.JLabel();
@@ -487,108 +487,6 @@ public class jFraCobros extends javax.swing.JFrame {
         jTabContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTabContrato.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
 
-        jPnlListadoPagos.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlListadoPagos.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLblIdentificador11.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador11.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador11.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador11.setText("Ver pagos por:");
-
-        jTable2.setBackground(new java.awt.Color(255, 255, 255));
-        jTable2.setForeground(new java.awt.Color(0, 0, 0));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable2);
-
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Pagos en el mes");
-
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton3.setText("Rango de fecha");
-
-        jPnlBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        jTfBuscar.setBorder(null);
-        jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
-        jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
-        jBtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-black24.png"))); // NOI18N
-        jBtnBuscar.setToolTipText("Click para buscar");
-        jBtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPnlBuscarLayout = new javax.swing.GroupLayout(jPnlBuscar);
-        jPnlBuscar.setLayout(jPnlBuscarLayout);
-        jPnlBuscarLayout.setHorizontalGroup(
-            jPnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTfBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPnlBuscarLayout.setVerticalGroup(
-            jPnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTfBuscar)
-            .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        javax.swing.GroupLayout jPnlListadoPagosLayout = new javax.swing.GroupLayout(jPnlListadoPagos);
-        jPnlListadoPagos.setLayout(jPnlListadoPagosLayout);
-        jPnlListadoPagosLayout.setHorizontalGroup(
-            jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3)
-                        .addGap(143, 143, 143)
-                        .addComponent(jPnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
-        jPnlListadoPagosLayout.setVerticalGroup(
-            jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPnlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLblIdentificador11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
-        );
-
-        jTabContrato.addTab("tab4", jPnlListadoPagos);
-
         jPnlFinanzaAbonado.setBackground(new java.awt.Color(255, 255, 255));
         jPnlFinanzaAbonado.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -776,25 +674,6 @@ public class jFraCobros extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlFinanzaAbonadoLayout.createSequentialGroup()
-                        .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLblIdentificador47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTfIdentidad12)
-                            .addComponent(jScrollPane4)
-                            .addComponent(jLblIdentificador51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLblIdentificador55, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLblIdentificador50, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTfIdentidad13)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
-                                .addComponent(jLblIdentificador54)
-                                .addComponent(jLblIdentificador53))
-                            .addComponent(jLblIdentificador49, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(72, Short.MAX_VALUE))
-                    .addGroup(jPnlFinanzaAbonadoLayout.createSequentialGroup()
                         .addComponent(jLblIdentificador52)
                         .addGap(18, 18, 18)
                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -804,7 +683,33 @@ public class jFraCobros extends javax.swing.JFrame {
                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTfIdentidad11)
                             .addComponent(jLblIdentificador46, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPnlFinanzaAbonadoLayout.createSequentialGroup()
+                        .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPnlFinanzaAbonadoLayout.createSequentialGroup()
+                                .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTfIdentidad12)
+                                    .addComponent(jLblIdentificador47, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPnlFinanzaAbonadoLayout.createSequentialGroup()
+                                        .addComponent(jLblIdentificador49, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jTfIdentidad13)))
+                            .addGroup(jPnlFinanzaAbonadoLayout.createSequentialGroup()
+                                .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane4)
+                                    .addComponent(jLblIdentificador51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBtnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLblIdentificador55, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLblIdentificador50, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLblIdentificador54)
+                                    .addComponent(jLblIdentificador53))))
+                        .addGap(72, 72, 72))))
         );
         jPnlFinanzaAbonadoLayout.setVerticalGroup(
             jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -842,6 +747,7 @@ public class jFraCobros extends javax.swing.JFrame {
                                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jTfIdentidad10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTfIdentidad11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(12, 12, 12)
                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblIdentificador47)
                             .addComponent(jLblIdentificador49))
@@ -849,7 +755,7 @@ public class jFraCobros extends javax.swing.JFrame {
                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTfIdentidad12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTfIdentidad13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblIdentificador50)
                             .addComponent(jLblIdentificador51))
@@ -869,6 +775,108 @@ public class jFraCobros extends javax.swing.JFrame {
         );
 
         jTabContrato.addTab("tab2", jPnlFinanzaAbonado);
+
+        jPnlListadoPagos.setBackground(new java.awt.Color(255, 255, 255));
+        jPnlListadoPagos.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLblIdentificador11.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador11.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador11.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador11.setText("Ver pagos por:");
+
+        jTable2.setBackground(new java.awt.Color(255, 255, 255));
+        jTable2.setForeground(new java.awt.Color(0, 0, 0));
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable2);
+
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton2.setSelected(true);
+        jRadioButton2.setText("Pagos en el mes");
+
+        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton3.setText("Rango de fecha");
+
+        jPnlBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        jTfBuscar.setBorder(null);
+        jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
+        jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
+        jBtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-black24.png"))); // NOI18N
+        jBtnBuscar.setToolTipText("Click para buscar");
+        jBtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPnlBuscarLayout = new javax.swing.GroupLayout(jPnlBuscar);
+        jPnlBuscar.setLayout(jPnlBuscarLayout);
+        jPnlBuscarLayout.setHorizontalGroup(
+            jPnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlBuscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTfBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPnlBuscarLayout.setVerticalGroup(
+            jPnlBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTfBuscar)
+            .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        javax.swing.GroupLayout jPnlListadoPagosLayout = new javax.swing.GroupLayout(jPnlListadoPagos);
+        jPnlListadoPagos.setLayout(jPnlListadoPagosLayout);
+        jPnlListadoPagosLayout.setHorizontalGroup(
+            jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton3)
+                        .addGap(143, 143, 143)
+                        .addComponent(jPnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+        jPnlListadoPagosLayout.setVerticalGroup(
+            jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPnlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLblIdentificador11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addGap(30, 30, 30))
+        );
+
+        jTabContrato.addTab("tab4", jPnlListadoPagos);
 
         jPnlAMECobros.setBackground(new java.awt.Color(255, 255, 255));
         jPnlAMECobros.setForeground(new java.awt.Color(0, 0, 0));
