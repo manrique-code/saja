@@ -71,10 +71,10 @@ public class JFraLogin extends javax.swing.JFrame {
                                                       JOptionPane.INFORMATION_MESSAGE);                    
                     } else {
                         
-                        JFraTipoPlanPago jftpp = new JFraTipoPlanPago();
+                        JFraMenu jfm = new JFraMenu();
                         
-                        jftpp.setVisible(true);
-                        this.setVisible(false);                        
+                        jfm.setVisible(true);
+                        this.setVisible(false);
                     }
                 } catch(SQLException e){
                     throw new SQLException(e.getMessage());
@@ -134,7 +134,7 @@ public class JFraLogin extends javax.swing.JFrame {
         });
         jPFondo.add(jBtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 290, 50));
 
-        jPSaludoAzulIzquierda.setBackground(new java.awt.Color(9, 132, 227));
+        jPSaludoAzulIzquierda.setBackground(new java.awt.Color(41, 128, 185));
 
         LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGO SAJA.png"))); // NOI18N
 

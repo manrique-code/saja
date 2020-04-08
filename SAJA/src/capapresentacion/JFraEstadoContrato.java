@@ -103,7 +103,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Identificador");
-        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 30));
+        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
 
         jTfEstadoContrato.setEditable(false);
         jTfEstadoContrato.setBackground(new java.awt.Color(255, 255, 255));
