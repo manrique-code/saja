@@ -5,8 +5,16 @@
  */
 package capapresentacion;
 
+import capadatos.CDEstadoContrato;
+import capalogica.CLEstadoContrato;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,7 +25,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
     /**
      * Creates new form JFraEstadoContrato
      */
-    public JFraEstadoContrato() {
+    public JFraEstadoContrato() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         this.jTfNombreEstadoContrato.requestFocus();
@@ -28,6 +36,129 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
                                         false,
                                         "HelveticaNowDisplay Regular",
                                         18);
+        llenarTablaEstados();
+        ultimoIDEstado();
+        habilitarBotones(true, false, false, true);
+    }
+    
+     private boolean estadEditando = false;
+    
+    private void limpiarTabla(){
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblEstadoContrato.getModel();
+        
+        while(dtm.getRowCount() > 0){
+            dtm.removeRow(0);
+        }
+    }
+    
+    private void llenarTablaEstados() throws SQLException{
+        limpiarTabla();
+        
+        CDEstadoContrato cdec = new CDEstadoContrato();
+        
+        List<CLEstadoContrato> miLista = cdec.ListaEstadoContrato();
+        DefaultTableModel temp = (DefaultTableModel) this.jTblEstadoContrato.getModel();
+        
+        for(CLEstadoContrato cl: miLista) {
+            Object[] fila = new Object[2];
+            fila[0] = cl.getIdEstadoContrato();
+            fila[1] = cl.getEstadoContrato();
+            temp.addRow(fila);
+        };
+    }
+    
+    public void limpiarFormulario() throws SQLException{
+        this.ultimoIDEstado();
+        this.jTfNombreEstadoContrato.setText("");
+        this.habilitarBotones(true, false, false, true);
+        this.jTfNombreEstadoContrato.requestFocus();
+        this.jTblEstadoContrato.clearSelection();     
+    }
+    
+    private void insertarEstadoContrato(){
+        try{
+            CDEstadoContrato cdec = new CDEstadoContrato();
+            CLEstadoContrato clec = new CLEstadoContrato();
+            
+            clec.setEstadoContrato(this.jTfNombreEstadoContrato.getText().trim());
+            
+            cdec.insertar(clec);
+            
+            JOptionPane.showMessageDialog(null, 
+                                          "Se ha registrado un estado...",
+                                          "SAJA",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            limpiarFormulario();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al registrar el estado: " + e);      
+        }
+    }
+    
+    private void actualizarEstadoContrato(){
+        try{
+            CDEstadoContrato cdec = new CDEstadoContrato();
+            CLEstadoContrato clec = new CLEstadoContrato();            
+            
+            clec.setEstadoContrato(this.jTfNombreEstadoContrato.getText().trim());
+            clec.setIdEstadoContrato(Integer.parseInt(this.jTfEstadoContrato.getText().trim()));
+            
+            cdec.actualizarEstadoContrato(clec);
+            
+            JOptionPane.showMessageDialog(null, 
+                                          "Se ha actualizado un estado...",
+                                          "SAJA",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            limpiarFormulario();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e);      
+        }
+    }
+    
+    private void eliminarEstadoContrato(){
+        try{
+            CDEstadoContrato cdec = new CDEstadoContrato();
+            CLEstadoContrato clec = new CLEstadoContrato();
+            
+            clec.setIdEstadoContrato(Integer.parseInt(this.jTfEstadoContrato.getText()));
+            
+            cdec.eliminarEstadoContrato(clec);
+            
+            JOptionPane.showMessageDialog(null, 
+                                          "Se ha eliminado un estado...",
+                                          "SAJA",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            limpiarFormulario();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar el estado: " + e);      
+        }
+    }
+    
+    private void ultimoIDEstado() throws SQLException{
+        CDEstadoContrato cdec = new CDEstadoContrato();
+        CLEstadoContrato clec = new CLEstadoContrato();
+        
+        clec.setIdEstadoContrato(cdec.autoIncrementarColorID());
+        
+        this.jTfEstadoContrato.setText(String.valueOf(clec.getIdEstadoContrato()));
+    }
+
+    private void seleccionarEstado(){
+        if(this.jTblEstadoContrato.getSelectedRow() != -1){
+            this.jTfEstadoContrato.setText(String.valueOf(this.jTblEstadoContrato.getValueAt(this.jTblEstadoContrato.getSelectedRow(), 0)));
+            this.jTfNombreEstadoContrato.setText(String.valueOf(this.jTblEstadoContrato.getValueAt(this.jTblEstadoContrato.getSelectedRow(), 1)));
+        }
+    }
+    
+    public void habilitarBotones(boolean guardar, boolean editar, boolean eliminar, boolean buscar){
+        this.jBtnGuardar.setEnabled(guardar);
+        this.jBtnGuardar.setVisible(guardar);
+        
+        this.jBtnEditar.setEnabled(editar);
+        this.jBtnEditar.setVisible(editar);
+        
+        this.jBtnEliminar.setEnabled(eliminar);
+        
+        this.jBtnBuscar.setEnabled(buscar);
     }
 
     /**
@@ -134,6 +265,11 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jBtnGuardar.setText("GUARDAR");
         jBtnGuardar.setBorder(null);
         jBtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEditar.setBackground(new java.awt.Color(9, 132, 227));
@@ -143,6 +279,11 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jBtnEditar.setText("EDITAR");
         jBtnEditar.setBorder(null);
         jBtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEliminar.setBackground(new java.awt.Color(9, 132, 227));
@@ -152,6 +293,11 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jBtnEliminar.setText("ELIMINAR");
         jBtnEliminar.setBorder(null);
         jBtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 140, 50));
 
         javax.swing.GroupLayout jPnlSeparatorLayout = new javax.swing.GroupLayout(jPnlSeparator);
@@ -176,6 +322,11 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
                 "ID", "Nombre"
             }
         ));
+        jTblEstadoContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblEstadoContratoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTblEstadoContrato);
 
         jPnlCancelar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 350, 310));
@@ -183,9 +334,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jPnlBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
 
@@ -239,6 +388,57 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+        try {
+            if(this.jTfNombreEstadoContrato.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,
+                                                       "Ingrese un nombre", 
+                                                       "SAJA",
+                                                       JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                insertarEstadoContrato();
+                llenarTablaEstados();
+                ultimoIDEstado();          
+            }    
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraEstadoContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        try {
+            actualizarEstadoContrato();
+            llenarTablaEstados();
+            ultimoIDEstado();
+            estadEditando = false;
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraEstadoContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        int result = JOptionPane.showConfirmDialog(null,
+                                                    "¿Desea eliminar el estado?",
+                                                    "SAJA",
+                                                    JOptionPane.YES_NO_OPTION);
+        if(result == JOptionPane.YES_OPTION) {
+            try {
+                eliminarEstadoContrato();
+                llenarTablaEstados();
+                ultimoIDEstado();
+                estadEditando = false;
+            } catch (SQLException ex) {
+                Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jTblEstadoContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblEstadoContratoMouseClicked
+        seleccionarEstado();
+        habilitarBotones(false, true, true, true);
+        estadEditando = true;
+    }//GEN-LAST:event_jTblEstadoContratoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -269,10 +469,17 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraEstadoContrato().setVisible(true);
+                try {
+                    new JFraEstadoContrato().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraEstadoContrato.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jBtnBuscar;
