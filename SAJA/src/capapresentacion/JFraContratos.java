@@ -40,6 +40,7 @@ public class JFraContratos extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        btnGrpVerContrato = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLblTitulo2 = new javax.swing.JLabel();
@@ -114,6 +115,33 @@ public class JFraContratos extends javax.swing.JFrame {
         jLblIdentificador55 = new javax.swing.JLabel();
         jLblIdentificador45 = new javax.swing.JLabel();
         jPnlSeparatorY = new javax.swing.JPanel();
+        jLblIdentificador49 = new javax.swing.JLabel();
+        jPnlSeparatorX = new javax.swing.JPanel();
+        jLblIdentificador50 = new javax.swing.JLabel();
+        jLblIdentificador51 = new javax.swing.JLabel();
+        jLblIdentificador52 = new javax.swing.JLabel();
+        jTfIdentidad10 = new javax.swing.JTextField();
+        jTfIdentidad11 = new javax.swing.JTextField();
+        jLblIdentificador53 = new javax.swing.JLabel();
+        jLblIdentificador54 = new javax.swing.JLabel();
+        jTfIdentidad12 = new javax.swing.JTextField();
+        jLblIdentificador56 = new javax.swing.JLabel();
+        jTfIdentidad13 = new javax.swing.JTextField();
+        jLblIdentificador57 = new javax.swing.JLabel();
+        jTfIdentidad14 = new javax.swing.JTextField();
+        jLblIdentificador58 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLblIdentificador59 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jLblIdentificador60 = new javax.swing.JLabel();
+        jTfIdentidad15 = new javax.swing.JTextField();
+        jLblIdentificador61 = new javax.swing.JLabel();
+        jTfIdentidad16 = new javax.swing.JTextField();
+        jBtnGuardar9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -858,7 +886,7 @@ public class JFraContratos extends javax.swing.JFrame {
         jLblIdentificador48.setText("Nombre completo");
 
         jLblIdentificador47.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador47.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador47.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador47.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador47.setText("Nombre completo");
 
@@ -868,7 +896,7 @@ public class JFraContratos extends javax.swing.JFrame {
         jLblIdentificador46.setText("Número de identidad");
 
         jLblIdentificador43.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador43.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador43.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador43.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador43.setText("Número de identidad");
 
@@ -896,29 +924,290 @@ public class JFraContratos extends javax.swing.JFrame {
             .addGap(0, 473, Short.MAX_VALUE)
         );
 
+        jLblIdentificador49.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador49.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador49.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador49.setText("Buscar contrato");
+
+        javax.swing.GroupLayout jPnlSeparatorXLayout = new javax.swing.GroupLayout(jPnlSeparatorX);
+        jPnlSeparatorX.setLayout(jPnlSeparatorXLayout);
+        jPnlSeparatorXLayout.setHorizontalGroup(
+            jPnlSeparatorXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPnlSeparatorXLayout.setVerticalGroup(
+            jPnlSeparatorXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        jLblIdentificador50.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador50.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador50.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador50.setText("Información del contrato");
+
+        jLblIdentificador51.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador51.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador51.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador51.setText("Bloque");
+
+        jLblIdentificador52.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador52.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador52.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador52.setText("Número de casa");
+
+        jTfIdentidad10.setEditable(false);
+        jTfIdentidad10.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad10.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad10.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad10.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jTfIdentidad11.setEditable(false);
+        jTfIdentidad11.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad11.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad11.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad11.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLblIdentificador53.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador53.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador53.setForeground(new java.awt.Color(41, 128, 185));
+        jLblIdentificador53.setText("Modificar contrato");
+
+        jLblIdentificador54.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador54.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador54.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador54.setText("Cód. del Contrato:");
+
+        jTfIdentidad12.setEditable(false);
+        jTfIdentidad12.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad12.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad12.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad12.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLblIdentificador56.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador56.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador56.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador56.setText("Tipo de contrato");
+
+        jTfIdentidad13.setEditable(false);
+        jTfIdentidad13.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad13.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad13.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad13.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLblIdentificador57.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador57.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador57.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador57.setText("Estado contrato");
+
+        jTfIdentidad14.setEditable(false);
+        jTfIdentidad14.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad14.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad14.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad14.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLblIdentificador58.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador58.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador58.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador58.setText("Dirección pegue");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
+
+        jLblIdentificador59.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador59.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador59.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador59.setText("Servicios contratados");
+
+        jTable4.setBackground(new java.awt.Color(255, 255, 255));
+        jTable4.setForeground(new java.awt.Color(0, 0, 0));
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Servicios"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(jTable4);
+
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrpVerContrato.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRadioButton5.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton5.setSelected(true);
+        jRadioButton5.setText("Pegue");
+
+        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
+        btnGrpVerContrato.add(jRadioButton6);
+        jRadioButton6.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRadioButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton6.setText("Identidad");
+
+        jLblIdentificador60.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador60.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador60.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador60.setText("Bloque");
+
+        jTfIdentidad15.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad15.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad15.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad15.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLblIdentificador61.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador61.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador61.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador61.setText("Casa");
+
+        jTfIdentidad16.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad16.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad16.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad16.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jBtnGuardar9.setBackground(new java.awt.Color(41, 128, 185));
+        jBtnGuardar9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnGuardar9.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnGuardar9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-blanco24.png"))); // NOI18N
+        jBtnGuardar9.setText("BUSCAR CONTRATO");
+        jBtnGuardar9.setBorder(null);
+        jBtnGuardar9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout jPnlVerContratoLayout = new javax.swing.GroupLayout(jPnlVerContrato);
         jPnlVerContrato.setLayout(jPnlVerContratoLayout);
         jPnlVerContratoLayout.setHorizontalGroup(
             jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlVerContratoLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblIdentificador55, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblIdentificador45, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador46, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador47, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador48, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLblIdentificador49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                                .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTfIdentidad15, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(jLblIdentificador60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTfIdentidad16, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(jLblIdentificador61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jBtnGuardar9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                                .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLblIdentificador48, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLblIdentificador47, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLblIdentificador55, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLblIdentificador45, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                        .addComponent(jLblIdentificador43, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLblIdentificador46, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                                        .addComponent(jRadioButton5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton6)))
+                                .addGap(0, 48, Short.MAX_VALUE))
+                            .addComponent(jPnlSeparatorX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPnlSeparatorY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(636, 636, 636))
+                .addGap(18, 18, 18)
+                .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLblIdentificador51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTfIdentidad10)
+                            .addComponent(jLblIdentificador56, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jTfIdentidad13, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblIdentificador59, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTfIdentidad11)
+                            .addComponent(jLblIdentificador52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTfIdentidad14)
+                            .addComponent(jLblIdentificador58, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)))
+                    .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador50)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLblIdentificador53))
+                    .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador54, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(jTfIdentidad12)))
+                .addGap(44, 44, 44))
         );
         jPnlVerContratoLayout.setVerticalGroup(
             jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlVerContratoLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPnlVerContratoLayout.createSequentialGroup()
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador50, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador53, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador54, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfIdentidad12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador51, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador52, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTfIdentidad10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfIdentidad11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador56, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador57, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTfIdentidad13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfIdentidad14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador58, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador59, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlVerContratoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador49, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton5)
+                            .addComponent(jRadioButton6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador60, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador61, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlVerContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTfIdentidad15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfIdentidad16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnGuardar9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPnlSeparatorX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLblIdentificador45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLblIdentificador55)
@@ -930,8 +1219,8 @@ public class JFraContratos extends javax.swing.JFrame {
                         .addComponent(jLblIdentificador47, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLblIdentificador48, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPnlSeparatorY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(jPnlSeparatorY, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jTabContrato.addTab("tabPrint", jPnlVerContrato);
@@ -1026,6 +1315,7 @@ public class JFraContratos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGrpVerContrato;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jBtnBuscar;
     private javax.swing.JLabel jBtnBuscar6;
@@ -1033,6 +1323,7 @@ public class JFraContratos extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar1;
     private javax.swing.JButton jBtnGuardar;
+    private javax.swing.JButton jBtnGuardar9;
     private javax.swing.JLabel jBtnSideBar;
     private javax.swing.JLabel jBtnSideBar1;
     private javax.swing.JCheckBox jCheckBox1;
@@ -1064,8 +1355,20 @@ public class JFraContratos extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador46;
     private javax.swing.JLabel jLblIdentificador47;
     private javax.swing.JLabel jLblIdentificador48;
+    private javax.swing.JLabel jLblIdentificador49;
     private javax.swing.JLabel jLblIdentificador5;
+    private javax.swing.JLabel jLblIdentificador50;
+    private javax.swing.JLabel jLblIdentificador51;
+    private javax.swing.JLabel jLblIdentificador52;
+    private javax.swing.JLabel jLblIdentificador53;
+    private javax.swing.JLabel jLblIdentificador54;
     private javax.swing.JLabel jLblIdentificador55;
+    private javax.swing.JLabel jLblIdentificador56;
+    private javax.swing.JLabel jLblIdentificador57;
+    private javax.swing.JLabel jLblIdentificador58;
+    private javax.swing.JLabel jLblIdentificador59;
+    private javax.swing.JLabel jLblIdentificador60;
+    private javax.swing.JLabel jLblIdentificador61;
     private javax.swing.JLabel jLblIdentificador9;
     private javax.swing.JLabel jLblTitulo2;
     private javax.swing.JPanel jPanel1;
@@ -1076,19 +1379,24 @@ public class JFraContratos extends javax.swing.JFrame {
     private javax.swing.JPanel jPnlBuscar6;
     private javax.swing.JPanel jPnlContrato;
     private javax.swing.JPanel jPnlListaContrato;
+    private javax.swing.JPanel jPnlSeparatorX;
     private javax.swing.JPanel jPnlSeparatorY;
     private javax.swing.JPanel jPnlVerContrato;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JPanel jSBContrato;
     private javax.swing.JPanel jSBContrato4;
     private javax.swing.JPanel jSBListadoContrato;
     private javax.swing.JPanel jSBListadoContrato1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel jSeparatorX1;
     private javax.swing.JPanel jSeparatorY;
     private javax.swing.JPanel jSideBar;
@@ -1096,10 +1404,19 @@ public class JFraContratos extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabContrato;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTfBuscar;
     private javax.swing.JTextField jTfBuscar6;
     private javax.swing.JTextField jTfIdentidad1;
+    private javax.swing.JTextField jTfIdentidad10;
+    private javax.swing.JTextField jTfIdentidad11;
+    private javax.swing.JTextField jTfIdentidad12;
+    private javax.swing.JTextField jTfIdentidad13;
+    private javax.swing.JTextField jTfIdentidad14;
+    private javax.swing.JTextField jTfIdentidad15;
+    private javax.swing.JTextField jTfIdentidad16;
     private javax.swing.JTextField jTfIdentidad2;
     // End of variables declaration//GEN-END:variables
 

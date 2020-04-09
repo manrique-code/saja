@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -24,16 +25,15 @@ public class JFraMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form JFraMenu
-     */
+     */   
     
-    Color c = new Color(241, 242, 246);
     
-    public JFraMenu() {
+    public JFraMenu() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         
         // Cambiar de color al JFrame
-        this.getContentPane().setBackground(c);
+        //this.getContentPane().setBackground(c);
         
         // Maximizar el JFrame
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -42,31 +42,33 @@ public class JFraMenu extends javax.swing.JFrame {
         this.jSideBarMenu.getViewport().setBackground(Color.getColor("223, 228, 234"));
         
         // Cambiar el color del Scroll del Menú
-        this.jScrollMenu.getViewport().setBackground(c);
+        //this.jScrollMenu.getViewport().setBackground(c);
 
         // Mostrar el nombre del usuario
-        this.jLblUsuario.setText(cll.getNombreUsuario());
+        //this.jLblUsuario.setText(cll.getNombreUsuario());        
+        
     }
     
-    // Instancias de los formularios de SAJA
-    JFraAbonados jfAbonados = new JFraAbonados();
-    JFraCobros jfCbros = new JFraCobros();
-    JFraCodos jfCodos = new JFraCodos();
-    JFraContratos jfContratos = new JFraContratos();
-    JFraCortes jfCortes = new JFraCortes();
-    JFraEgresos jfEgresos = new JFraEgresos();
-    JFraLogin jfLogIn = new JFraLogin();
-    JFraMora jfMora = new JFraMora();
-    JFraPlanPago jfPlanPago = new JFraPlanPago();
+    
+    
+    // Instancias de los formularios de SAJA 
+    //JFraLogin jfLogIn = new JFraLogin();
+    //JFraAbonados jfAbonados = new JFraAbonados();
+    //JFraPlanPago jfPlanPago = new JFraPlanPago();
+    //Color c = new Color(241, 242, 246);
+    
+    
+    //JFraConfiguraciones jfConfig = new JFraConfiguraciones();
+    
     
     // Cambiar de icono al pasar el mouse
-    BufferedImage image;
-    String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
+    //BufferedImage image;
+    //String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
     
     // Instancias de la capa lógica
-    CLLogin cll = new CLLogin();
+    //CLLogin cll = new CLLogin();
     
-    public void cambiarIconoAbonado(boolean mouseEncima){
+    /*public void cambiarIconoAbonado(boolean mouseEncima){
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "abonadoSeleccionado.png"));
@@ -95,6 +97,7 @@ public class JFraMenu extends javax.swing.JFrame {
                 image = ImageIO.read(new File(pathImagenes + "contratosSeleccionado.png"));
                 ImageIcon i = new ImageIcon(image);
                 this.jContratos.setIcon(i);
+                image.flush();
 
             } catch (IOException ex) {
                 Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,7 +251,7 @@ public class JFraMenu extends javax.swing.JFrame {
                 Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } 
+    } */
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -276,8 +279,8 @@ public class JFraMenu extends javax.swing.JFrame {
         jEgresos = new javax.swing.JLabel();
         jCodos = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLblTitulo2 = new javax.swing.JLabel();
-        jLblTitulo4 = new javax.swing.JLabel();
+        jLblConfig = new javax.swing.JLabel();
+        jLblTitulo5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -541,21 +544,30 @@ public class JFraMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(41, 128, 185));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLblTitulo2.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 24)); // NOI18N
-        jLblTitulo2.setForeground(new java.awt.Color(255, 255, 255));
-        jLblTitulo2.setText("7 de abril del 2020");
-        jPanel1.add(jLblTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 0, 220, 60));
+        jLblConfig.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 20)); // NOI18N
+        jLblConfig.setForeground(new java.awt.Color(255, 255, 255));
+        jLblConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/configuraciones-blanco32.png"))); // NOI18N
+        jLblConfig.setText(" Configuraciones");
+        jLblConfig.setToolTipText("Configuraciones");
+        jLblConfig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblConfig.setIconTextGap(10);
+        jLblConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblConfigMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLblConfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(1032, 10, -1, 50));
 
-        jLblTitulo4.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 24)); // NOI18N
-        jLblTitulo4.setForeground(new java.awt.Color(255, 255, 255));
-        jLblTitulo4.setText("Sistema Administrador de Juntas de Agua");
-        jPanel1.add(jLblTitulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 0, 480, 60));
+        jLblTitulo5.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 24)); // NOI18N
+        jLblTitulo5.setForeground(new java.awt.Color(255, 255, 255));
+        jLblTitulo5.setText("Sistema Administrador de Juntas de Agua");
+        jPanel1.add(jLblTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 0, 480, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jSideBarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -577,102 +589,111 @@ public class JFraMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jAbonadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAbonadosMouseEntered
-        this.cambiarIconoAbonado(true);
+        //this.cambiarIconoAbonado(true);
     }//GEN-LAST:event_jAbonadosMouseEntered
 
     private void jAbonadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAbonadosMouseExited
-        this.cambiarIconoAbonado(false);
+        //this.cambiarIconoAbonado(false);
     }//GEN-LAST:event_jAbonadosMouseExited
 
     private void jAbonadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAbonadosMouseClicked
-        // TODO add your handling code here:
-        
-        jfAbonados.setVisible(true);
+        //jfAbonados.setVisible(true);
     }//GEN-LAST:event_jAbonadosMouseClicked
 
     private void jPlanPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseClicked
-        this.jfPlanPago.setVisible(true);
+        /*
+        jfPlanPago.setVisible(true);*/
     }//GEN-LAST:event_jPlanPagosMouseClicked
 
     private void jPlanPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseEntered
-        this.cambiarIconoPlanPago(true);
+        //this.cambiarIconoPlanPago(true);
     }//GEN-LAST:event_jPlanPagosMouseEntered
 
     private void jPlanPagosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseExited
-        this.cambiarIconoPlanPago(false);
+        //this.cambiarIconoPlanPago(false);
     }//GEN-LAST:event_jPlanPagosMouseExited
 
     private void jContratosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseEntered
-        this.cambiarIconoContrato(true);
+        //this.cambiarIconoContrato(true);
     }//GEN-LAST:event_jContratosMouseEntered
 
     private void jContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseExited
-        this.cambiarIconoContrato(false);
+        //this.cambiarIconoContrato(false);
     }//GEN-LAST:event_jContratosMouseExited
 
     private void jPagoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseEntered
-        this.cambiarIconoPagos(true);
+        //this.cambiarIconoPagos(true);
     }//GEN-LAST:event_jPagoMouseEntered
 
     private void jPagoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseExited
-        this.cambiarIconoPagos(false);
+        //this.cambiarIconoPagos(false);
     }//GEN-LAST:event_jPagoMouseExited
 
     private void jContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseClicked
-        this.jfContratos.setVisible(true);
+       /* JFraContratos jfContratos = new JFraContratos();
+        jfContratos.setVisible(true);*/
     }//GEN-LAST:event_jContratosMouseClicked
 
     private void jPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseClicked
-        this.jfCbros.setVisible(true);
+        /*JFraCobros jfCbros = new JFraCobros();
+        jfCbros.setVisible(true);*/
     }//GEN-LAST:event_jPagoMouseClicked
 
     private void jMorasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseEntered
-        this.cambiarIconoMora(true);
+        //this.cambiarIconoMora(true);
     }//GEN-LAST:event_jMorasMouseEntered
 
     private void jMorasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseExited
-        this.cambiarIconoMora(false);
+        //this.cambiarIconoMora(false);
     }//GEN-LAST:event_jMorasMouseExited
 
     private void jMorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseClicked
-        this.jfMora.setVisible(true);
+        /*JFraMora jfMora = new JFraMora();
+        jfMora.setVisible(true);*/
     }//GEN-LAST:event_jMorasMouseClicked
 
     private void jCortesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseEntered
-        this.cambiarIconoCortes(true);
+        //this.cambiarIconoCortes(true);
     }//GEN-LAST:event_jCortesMouseEntered
 
     private void jCortesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseExited
-        this.cambiarIconoCortes(false);
+        //this.cambiarIconoCortes(false);
     }//GEN-LAST:event_jCortesMouseExited
 
     private void jCortesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseClicked
-        this.jfCortes.setVisible(true);
+        /*JFraCortes jfCortes = new JFraCortes();
+        jfCortes.setVisible(true);*/
     }//GEN-LAST:event_jCortesMouseClicked
 
     private void jEgresosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseEntered
-        this.cambiarIconoEgreso(true);
+       //this.cambiarIconoEgreso(true);
     }//GEN-LAST:event_jEgresosMouseEntered
 
     private void jEgresosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseExited
-        this.cambiarIconoEgreso(false);
+        //this.cambiarIconoEgreso(false);
     }//GEN-LAST:event_jEgresosMouseExited
 
     private void jEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseClicked
-        this.jfEgresos.setVisible(true);
+        /*JFraEgresos jfEgresos = new JFraEgresos();
+        jfEgresos.setVisible(true);*/
     }//GEN-LAST:event_jEgresosMouseClicked
 
     private void jCodosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseEntered
-        this.cambiarIconoCodos(true);
+       // this.cambiarIconoCodos(true);
     }//GEN-LAST:event_jCodosMouseEntered
 
     private void jCodosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseExited
-        this.cambiarIconoCodos(false);
+        //this.cambiarIconoCodos(false);
     }//GEN-LAST:event_jCodosMouseExited
 
     private void jCodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseClicked
-        this.jCodos.setVisible(true);
+        /*JFraCodos jfCodos = new JFraCodos();
+        jfCodos.setVisible(true);*/
     }//GEN-LAST:event_jCodosMouseClicked
+
+    private void jLblConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblConfigMouseClicked
+        //this.jfConfig.setVisible(true);
+    }//GEN-LAST:event_jLblConfigMouseClicked
 
     /**
      * @param args the command line arguments
@@ -705,7 +726,11 @@ public class JFraMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraMenu().setVisible(true);
+                try {
+                    new JFraMenu().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -716,10 +741,10 @@ public class JFraMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jContratos;
     private javax.swing.JLabel jCortes;
     private javax.swing.JLabel jEgresos;
+    private javax.swing.JLabel jLblConfig;
     private javax.swing.JLabel jLblIdentificador15;
     private javax.swing.JLabel jLblIdentificador16;
-    private javax.swing.JLabel jLblTitulo2;
-    private javax.swing.JLabel jLblTitulo4;
+    private javax.swing.JLabel jLblTitulo5;
     private javax.swing.JLabel jLblUsuario;
     private javax.swing.JLabel jMoras;
     private javax.swing.JLabel jPago;
