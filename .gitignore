@@ -1,4 +1,8 @@
 PROYECTO SAJA JAVA.rar
 SAJA LOGO.ai
 SAJA/src/capadatos/Conexion.java
-/SAJA/dist/
+/SAJA/dist/lib/
+/SAJA/dist/lib/AbsoluteLayout.jar
+/SAJA/dist/lib/jcalendar.jar
+/SAJA/dist/lib/mysql-connector-java-8.0.19.jar
+/SAJA/dist/lib/PlaceHolder.jar
