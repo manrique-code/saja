@@ -68,25 +68,10 @@ public class JFraAbonados extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLblIdentificador14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jSBListadoContrato1 = new javax.swing.JPanel();
+        jLblIdentificador28 = new javax.swing.JLabel();
+        jLblIdentificador29 = new javax.swing.JLabel();
         jTbdAbonados = new javax.swing.JTabbedPane();
-        jPnlDetalleAbonado = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLblNombreAbonado = new javax.swing.JLabel();
-        jLblIdentificador18 = new javax.swing.JLabel();
-        jLblIdentificador19 = new javax.swing.JLabel();
-        jLblIdentificador20 = new javax.swing.JLabel();
-        jLblIdentificador21 = new javax.swing.JLabel();
-        jLblIdentificador22 = new javax.swing.JLabel();
-        jLblIdentificador23 = new javax.swing.JLabel();
-        jLblIdentificador24 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        jLblIdentificador25 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jLblIdentificador26 = new javax.swing.JLabel();
-        jLblIdentificador27 = new javax.swing.JLabel();
         jPnlAbandos = new javax.swing.JPanel();
         jLblIdentificador = new javax.swing.JLabel();
         jTfIdentidad = new javax.swing.JTextField();
@@ -108,6 +93,24 @@ public class JFraAbonados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jBtnModificar = new javax.swing.JButton();
+        jPnlDetalleAbonado = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLblNombreAbonado = new javax.swing.JLabel();
+        jLblIdentificador18 = new javax.swing.JLabel();
+        jLblIdentificador19 = new javax.swing.JLabel();
+        jLblIdentificador20 = new javax.swing.JLabel();
+        jLblIdentificador21 = new javax.swing.JLabel();
+        jLblIdentificador22 = new javax.swing.JLabel();
+        jLblIdentificador23 = new javax.swing.JLabel();
+        jLblIdentificador24 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jLblIdentificador25 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jLblIdentificador26 = new javax.swing.JLabel();
+        jLblIdentificador27 = new javax.swing.JLabel();
         jPnlListadoAbonados = new javax.swing.JPanel();
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
@@ -223,7 +226,7 @@ public class JFraAbonados extends javax.swing.JFrame {
         jLblIdentificador11.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador11.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador11.setForeground(new java.awt.Color(255, 255, 255));
-        jLblIdentificador11.setText("Lista de abonados");
+        jLblIdentificador11.setText("Ver abonado");
 
         javax.swing.GroupLayout jSBListadoContratoLayout = new javax.swing.GroupLayout(jSBListadoContrato);
         jSBListadoContrato.setLayout(jSBListadoContratoLayout);
@@ -325,6 +328,43 @@ public class JFraAbonados extends javax.swing.JFrame {
 
         jSideBar.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 206, 255, -1));
 
+        jSBListadoContrato1.setBackground(new java.awt.Color(52, 73, 94));
+        jSBListadoContrato1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblIdentificador28.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador28.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador28.setForeground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tabla-blanco32.png"))); // NOI18N
+        jLblIdentificador28.setToolTipText("Listado de abonados");
+
+        jLblIdentificador29.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador29.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador29.setForeground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador29.setText("Lista de abonados");
+
+        javax.swing.GroupLayout jSBListadoContrato1Layout = new javax.swing.GroupLayout(jSBListadoContrato1);
+        jSBListadoContrato1.setLayout(jSBListadoContrato1Layout);
+        jSBListadoContrato1Layout.setHorizontalGroup(
+            jSBListadoContrato1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBListadoContrato1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLblIdentificador29, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLblIdentificador28)
+                .addGap(10, 10, 10))
+        );
+        jSBListadoContrato1Layout.setVerticalGroup(
+            jSBListadoContrato1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSBListadoContrato1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jSBListadoContrato1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblIdentificador28, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(jLblIdentificador29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jSideBar.add(jSBListadoContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 270, -1));
+
         jSideBar1.setViewportView(jSideBar);
 
         jPanel4.add(jSideBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, 270, 610));
@@ -334,179 +374,6 @@ public class JFraAbonados extends javax.swing.JFrame {
         jTbdAbonados.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
         jTbdAbonados.setFont(new java.awt.Font("HelveticaNowDisplay Hairline", 1, 12)); // NOI18N
         jTbdAbonados.setPreferredSize(new java.awt.Dimension(800, 700));
-
-        jPnlDetalleAbonado.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlDetalleAbonado.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/woman-128.png"))); // NOI18N
-
-        jLblNombreAbonado.setBackground(new java.awt.Color(102, 102, 102));
-        jLblNombreAbonado.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 22)); // NOI18N
-        jLblNombreAbonado.setForeground(new java.awt.Color(0, 0, 0));
-        jLblNombreAbonado.setText("NOMBRE DEL ABONADO AQUÍ");
-
-        jLblIdentificador18.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador18.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador18.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador18.setText("Fecha de nacimiento");
-
-        jLblIdentificador19.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador19.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador19.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador19.setText("Fecha de nacimiento");
-
-        jLblIdentificador20.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador20.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador20.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador20.setText("Número de teléfono");
-
-        jLblIdentificador21.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador21.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador21.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador21.setText("Fecha de nacimiento");
-
-        jLblIdentificador22.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador22.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador22.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador22.setText("Correo electrónico");
-
-        jLblIdentificador23.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador23.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador23.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador23.setText("Fecha de nacimiento");
-
-        jLblIdentificador24.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador24.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador24.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador24.setText("Dirección");
-
-        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jLblIdentificador25.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador25.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador25.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador25.setText("Contratos que posee el abonado");
-
-        jTable3.setBackground(new java.awt.Color(255, 255, 255));
-        jTable3.setForeground(new java.awt.Color(0, 0, 0));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "#", "Casa", "Bloque", "Tipo Contrato", "Estado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane7.setViewportView(jTable3);
-
-        jLblIdentificador26.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador26.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador26.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador26.setText("Ver contrato");
-        jLblIdentificador26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLblIdentificador27.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador27.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador27.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador27.setText("Modificar abonado");
-        jLblIdentificador27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPnlDetalleAbonadoLayout = new javax.swing.GroupLayout(jPnlDetalleAbonado);
-        jPnlDetalleAbonado.setLayout(jPnlDetalleAbonadoLayout);
-        jPnlDetalleAbonadoLayout.setHorizontalGroup(
-            jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador27)
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel2))
-                    .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLblNombreAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                            .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlDetalleAbonadoLayout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(jLblIdentificador26))))))
-                .addGap(41, 41, 41))
-        );
-        jPnlDetalleAbonadoLayout.setVerticalGroup(
-            jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLblIdentificador27))
-                .addGap(18, 18, 18)
-                .addComponent(jLblNombreAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblIdentificador19)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLblIdentificador20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblIdentificador21)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLblIdentificador22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblIdentificador23)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLblIdentificador24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador25)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLblIdentificador26)
-                        .addGap(7, 7, 7)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
-        jTbdAbonados.addTab("tab3", jPnlDetalleAbonado);
 
         jPnlAbandos.setBackground(new java.awt.Color(255, 255, 255));
         jPnlAbandos.setForeground(new java.awt.Color(0, 0, 0));
@@ -735,6 +602,179 @@ public class JFraAbonados extends javax.swing.JFrame {
         );
 
         jTbdAbonados.addTab("Registrar abonados     ", new javax.swing.ImageIcon(getClass().getResource("/img/user-negro16.png")), jPnlAbandos); // NOI18N
+
+        jPnlDetalleAbonado.setBackground(new java.awt.Color(255, 255, 255));
+        jPnlDetalleAbonado.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/woman-128.png"))); // NOI18N
+
+        jLblNombreAbonado.setBackground(new java.awt.Color(102, 102, 102));
+        jLblNombreAbonado.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 22)); // NOI18N
+        jLblNombreAbonado.setForeground(new java.awt.Color(0, 0, 0));
+        jLblNombreAbonado.setText("NOMBRE DEL ABONADO AQUÍ");
+
+        jLblIdentificador18.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador18.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador18.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador18.setText("Fecha de nacimiento");
+
+        jLblIdentificador19.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador19.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblIdentificador19.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador19.setText("Fecha de nacimiento");
+
+        jLblIdentificador20.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador20.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador20.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador20.setText("Número de teléfono");
+
+        jLblIdentificador21.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador21.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblIdentificador21.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador21.setText("Fecha de nacimiento");
+
+        jLblIdentificador22.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador22.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador22.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador22.setText("Correo electrónico");
+
+        jLblIdentificador23.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador23.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblIdentificador23.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador23.setText("Fecha de nacimiento");
+
+        jLblIdentificador24.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador24.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador24.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador24.setText("Dirección");
+
+        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLblIdentificador25.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador25.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador25.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador25.setText("Contratos que posee el abonado");
+
+        jTable3.setBackground(new java.awt.Color(255, 255, 255));
+        jTable3.setForeground(new java.awt.Color(0, 0, 0));
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#", "Casa", "Bloque", "Tipo Contrato", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(jTable3);
+
+        jLblIdentificador26.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador26.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador26.setForeground(new java.awt.Color(41, 128, 185));
+        jLblIdentificador26.setText("Ver contrato");
+        jLblIdentificador26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblIdentificador27.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador27.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador27.setForeground(new java.awt.Color(41, 128, 185));
+        jLblIdentificador27.setText("Modificar abonado");
+        jLblIdentificador27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPnlDetalleAbonadoLayout = new javax.swing.GroupLayout(jPnlDetalleAbonado);
+        jPnlDetalleAbonado.setLayout(jPnlDetalleAbonadoLayout);
+        jPnlDetalleAbonadoLayout.setHorizontalGroup(
+            jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador27)
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel2))
+                    .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLblNombreAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
+                            .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlDetalleAbonadoLayout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(jLblIdentificador26))))))
+                .addGap(41, 41, 41))
+        );
+        jPnlDetalleAbonadoLayout.setVerticalGroup(
+            jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLblIdentificador27))
+                .addGap(18, 18, 18)
+                .addComponent(jLblNombreAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblIdentificador19)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLblIdentificador20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblIdentificador21)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLblIdentificador22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblIdentificador23)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLblIdentificador24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLblIdentificador26)
+                        .addGap(7, 7, 7)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jTbdAbonados.addTab("tab3", jPnlDetalleAbonado);
 
         jPnlListadoAbonados.setBackground(new java.awt.Color(255, 255, 255));
         jPnlListadoAbonados.setForeground(new java.awt.Color(0, 0, 0));
@@ -990,6 +1030,8 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador25;
     private javax.swing.JLabel jLblIdentificador26;
     private javax.swing.JLabel jLblIdentificador27;
+    private javax.swing.JLabel jLblIdentificador28;
+    private javax.swing.JLabel jLblIdentificador29;
     private javax.swing.JLabel jLblIdentificador3;
     private javax.swing.JLabel jLblIdentificador4;
     private javax.swing.JLabel jLblIdentificador5;
@@ -1016,6 +1058,7 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JPanel jSBContrato;
     private javax.swing.JPanel jSBContrato4;
     private javax.swing.JPanel jSBListadoContrato;
+    private javax.swing.JPanel jSBListadoContrato1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
