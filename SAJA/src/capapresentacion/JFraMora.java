@@ -80,7 +80,6 @@ public class JFraMora extends javax.swing.JFrame {
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
-        jPnlReportes = new javax.swing.JPanel();
         jPnlDetalleMora = new javax.swing.JPanel();
         jLblIdentificador43 = new javax.swing.JLabel();
         jLblIdentificador44 = new javax.swing.JLabel();
@@ -109,6 +108,7 @@ public class JFraMora extends javax.swing.JFrame {
         jLblIdentificador62 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jPnlReportes = new javax.swing.JPanel();
 
         jList4.setBackground(new java.awt.Color(255, 255, 255));
         jList4.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
@@ -525,22 +525,6 @@ public class JFraMora extends javax.swing.JFrame {
 
         jTabContrato.addTab("tab4", jPnlListadoPagos);
 
-        jPnlReportes.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlReportes.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPnlReportesLayout = new javax.swing.GroupLayout(jPnlReportes);
-        jPnlReportes.setLayout(jPnlReportesLayout);
-        jPnlReportesLayout.setHorizontalGroup(
-            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 988, Short.MAX_VALUE)
-        );
-        jPnlReportesLayout.setVerticalGroup(
-            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
-        );
-
-        jTabContrato.addTab("tab3", jPnlReportes);
-
         jPnlDetalleMora.setBackground(new java.awt.Color(255, 255, 255));
         jPnlDetalleMora.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -823,6 +807,22 @@ public class JFraMora extends javax.swing.JFrame {
         );
 
         jTabContrato.addTab("tab2", jPnlDetalleMora);
+
+        jPnlReportes.setBackground(new java.awt.Color(255, 255, 255));
+        jPnlReportes.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPnlReportesLayout = new javax.swing.GroupLayout(jPnlReportes);
+        jPnlReportes.setLayout(jPnlReportesLayout);
+        jPnlReportesLayout.setHorizontalGroup(
+            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 988, Short.MAX_VALUE)
+        );
+        jPnlReportesLayout.setVerticalGroup(
+            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 566, Short.MAX_VALUE)
+        );
+
+        jTabContrato.addTab("tab3", jPnlReportes);
 
         jPanel1.add(jTabContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 1030, 570));
 

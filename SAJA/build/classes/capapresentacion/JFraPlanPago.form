@@ -738,13 +738,13 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTfIdentidad11" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="jTfBloque" min="-2" pref="100" max="-2" attributes="0"/>
                                           <Component id="jLblIdentificador50" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLblIdentificador51" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Component id="jTfIdentidad12" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="jTfCasa" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jPnlSeparator" alignment="0" max="32767" attributes="0"/>
@@ -777,41 +777,46 @@
                                       <Component id="jRadioButton4" min="-2" pref="120" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLblIdentificador52" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jTfIdentidad10" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTfRTN" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jLblIdentificador49" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTfIdentidad13" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTfNombreCompleto" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jSeparatorY" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jBtnGuardar" min="-2" pref="251" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jBtnGuardar1" min="-2" pref="245" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jScrollPane2" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
-                                      <Component id="jPanel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLblIdentificador47" alignment="1" min="-2" pref="269" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLblIdentificador53" min="-2" pref="300" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLblIdentificador54" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jPanel11" max="32767" attributes="0"/>
-                                      </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jBtnGuardar" min="-2" pref="251" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jBtnGuardar1" min="-2" pref="245" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLblIdentificador55" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jTfBloqueORTN1" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="575" max="-2" attributes="0"/>
+                                  <Component id="jPanel8" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLblIdentificador47" alignment="1" min="-2" pref="269" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLblIdentificador53" min="-2" pref="300" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLblIdentificador54" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jPanel11" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLblIdentificador55" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jTfCodPlanPago" min="-2" pref="85" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLblIdentificador46" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jCboTipoPlanPago" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLblIdentificador45" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jPnlPlazosPago" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jLblIdentificador46" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jCboMotivoEgreso" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLblIdentificador45" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLblIdentificador72" min="-2" pref="269" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="682" max="-2" attributes="0"/>
@@ -849,11 +854,11 @@
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       <Component id="jLblIdentificador52" min="-2" pref="24" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTfIdentidad10" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="jTfRTN" min="-2" pref="35" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLblIdentificador49" min="-2" pref="24" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTfIdentidad13" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="jTfNombreCompleto" min="-2" pref="35" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLblIdentificador50" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
@@ -861,8 +866,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTfIdentidad11" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="jTfIdentidad12" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="jTfBloque" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="jTfCasa" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -870,12 +875,18 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLblIdentificador55" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="jTfBloqueORTN1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="jTfCodPlanPago" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLblIdentificador46" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLblIdentificador46" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="jLblIdentificador72" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCboMotivoEgreso" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jPanel10" pref="0" max="32767" attributes="0"/>
+                                          <Component id="jCboTipoPlanPago" pref="35" max="32767" attributes="0"/>
+                                      </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
@@ -884,7 +895,7 @@
                                                   <Component id="jLblIdentificador47" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jPnlPlazosPago" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -925,7 +936,7 @@
                         <Property name="text" type="java.lang.String" value="Plazos de pago (meses)"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jCboMotivoEgreso">
+                    <Component class="javax.swing.JComboBox" name="jCboTipoPlanPago">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -981,7 +992,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JPanel" name="jPanel7">
+                    <Container class="javax.swing.JPanel" name="jPnlPlazosPago">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1001,7 +1012,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTfIdentidad5" min="-2" pref="186" max="-2" attributes="0"/>
+                                  <Component id="jTfPlazosPago" min="-2" pref="186" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jTfIdentidad4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1013,7 +1024,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jTfIdentidad5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="jTfPlazosPago" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                       <Component id="jTfIdentidad4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1021,7 +1032,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTfIdentidad5">
+                        <Component class="javax.swing.JTextField" name="jTfPlazosPago">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1098,7 +1109,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTfIdentidad7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTfIdentidad6" min="-2" pref="213" max="-2" attributes="0"/>
+                                  <Component id="jTfValorPagoPlazo" min="-2" pref="213" max="-2" attributes="0"/>
                                   <EmptySpace pref="23" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1108,7 +1119,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jTfIdentidad6" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="jTfValorPagoPlazo" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                       <Component id="jTfIdentidad7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1116,7 +1127,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTfIdentidad6">
+                        <Component class="javax.swing.JTextField" name="jTfValorPagoPlazo">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1347,7 +1358,7 @@
                         <Property name="text" type="java.lang.String" value="Nombre Completo"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTfIdentidad10">
+                    <Component class="javax.swing.JTextField" name="jTfRTN">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1369,7 +1380,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTfIdentidad11">
+                    <Component class="javax.swing.JTextField" name="jTfBloque">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1405,7 +1416,7 @@
                         <Property name="text" type="java.lang.String" value="Bloque"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTfIdentidad12">
+                    <Component class="javax.swing.JTextField" name="jTfCasa">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1455,7 +1466,7 @@
                         <Property name="text" type="java.lang.String" value="RTN"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTfIdentidad13">
+                    <Component class="javax.swing.JTextField" name="jTfNombreCompleto">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1498,7 +1509,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable2">
+                        <Component class="javax.swing.JTable" name="jTblDetallePago">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="2" rowCount="0">
@@ -1555,7 +1566,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTfIdentidad16" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTfIdentidad15" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <Component id="jTfTotalPago" min="-2" pref="158" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1563,12 +1574,12 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jTfIdentidad16" pref="23" max="32767" attributes="0"/>
-                              <Component id="jTfIdentidad15" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jTfTotalPago" alignment="1" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTfIdentidad15">
+                        <Component class="javax.swing.JTextField" name="jTfTotalPago">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1658,7 +1669,7 @@
                         <Property name="text" type="java.lang.String" value="C&#xf3;d. Plan de pago:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTfBloqueORTN1">
+                    <Component class="javax.swing.JTextField" name="jTfCodPlanPago">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1678,6 +1689,102 @@
                         <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="99" green="99" red="0" type="rgb"/>
                         </Property>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JPanel" name="jPanel10">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                            <EtchetBorder/>
+                          </Border>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTfIdentidad8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jTfMontoAdeudado" min="-2" pref="213" max="-2" attributes="0"/>
+                                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jTfIdentidad8" pref="29" max="32767" attributes="0"/>
+                                      <Component id="jTfMontoAdeudado" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextField" name="jTfMontoAdeudado">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="HelveticaNowDisplay Regular" size="16" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="null"/>
+                            </Property>
+                            <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="99" red="0" type="rgb"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="jTfIdentidad8">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="HelveticaNowDisplay Regular" size="18" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="L."/>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="null"/>
+                            </Property>
+                            <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="99" red="0" type="rgb"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JLabel" name="jLblIdentificador72">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="HelveticaNowDisplay Medium" size="20" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Monto adeudado"/>
                       </Properties>
                     </Component>
                   </SubComponents>

@@ -104,6 +104,32 @@ public class JFraCobros extends javax.swing.JFrame {
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
+        jPnlAMECobros1 = new javax.swing.JPanel();
+        jLblIdentificador23 = new javax.swing.JLabel();
+        jLblIdentificador31 = new javax.swing.JLabel();
+        jTfIdentidad4 = new javax.swing.JTextField();
+        jLblIdentificador32 = new javax.swing.JLabel();
+        jTfIdentidad6 = new javax.swing.JTextField();
+        jBtnGuardar5 = new javax.swing.JButton();
+        jSeparatorY1 = new javax.swing.JPanel();
+        jLblIdentificador33 = new javax.swing.JLabel();
+        jLblIdentificador36 = new javax.swing.JLabel();
+        jLblIdentificador39 = new javax.swing.JLabel();
+        jBtnGuardar6 = new javax.swing.JButton();
+        jLblIdentificador40 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jBtnGuardar7 = new javax.swing.JButton();
+        jLblIdentificador41 = new javax.swing.JLabel();
+        jSeparatorX3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jBtnGuardar8 = new javax.swing.JButton();
+        jLblIdentificador42 = new javax.swing.JLabel();
+        jTfIdentidad7 = new javax.swing.JTextField();
+        jTfIdentidad14 = new javax.swing.JTextField();
+        jTfIdentidad15 = new javax.swing.JTextField();
+        jTfIdentidad16 = new javax.swing.JTextField();
+        jTfIdentidad17 = new javax.swing.JTextField();
         jPnlAMECobros = new javax.swing.JPanel();
         jLblIdentificador15 = new javax.swing.JLabel();
         jLblIdentificador16 = new javax.swing.JLabel();
@@ -132,32 +158,6 @@ public class JFraCobros extends javax.swing.JFrame {
         jLblIdentificador30 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
-        jPnlAMECobros1 = new javax.swing.JPanel();
-        jLblIdentificador23 = new javax.swing.JLabel();
-        jLblIdentificador31 = new javax.swing.JLabel();
-        jTfIdentidad4 = new javax.swing.JTextField();
-        jLblIdentificador32 = new javax.swing.JLabel();
-        jTfIdentidad6 = new javax.swing.JTextField();
-        jBtnGuardar5 = new javax.swing.JButton();
-        jSeparatorY1 = new javax.swing.JPanel();
-        jLblIdentificador33 = new javax.swing.JLabel();
-        jLblIdentificador36 = new javax.swing.JLabel();
-        jLblIdentificador39 = new javax.swing.JLabel();
-        jBtnGuardar6 = new javax.swing.JButton();
-        jLblIdentificador40 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jBtnGuardar7 = new javax.swing.JButton();
-        jLblIdentificador41 = new javax.swing.JLabel();
-        jSeparatorX3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jBtnGuardar8 = new javax.swing.JButton();
-        jLblIdentificador42 = new javax.swing.JLabel();
-        jTfIdentidad7 = new javax.swing.JTextField();
-        jTfIdentidad14 = new javax.swing.JTextField();
-        jTfIdentidad15 = new javax.swing.JTextField();
-        jTfIdentidad16 = new javax.swing.JTextField();
-        jTfIdentidad17 = new javax.swing.JTextField();
 
         jSeparatorX1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -788,7 +788,6 @@ public class JFraCobros extends javax.swing.JFrame {
                                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jTfIdentidad10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTfIdentidad11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(18, 18, 18)
                         .addGroup(jPnlFinanzaAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblIdentificador47)
                             .addComponent(jLblIdentificador49))
@@ -918,6 +917,286 @@ public class JFraCobros extends javax.swing.JFrame {
         );
 
         jTabContrato.addTab("tab4", jPnlListadoPagos);
+
+        jPnlAMECobros1.setBackground(new java.awt.Color(255, 255, 255));
+        jPnlAMECobros1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLblIdentificador23.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador23.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador23.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador23.setText("Pegue a registrar el pago:");
+
+        jLblIdentificador31.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador31.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador31.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador31.setText("Bloque");
+
+        jTfIdentidad4.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad4.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad4.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad4.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLblIdentificador32.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador32.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador32.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador32.setText("Casa");
+
+        jTfIdentidad6.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad6.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad6.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad6.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jBtnGuardar5.setBackground(new java.awt.Color(39, 174, 96));
+        jBtnGuardar5.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnGuardar5.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnGuardar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cruz-blanca24.png"))); // NOI18N
+        jBtnGuardar5.setToolTipText("Añadir mes");
+        jBtnGuardar5.setBorder(null);
+        jBtnGuardar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jSeparatorY1.setBackground(new java.awt.Color(153, 153, 153));
+        jSeparatorY1.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jSeparatorY1Layout = new javax.swing.GroupLayout(jSeparatorY1);
+        jSeparatorY1.setLayout(jSeparatorY1Layout);
+        jSeparatorY1Layout.setHorizontalGroup(
+            jSeparatorY1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+        jSeparatorY1Layout.setVerticalGroup(
+            jSeparatorY1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 496, Short.MAX_VALUE)
+        );
+
+        jLblIdentificador33.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador33.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador33.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador33.setText("RTN");
+
+        jLblIdentificador36.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador36.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador36.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador36.setText("Bloque");
+
+        jLblIdentificador39.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador39.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador39.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador39.setText("Nombre completo");
+
+        jBtnGuardar6.setBackground(new java.awt.Color(41, 128, 185));
+        jBtnGuardar6.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnGuardar6.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnGuardar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-blanco24.png"))); // NOI18N
+        jBtnGuardar6.setText("BUSCAR CONTRATO");
+        jBtnGuardar6.setBorder(null);
+        jBtnGuardar6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblIdentificador40.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador40.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador40.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador40.setText("Meses");
+
+        jComboBox2.setFont(new java.awt.Font("HelveticaNowDisplay Thin", 0, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo ", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        jBtnGuardar7.setBackground(new java.awt.Color(192, 57, 43));
+        jBtnGuardar7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnGuardar7.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnGuardar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/x-blanca24.png"))); // NOI18N
+        jBtnGuardar7.setToolTipText("Quitar mes");
+        jBtnGuardar7.setBorder(null);
+        jBtnGuardar7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblIdentificador41.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador41.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador41.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador41.setText("Casa");
+
+        jSeparatorX3.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jSeparatorX3Layout = new javax.swing.GroupLayout(jSeparatorX3);
+        jSeparatorX3.setLayout(jSeparatorX3Layout);
+        jSeparatorX3Layout.setHorizontalGroup(
+            jSeparatorX3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jSeparatorX3Layout.setVerticalGroup(
+            jSeparatorX3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        jBtnGuardar8.setBackground(new java.awt.Color(41, 128, 185));
+        jBtnGuardar8.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnGuardar8.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnGuardar8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar-white24.png"))); // NOI18N
+        jBtnGuardar8.setText("GUARDAR PAGO");
+        jBtnGuardar8.setBorder(null);
+        jBtnGuardar8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblIdentificador42.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador42.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador42.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador42.setText("Total a pagar");
+
+        jTfIdentidad7.setEditable(false);
+        jTfIdentidad7.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad7.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad7.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad7.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jTfIdentidad14.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad14.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad14.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad14.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jTfIdentidad15.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad15.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad15.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad15.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jTfIdentidad16.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad16.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad16.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad16.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jTfIdentidad17.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad17.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfIdentidad17.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfIdentidad17.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        javax.swing.GroupLayout jPnlAMECobros1Layout = new javax.swing.GroupLayout(jPnlAMECobros1);
+        jPnlAMECobros1.setLayout(jPnlAMECobros1Layout);
+        jPnlAMECobros1Layout.setHorizontalGroup(
+            jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTfIdentidad6)
+                        .addComponent(jLblIdentificador32, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTfIdentidad4)
+                        .addComponent(jLblIdentificador31, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addComponent(jLblIdentificador23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(35, 35, 35)
+                .addComponent(jSeparatorY1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblIdentificador40, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                                .addComponent(jBtnGuardar7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnGuardar5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblIdentificador42, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(jTfIdentidad7, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)))
+                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLblIdentificador36, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTfIdentidad14)
+                            .addComponent(jTfIdentidad17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLblIdentificador41, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTfIdentidad15)
+                            .addComponent(jTfIdentidad16, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparatorX3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnGuardar8, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(83, Short.MAX_VALUE))
+            .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(jBtnGuardar6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(703, Short.MAX_VALUE)))
+        );
+        jPnlAMECobros1Layout.setVerticalGroup(
+            jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                                .addComponent(jLblIdentificador23, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLblIdentificador31, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTfIdentidad4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLblIdentificador32, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTfIdentidad6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparatorY1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblIdentificador33, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlAMECobros1Layout.createSequentialGroup()
+                                .addComponent(jLblIdentificador39, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTfIdentidad14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTfIdentidad15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador41, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador36, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTfIdentidad17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfIdentidad16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparatorX3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador42, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBtnGuardar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtnGuardar7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTfIdentidad7))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnGuardar8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
+                    .addGap(253, 253, 253)
+                    .addComponent(jBtnGuardar6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(263, Short.MAX_VALUE)))
+        );
+
+        jTabContrato.addTab("tab1", jPnlAMECobros1);
 
         jPnlAMECobros.setBackground(new java.awt.Color(255, 255, 255));
         jPnlAMECobros.setForeground(new java.awt.Color(0, 0, 0));
@@ -1217,286 +1496,6 @@ public class JFraCobros extends javax.swing.JFrame {
         );
 
         jTabContrato.addTab("tab1", jPnlAMECobros);
-
-        jPnlAMECobros1.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlAMECobros1.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLblIdentificador23.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador23.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador23.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador23.setText("Pegue a registrar el pago:");
-
-        jLblIdentificador31.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador31.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador31.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador31.setText("Bloque");
-
-        jTfIdentidad4.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad4.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad4.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad4.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jLblIdentificador32.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador32.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador32.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador32.setText("Casa");
-
-        jTfIdentidad6.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad6.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad6.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad6.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jBtnGuardar5.setBackground(new java.awt.Color(39, 174, 96));
-        jBtnGuardar5.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
-        jBtnGuardar5.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnGuardar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cruz-blanca24.png"))); // NOI18N
-        jBtnGuardar5.setToolTipText("Añadir mes");
-        jBtnGuardar5.setBorder(null);
-        jBtnGuardar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jSeparatorY1.setBackground(new java.awt.Color(153, 153, 153));
-        jSeparatorY1.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jSeparatorY1Layout = new javax.swing.GroupLayout(jSeparatorY1);
-        jSeparatorY1.setLayout(jSeparatorY1Layout);
-        jSeparatorY1Layout.setHorizontalGroup(
-            jSeparatorY1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
-        jSeparatorY1Layout.setVerticalGroup(
-            jSeparatorY1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
-        );
-
-        jLblIdentificador33.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador33.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador33.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador33.setText("RTN");
-
-        jLblIdentificador36.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador36.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador36.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador36.setText("Bloque");
-
-        jLblIdentificador39.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador39.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador39.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador39.setText("Nombre completo");
-
-        jBtnGuardar6.setBackground(new java.awt.Color(41, 128, 185));
-        jBtnGuardar6.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
-        jBtnGuardar6.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnGuardar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-blanco24.png"))); // NOI18N
-        jBtnGuardar6.setText("BUSCAR CONTRATO");
-        jBtnGuardar6.setBorder(null);
-        jBtnGuardar6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLblIdentificador40.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador40.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador40.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador40.setText("Meses");
-
-        jComboBox2.setFont(new java.awt.Font("HelveticaNowDisplay Thin", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo ", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-
-        jBtnGuardar7.setBackground(new java.awt.Color(192, 57, 43));
-        jBtnGuardar7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
-        jBtnGuardar7.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnGuardar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/x-blanca24.png"))); // NOI18N
-        jBtnGuardar7.setToolTipText("Quitar mes");
-        jBtnGuardar7.setBorder(null);
-        jBtnGuardar7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLblIdentificador41.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador41.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador41.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador41.setText("Casa");
-
-        jSeparatorX3.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout jSeparatorX3Layout = new javax.swing.GroupLayout(jSeparatorX3);
-        jSeparatorX3.setLayout(jSeparatorX3Layout);
-        jSeparatorX3Layout.setHorizontalGroup(
-            jSeparatorX3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jSeparatorX3Layout.setVerticalGroup(
-            jSeparatorX3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
-
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
-        jBtnGuardar8.setBackground(new java.awt.Color(41, 128, 185));
-        jBtnGuardar8.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
-        jBtnGuardar8.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnGuardar8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar-white24.png"))); // NOI18N
-        jBtnGuardar8.setText("GUARDAR PAGO");
-        jBtnGuardar8.setBorder(null);
-        jBtnGuardar8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLblIdentificador42.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador42.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador42.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador42.setText("Total a pagar");
-
-        jTfIdentidad7.setEditable(false);
-        jTfIdentidad7.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad7.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad7.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad7.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jTfIdentidad14.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad14.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad14.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad14.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jTfIdentidad15.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad15.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad15.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad15.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jTfIdentidad16.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad16.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad16.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad16.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jTfIdentidad17.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad17.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad17.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad17.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        javax.swing.GroupLayout jPnlAMECobros1Layout = new javax.swing.GroupLayout(jPnlAMECobros1);
-        jPnlAMECobros1.setLayout(jPnlAMECobros1Layout);
-        jPnlAMECobros1Layout.setHorizontalGroup(
-            jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTfIdentidad6)
-                        .addComponent(jLblIdentificador32, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTfIdentidad4)
-                        .addComponent(jLblIdentificador31, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addComponent(jLblIdentificador23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(35, 35, 35)
-                .addComponent(jSeparatorY1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblIdentificador40, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                                .addComponent(jBtnGuardar7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnGuardar5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblIdentificador42, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(jTfIdentidad7, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)))
-                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLblIdentificador36, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                            .addComponent(jLblIdentificador33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTfIdentidad14)
-                            .addComponent(jTfIdentidad17))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLblIdentificador41, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(jLblIdentificador39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTfIdentidad15)
-                            .addComponent(jTfIdentidad16, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparatorX3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnGuardar8, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
-            .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                    .addGap(37, 37, 37)
-                    .addComponent(jBtnGuardar6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(703, Short.MAX_VALUE)))
-        );
-        jPnlAMECobros1Layout.setVerticalGroup(
-            jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                                .addComponent(jLblIdentificador23, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLblIdentificador31, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfIdentidad4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLblIdentificador32, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfIdentidad6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparatorY1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(35, Short.MAX_VALUE))
-                    .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblIdentificador33, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlAMECobros1Layout.createSequentialGroup()
-                                .addComponent(jLblIdentificador39, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTfIdentidad14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTfIdentidad15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblIdentificador41, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblIdentificador36, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfIdentidad17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfIdentidad16, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparatorX3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblIdentificador40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblIdentificador42, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBtnGuardar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnGuardar7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTfIdentidad7))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnGuardar8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPnlAMECobros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPnlAMECobros1Layout.createSequentialGroup()
-                    .addGap(253, 253, 253)
-                    .addComponent(jBtnGuardar6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(263, Short.MAX_VALUE)))
-        );
-
-        jTabContrato.addTab("tab1", jPnlAMECobros1);
 
         jPanel1.add(jTabContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 1030, 570));
 

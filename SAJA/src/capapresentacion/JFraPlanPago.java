@@ -69,15 +69,15 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jTabContrato = new javax.swing.JTabbedPane();
         jPnlAñadirPlanPago = new javax.swing.JPanel();
         jLblIdentificador45 = new javax.swing.JLabel();
-        jCboMotivoEgreso = new javax.swing.JComboBox<>();
+        jCboTipoPlanPago = new javax.swing.JComboBox<>();
         jLblIdentificador46 = new javax.swing.JLabel();
         jBtnGuardar = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jTfIdentidad5 = new javax.swing.JTextField();
+        jPnlPlazosPago = new javax.swing.JPanel();
+        jTfPlazosPago = new javax.swing.JTextField();
         jTfIdentidad4 = new javax.swing.JTextField();
         jLblIdentificador47 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jTfIdentidad6 = new javax.swing.JTextField();
+        jTfValorPagoPlazo = new javax.swing.JTextField();
         jTfIdentidad7 = new javax.swing.JTextField();
         jTfBloqueORTN = new javax.swing.JTextField();
         jLblBloqueORTN = new javax.swing.JLabel();
@@ -90,24 +90,28 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jSeparatorY = new javax.swing.JPanel();
         jLblIdentificador48 = new javax.swing.JLabel();
         jLblIdentificador49 = new javax.swing.JLabel();
-        jTfIdentidad10 = new javax.swing.JTextField();
-        jTfIdentidad11 = new javax.swing.JTextField();
+        jTfRTN = new javax.swing.JTextField();
+        jTfBloque = new javax.swing.JTextField();
         jLblIdentificador50 = new javax.swing.JLabel();
-        jTfIdentidad12 = new javax.swing.JTextField();
+        jTfCasa = new javax.swing.JTextField();
         jLblIdentificador51 = new javax.swing.JLabel();
         jLblIdentificador52 = new javax.swing.JLabel();
-        jTfIdentidad13 = new javax.swing.JTextField();
+        jTfNombreCompleto = new javax.swing.JTextField();
         jLblIdentificador53 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTblDetallePago = new javax.swing.JTable();
         jBtnGuardar1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
-        jTfIdentidad15 = new javax.swing.JTextField();
+        jTfTotalPago = new javax.swing.JTextField();
         jTfIdentidad16 = new javax.swing.JTextField();
         jLblIdentificador54 = new javax.swing.JLabel();
         jPnlSeparator = new javax.swing.JPanel();
         jLblIdentificador55 = new javax.swing.JLabel();
-        jTfBloqueORTN1 = new javax.swing.JTextField();
+        jTfCodPlanPago = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
+        jTfMontoAdeudado = new javax.swing.JTextField();
+        jTfIdentidad8 = new javax.swing.JTextField();
+        jLblIdentificador72 = new javax.swing.JLabel();
         jPnlListadoPlanPago = new javax.swing.JPanel();
         jLblIdentificador57 = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -476,9 +480,9 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jLblIdentificador45.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador45.setText("Plazos de pago (meses)");
 
-        jCboMotivoEgreso.setBackground(new java.awt.Color(255, 255, 255));
-        jCboMotivoEgreso.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jCboMotivoEgreso.setForeground(new java.awt.Color(0, 0, 0));
+        jCboTipoPlanPago.setBackground(new java.awt.Color(255, 255, 255));
+        jCboTipoPlanPago.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jCboTipoPlanPago.setForeground(new java.awt.Color(0, 0, 0));
 
         jLblIdentificador46.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador46.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
@@ -493,15 +497,15 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jBtnGuardar.setBorder(null);
         jBtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel7.setForeground(new java.awt.Color(0, 0, 0));
+        jPnlPlazosPago.setBackground(new java.awt.Color(255, 255, 255));
+        jPnlPlazosPago.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPnlPlazosPago.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTfIdentidad5.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad5.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad5.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad5.setBorder(null);
-        jTfIdentidad5.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfPlazosPago.setBackground(new java.awt.Color(255, 255, 255));
+        jTfPlazosPago.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfPlazosPago.setForeground(new java.awt.Color(0, 0, 0));
+        jTfPlazosPago.setBorder(null);
+        jTfPlazosPago.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jTfIdentidad4.setBackground(new java.awt.Color(255, 255, 255));
         jTfIdentidad4.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -510,23 +514,23 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jTfIdentidad4.setBorder(null);
         jTfIdentidad4.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPnlPlazosPagoLayout = new javax.swing.GroupLayout(jPnlPlazosPago);
+        jPnlPlazosPago.setLayout(jPnlPlazosPagoLayout);
+        jPnlPlazosPagoLayout.setHorizontalGroup(
+            jPnlPlazosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlPlazosPagoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTfIdentidad5, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTfPlazosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTfIdentidad4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        jPnlPlazosPagoLayout.setVerticalGroup(
+            jPnlPlazosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlPlazosPagoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTfIdentidad5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPnlPlazosPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTfPlazosPago, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTfIdentidad4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -539,11 +543,11 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel8.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTfIdentidad6.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad6.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad6.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad6.setBorder(null);
-        jTfIdentidad6.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfValorPagoPlazo.setBackground(new java.awt.Color(255, 255, 255));
+        jTfValorPagoPlazo.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfValorPagoPlazo.setForeground(new java.awt.Color(0, 0, 0));
+        jTfValorPagoPlazo.setBorder(null);
+        jTfValorPagoPlazo.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jTfIdentidad7.setBackground(new java.awt.Color(255, 255, 255));
         jTfIdentidad7.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -560,7 +564,7 @@ public class JFraPlanPago extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTfIdentidad7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTfIdentidad6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTfValorPagoPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -568,7 +572,7 @@ public class JFraPlanPago extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTfIdentidad6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfValorPagoPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTfIdentidad7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -643,31 +647,31 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jLblIdentificador49.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador49.setText("Nombre Completo");
 
-        jTfIdentidad10.setEditable(false);
-        jTfIdentidad10.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad10.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad10.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad10.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfRTN.setEditable(false);
+        jTfRTN.setBackground(new java.awt.Color(255, 255, 255));
+        jTfRTN.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfRTN.setForeground(new java.awt.Color(0, 0, 0));
+        jTfRTN.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfRTN.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        jTfIdentidad11.setEditable(false);
-        jTfIdentidad11.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad11.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad11.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad11.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBloque.setEditable(false);
+        jTfBloque.setBackground(new java.awt.Color(255, 255, 255));
+        jTfBloque.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfBloque.setForeground(new java.awt.Color(0, 0, 0));
+        jTfBloque.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfBloque.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jLblIdentificador50.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador50.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador50.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador50.setText("Bloque");
 
-        jTfIdentidad12.setEditable(false);
-        jTfIdentidad12.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad12.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad12.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad12.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfCasa.setEditable(false);
+        jTfCasa.setBackground(new java.awt.Color(255, 255, 255));
+        jTfCasa.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfCasa.setForeground(new java.awt.Color(0, 0, 0));
+        jTfCasa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfCasa.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jLblIdentificador51.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador51.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
@@ -679,19 +683,19 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jLblIdentificador52.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador52.setText("RTN");
 
-        jTfIdentidad13.setEditable(false);
-        jTfIdentidad13.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad13.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad13.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad13.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfNombreCompleto.setEditable(false);
+        jTfNombreCompleto.setBackground(new java.awt.Color(255, 255, 255));
+        jTfNombreCompleto.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfNombreCompleto.setForeground(new java.awt.Color(0, 0, 0));
+        jTfNombreCompleto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfNombreCompleto.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jLblIdentificador53.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador53.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador53.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador53.setText("Información del plan de pago:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTblDetallePago.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -707,7 +711,7 @@ public class JFraPlanPago extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTblDetallePago);
 
         jBtnGuardar1.setBackground(new java.awt.Color(41, 128, 185));
         jBtnGuardar1.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -721,12 +725,12 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel11.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTfIdentidad15.setEditable(false);
-        jTfIdentidad15.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad15.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad15.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad15.setBorder(null);
-        jTfIdentidad15.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfTotalPago.setEditable(false);
+        jTfTotalPago.setBackground(new java.awt.Color(255, 255, 255));
+        jTfTotalPago.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfTotalPago.setForeground(new java.awt.Color(0, 0, 0));
+        jTfTotalPago.setBorder(null);
+        jTfTotalPago.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jTfIdentidad16.setBackground(new java.awt.Color(255, 255, 255));
         jTfIdentidad16.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -743,13 +747,13 @@ public class JFraPlanPago extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTfIdentidad16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTfIdentidad15, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTfTotalPago, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTfIdentidad16, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-            .addComponent(jTfIdentidad15, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTfTotalPago, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLblIdentificador54.setBackground(new java.awt.Color(102, 102, 102));
@@ -775,12 +779,55 @@ public class JFraPlanPago extends javax.swing.JFrame {
         jLblIdentificador55.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador55.setText("Cód. Plan de pago:");
 
-        jTfBloqueORTN1.setEditable(false);
-        jTfBloqueORTN1.setBackground(new java.awt.Color(255, 255, 255));
-        jTfBloqueORTN1.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfBloqueORTN1.setForeground(new java.awt.Color(0, 0, 0));
-        jTfBloqueORTN1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfBloqueORTN1.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfCodPlanPago.setEditable(false);
+        jTfCodPlanPago.setBackground(new java.awt.Color(255, 255, 255));
+        jTfCodPlanPago.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfCodPlanPago.setForeground(new java.awt.Color(0, 0, 0));
+        jTfCodPlanPago.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfCodPlanPago.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel10.setForeground(new java.awt.Color(0, 0, 0));
+
+        jTfMontoAdeudado.setBackground(new java.awt.Color(255, 255, 255));
+        jTfMontoAdeudado.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfMontoAdeudado.setForeground(new java.awt.Color(0, 0, 0));
+        jTfMontoAdeudado.setBorder(null);
+        jTfMontoAdeudado.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jTfIdentidad8.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdentidad8.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfIdentidad8.setForeground(new java.awt.Color(0, 0, 0));
+        jTfIdentidad8.setText("L.");
+        jTfIdentidad8.setBorder(null);
+        jTfIdentidad8.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTfIdentidad8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTfMontoAdeudado, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTfIdentidad8, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jTfMontoAdeudado))
+                .addContainerGap())
+        );
+
+        jLblIdentificador72.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador72.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
+        jLblIdentificador72.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador72.setText("Monto adeudado");
 
         javax.swing.GroupLayout jPnlAñadirPlanPagoLayout = new javax.swing.GroupLayout(jPnlAñadirPlanPago);
         jPnlAñadirPlanPago.setLayout(jPnlAñadirPlanPagoLayout);
@@ -791,12 +838,12 @@ public class JFraPlanPago extends javax.swing.JFrame {
                 .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPnlAñadirPlanPagoLayout.createSequentialGroup()
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTfIdentidad11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblIdentificador50, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLblIdentificador51, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfIdentidad12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTfCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPnlSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlAñadirPlanPagoLayout.createSequentialGroup()
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,36 +867,40 @@ public class JFraPlanPago extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLblIdentificador52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTfIdentidad10, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTfRTN, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblIdentificador49, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTfIdentidad13, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTfNombreCompleto, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparatorY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlAñadirPlanPagoLayout.createSequentialGroup()
-                            .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLblIdentificador47, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlAñadirPlanPagoLayout.createSequentialGroup()
-                            .addComponent(jLblIdentificador53, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador54)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlAñadirPlanPagoLayout.createSequentialGroup()
-                            .addComponent(jLblIdentificador55)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTfBloqueORTN1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLblIdentificador46, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCboMotivoEgreso, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLblIdentificador45, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPnlAñadirPlanPagoLayout.createSequentialGroup()
+                        .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblIdentificador47, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPnlAñadirPlanPagoLayout.createSequentialGroup()
+                        .addComponent(jLblIdentificador53, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblIdentificador54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPnlAñadirPlanPagoLayout.createSequentialGroup()
+                        .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlAñadirPlanPagoLayout.createSequentialGroup()
+                                .addComponent(jLblIdentificador55)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTfCodPlanPago, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLblIdentificador46, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCboTipoPlanPago, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador45, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPnlPlazosPago, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador72, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(682, 682, 682))
         );
         jPnlAñadirPlanPagoLayout.setVerticalGroup(
@@ -880,29 +931,33 @@ public class JFraPlanPago extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jLblIdentificador52, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfIdentidad10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTfRTN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLblIdentificador49, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfIdentidad13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTfNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblIdentificador50, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblIdentificador51, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfIdentidad11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfIdentidad12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTfBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jSeparatorY, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPnlAñadirPlanPagoLayout.createSequentialGroup()
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblIdentificador55, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfBloqueORTN1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTfCodPlanPago, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLblIdentificador46, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblIdentificador46, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIdentificador72, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCboMotivoEgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jCboTipoPlanPago, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPnlAñadirPlanPagoLayout.createSequentialGroup()
@@ -910,7 +965,7 @@ public class JFraPlanPago extends javax.swing.JFrame {
                                     .addComponent(jLblIdentificador45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLblIdentificador47, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPnlPlazosPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPnlAñadirPlanPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1494,7 +1549,7 @@ public class JFraPlanPago extends javax.swing.JFrame {
     private javax.swing.JButton jBtnGuardar9;
     private javax.swing.JLabel jBtnSideBar;
     private javax.swing.JLabel jBtnSideBar1;
-    private javax.swing.JComboBox<String> jCboMotivoEgreso;
+    private javax.swing.JComboBox<String> jCboTipoPlanPago;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLblBloqueORTN;
     private javax.swing.JLabel jLblIdentificador;
@@ -1535,10 +1590,12 @@ public class JFraPlanPago extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador7;
     private javax.swing.JLabel jLblIdentificador70;
     private javax.swing.JLabel jLblIdentificador71;
+    private javax.swing.JLabel jLblIdentificador72;
     private javax.swing.JLabel jLblIdentificador8;
     private javax.swing.JLabel jLblIdentificador9;
     private javax.swing.JLabel jLblTitulo2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
@@ -1547,13 +1604,13 @@ public class JFraPlanPago extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPnlAñadirPlanPago;
     private javax.swing.JPanel jPnlBuscar;
     private javax.swing.JPanel jPnlListadoPlanPago;
     private javax.swing.JPanel jPnlPlazos;
+    private javax.swing.JPanel jPnlPlazosPago;
     private javax.swing.JPanel jPnlSeparator;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -1575,17 +1632,14 @@ public class JFraPlanPago extends javax.swing.JFrame {
     private javax.swing.JScrollPane jSideBar1;
     private javax.swing.JTabbedPane jTabContrato;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTblDetallePago;
+    private javax.swing.JTextField jTfBloque;
     private javax.swing.JTextField jTfBloqueORTN;
-    private javax.swing.JTextField jTfBloqueORTN1;
     private javax.swing.JTextField jTfBuscar;
-    private javax.swing.JTextField jTfIdentidad10;
-    private javax.swing.JTextField jTfIdentidad11;
-    private javax.swing.JTextField jTfIdentidad12;
-    private javax.swing.JTextField jTfIdentidad13;
-    private javax.swing.JTextField jTfIdentidad15;
+    private javax.swing.JTextField jTfCasa;
+    private javax.swing.JTextField jTfCodPlanPago;
     private javax.swing.JTextField jTfIdentidad16;
     private javax.swing.JTextField jTfIdentidad17;
     private javax.swing.JTextField jTfIdentidad18;
@@ -1595,9 +1649,14 @@ public class JFraPlanPago extends javax.swing.JFrame {
     private javax.swing.JTextField jTfIdentidad22;
     private javax.swing.JTextField jTfIdentidad23;
     private javax.swing.JTextField jTfIdentidad4;
-    private javax.swing.JTextField jTfIdentidad5;
-    private javax.swing.JTextField jTfIdentidad6;
     private javax.swing.JTextField jTfIdentidad7;
+    private javax.swing.JTextField jTfIdentidad8;
     private javax.swing.JTextField jTfIdentidad9;
+    private javax.swing.JTextField jTfMontoAdeudado;
+    private javax.swing.JTextField jTfNombreCompleto;
+    private javax.swing.JTextField jTfPlazosPago;
+    private javax.swing.JTextField jTfRTN;
+    private javax.swing.JTextField jTfTotalPago;
+    private javax.swing.JTextField jTfValorPagoPlazo;
     // End of variables declaration//GEN-END:variables
 }
