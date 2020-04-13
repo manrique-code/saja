@@ -48,8 +48,6 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -125,7 +123,7 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Identificador");
-        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
+        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 300, 30));
 
         jTfIdMotivoControlEgreso.setEditable(false);
         jTfIdMotivoControlEgreso.setBackground(new java.awt.Color(255, 255, 255));
@@ -134,12 +132,12 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jTfIdMotivoControlEgreso.setText(" 1");
         jTfIdMotivoControlEgreso.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfIdMotivoControlEgreso.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfIdMotivoControlEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
+        jPnlCancelar.add(jTfIdMotivoControlEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 302, 40));
 
         jLblNombre.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLblNombre.setText("Nombre");
-        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 300, 30));
+        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 300, 30));
 
         jTfMotivoControlEgreso.setBackground(new java.awt.Color(255, 255, 255));
         jTfMotivoControlEgreso.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -147,7 +145,7 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jTfMotivoControlEgreso.setToolTipText("Ingrese aqui un servicio");
         jTfMotivoControlEgreso.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfMotivoControlEgreso.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfMotivoControlEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
+        jPnlCancelar.add(jTfMotivoControlEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 302, 40));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -237,16 +235,6 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 350, 40));
 
-        jLabel7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("egreso de activo de la Junta de Agua.");
-        jPnlCancelar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 280, 20));
-
-        jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Ingrese aquí los motivos por los cuales habrá un");
-        jPnlCancelar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -309,8 +297,6 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLblCerrar;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblMinimizar;

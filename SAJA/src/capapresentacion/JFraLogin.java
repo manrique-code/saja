@@ -41,7 +41,7 @@ public class JFraLogin extends javax.swing.JFrame {
                                         false,
                                         "Gotham XLight",
                                         18);
-        //this.jLblVer.setVisible(false);
+        jLblNoVer.setVisible(false);
     }
     
     public void iniciarSesion() throws SQLException{
@@ -69,12 +69,11 @@ public class JFraLogin extends javax.swing.JFrame {
                                                       "Usuario o contraseña incorrectos.",
                                                       "SAJA",
                                                       JOptionPane.INFORMATION_MESSAGE);                    
-                    } else {
-                        
+                    } else {                        
                         JFraMenu jfm = new JFraMenu();
-                        
+                        jfm.usuarioSesion(ll.getNombreUsuario());
                         jfm.setVisible(true);
-                        this.setVisible(false);
+                        this.dispose();                        
                     }
                 } catch(SQLException e){
                     throw new SQLException(e.getMessage());
@@ -120,7 +119,7 @@ public class JFraLogin extends javax.swing.JFrame {
         jPFondo.setMaximumSize(new java.awt.Dimension(704, 500));
         jPFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBtnIngresar.setBackground(new java.awt.Color(9, 132, 227));
+        jBtnIngresar.setBackground(new java.awt.Color(41, 128, 185));
         jBtnIngresar.setFont(new java.awt.Font("Gotham Black", 0, 18)); // NOI18N
         jBtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnIngresar.setText("INGRESAR");

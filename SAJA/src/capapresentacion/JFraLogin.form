@@ -55,7 +55,7 @@
         <Component class="javax.swing.JButton" name="jBtnIngresar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e3" green="84" red="9" type="rgb"/>
+              <Color blue="b9" green="80" red="29" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gotham Black" size="18" style="0"/>

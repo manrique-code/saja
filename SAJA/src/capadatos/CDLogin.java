@@ -34,7 +34,7 @@ public class CDLogin {
             
             if(rs.next()){
                 idUsuario = rs.getInt("idUsuario");
-                nombreUsuario = rs.getString("nombreUsuario");
+                nombreUsuario = rs.getString("nombreEmpleado");
             }
         }
         

@@ -180,6 +180,9 @@
         <Component class="javax.swing.JTextField" name="jTfIdTipoContrato">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="HelveticaNowDisplay Regular" size="18" style="0"/>
             </Property>
@@ -226,6 +229,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTfNombreTipoContrato">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="HelveticaNowDisplay Regular" size="18" style="0"/>
             </Property>

@@ -290,6 +290,7 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 280, 30));
 
         jTfIdTipoContrato.setEditable(false);
+        jTfIdTipoContrato.setBackground(java.awt.Color.white);
         jTfIdTipoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
         jTfIdTipoContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTfIdTipoContrato.setText(" 1");
@@ -308,6 +309,7 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         });
         jPnlCancelar.add(jLblCancelarEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 110, 30));
 
+        jTfNombreTipoContrato.setBackground(java.awt.Color.white);
         jTfNombreTipoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
         jTfNombreTipoContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTfNombreTipoContrato.setToolTipText("Ingrese un tipo de plan de pago");

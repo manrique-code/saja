@@ -72,6 +72,9 @@ public class JFraCortes extends javax.swing.JFrame {
     // mostrando el sidebar
     boolean mostrandoSideBar = false;
     
+    // Instancia del menú
+    JFraMenu jfm = new JFraMenu();
+    
     // Método para las acciones del SideBar
     
     
@@ -174,6 +177,13 @@ public class JFraCortes extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jDialog1 = new javax.swing.JDialog();
+        jDfMenu2 = new javax.swing.JDialog();
+        jPanel17 = new javax.swing.JPanel();
+        jLblIdentificador58 = new javax.swing.JLabel();
+        jLblIdentificador75 = new javax.swing.JLabel();
+        jLblIdentificador76 = new javax.swing.JLabel();
+        jBtnSi2 = new javax.swing.JButton();
+        JBtnNo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -190,7 +200,7 @@ public class JFraCortes extends javax.swing.JFrame {
         jSBReporteCortes = new javax.swing.JPanel();
         jLblReporteCortes = new javax.swing.JLabel();
         jLblIdentificador3 = new javax.swing.JLabel();
-        jSBContrato4 = new javax.swing.JPanel();
+        jSBMenu = new javax.swing.JPanel();
         jLblIdentificador9 = new javax.swing.JLabel();
         jLblIdentificador10 = new javax.swing.JLabel();
         jPnlSeparatorX = new javax.swing.JPanel();
@@ -228,6 +238,101 @@ public class JFraCortes extends javax.swing.JFrame {
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jDfMenu2.setTitle("Confirmar acción");
+        jDfMenu2.setAlwaysOnTop(true);
+        jDfMenu2.setModal(true);
+        jDfMenu2.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        jDfMenu2.setUndecorated(true);
+        jDfMenu2.setSize(new java.awt.Dimension(300, 200));
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLblIdentificador58.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador58.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador58.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu-negro24.png"))); // NOI18N
+        jLblIdentificador58.setText("¿Regresar al menú?");
+        jLblIdentificador58.setIconTextGap(10);
+
+        jLblIdentificador75.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador75.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jLblIdentificador75.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador75.setText("Si no guardó el registro actual, su");
+
+        jLblIdentificador76.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador76.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jLblIdentificador76.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador76.setText("progreso se perderá.");
+
+        jBtnSi2.setBackground(new java.awt.Color(41, 128, 185));
+        jBtnSi2.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnSi2.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSi2.setText("SI");
+        jBtnSi2.setBorder(null);
+        jBtnSi2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnSi2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSi2ActionPerformed(evt);
+            }
+        });
+
+        JBtnNo.setBackground(new java.awt.Color(41, 128, 185));
+        JBtnNo.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        JBtnNo.setForeground(new java.awt.Color(255, 255, 255));
+        JBtnNo.setText("NO");
+        JBtnNo.setBorder(null);
+        JBtnNo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBtnNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnNoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblIdentificador76)
+                    .addComponent(jLblIdentificador58)
+                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createSequentialGroup()
+                            .addComponent(jBtnSi2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(JBtnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLblIdentificador75)))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLblIdentificador58)
+                .addGap(18, 18, 18)
+                .addComponent(jLblIdentificador75)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLblIdentificador76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnSi2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBtnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
+        );
+
+        javax.swing.GroupLayout jDfMenu2Layout = new javax.swing.GroupLayout(jDfMenu2.getContentPane());
+        jDfMenu2.getContentPane().setLayout(jDfMenu2Layout);
+        jDfMenu2Layout.setHorizontalGroup(
+            jDfMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDfMenu2Layout.setVerticalGroup(
+            jDfMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -390,8 +495,13 @@ public class JFraCortes extends javax.swing.JFrame {
 
         jSideBar.add(jSBReporteCortes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 299, 260, -1));
 
-        jSBContrato4.setBackground(new java.awt.Color(52, 73, 94));
-        jSBContrato4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBMenu.setBackground(new java.awt.Color(52, 73, 94));
+        jSBMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSBMenuMouseClicked(evt);
+            }
+        });
 
         jLblIdentificador9.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -405,28 +515,28 @@ public class JFraCortes extends javax.swing.JFrame {
         jLblIdentificador10.setForeground(new java.awt.Color(255, 255, 255));
         jLblIdentificador10.setText("Menú");
 
-        javax.swing.GroupLayout jSBContrato4Layout = new javax.swing.GroupLayout(jSBContrato4);
-        jSBContrato4.setLayout(jSBContrato4Layout);
-        jSBContrato4Layout.setHorizontalGroup(
-            jSBContrato4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBContrato4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jSBMenuLayout = new javax.swing.GroupLayout(jSBMenu);
+        jSBMenu.setLayout(jSBMenuLayout);
+        jSBMenuLayout.setHorizontalGroup(
+            jSBMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBMenuLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLblIdentificador10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblIdentificador9)
                 .addContainerGap())
         );
-        jSBContrato4Layout.setVerticalGroup(
-            jSBContrato4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jSBContrato4Layout.createSequentialGroup()
+        jSBMenuLayout.setVerticalGroup(
+            jSBMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSBMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jSBContrato4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jSBMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblIdentificador9, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jSideBar.add(jSBContrato4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 132, 260, -1));
+        jSideBar.add(jSBMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 132, 260, -1));
 
         jPnlSeparatorX.setBackground(new java.awt.Color(255, 255, 255));
         jPnlSeparatorX.setPreferredSize(new java.awt.Dimension(0, 1));
@@ -888,6 +998,21 @@ public class JFraCortes extends javax.swing.JFrame {
         this.jLblGenerarReporte.setForeground(azul);
     }//GEN-LAST:event_jLblGenerarReporteMouseExited
 
+    private void jBtnSi2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSi2ActionPerformed
+        this.dispose();
+        this.jDfMenu.dispose();
+        jfm.setVisible(true);
+    }//GEN-LAST:event_jBtnSi2ActionPerformed
+
+    private void JBtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnNoActionPerformed
+        this.jDfMenu.dispose();
+    }//GEN-LAST:event_JBtnNoActionPerformed
+
+    private void jSBMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBMenuMouseClicked
+        this.jDfMenu.setLocationRelativeTo(null);
+        this.jDfMenu.setVisible(true);
+    }//GEN-LAST:event_jSBMenuMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -930,13 +1055,20 @@ public class JFraCortes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnNo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jBtnBuscar;
     private javax.swing.JLabel jBtnBuscar3;
+    private javax.swing.JButton jBtnSi;
+    private javax.swing.JButton jBtnSi1;
+    private javax.swing.JButton jBtnSi2;
     private javax.swing.JLabel jBtnSideBar;
     private javax.swing.JLabel jBtnSideBarCerrar;
     private javax.swing.JComboBox<String> jCboEtapas;
     private javax.swing.JComboBox<String> jCboMeses;
+    private javax.swing.JDialog jDfMenu;
+    private javax.swing.JDialog jDfMenu1;
+    private javax.swing.JDialog jDfMenu2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLblGenerarReporte;
     private javax.swing.JLabel jLblIdentificador1;
@@ -947,7 +1079,16 @@ public class JFraCortes extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador3;
     private javax.swing.JLabel jLblIdentificador4;
     private javax.swing.JLabel jLblIdentificador5;
+    private javax.swing.JLabel jLblIdentificador58;
     private javax.swing.JLabel jLblIdentificador6;
+    private javax.swing.JLabel jLblIdentificador60;
+    private javax.swing.JLabel jLblIdentificador61;
+    private javax.swing.JLabel jLblIdentificador71;
+    private javax.swing.JLabel jLblIdentificador72;
+    private javax.swing.JLabel jLblIdentificador73;
+    private javax.swing.JLabel jLblIdentificador74;
+    private javax.swing.JLabel jLblIdentificador75;
+    private javax.swing.JLabel jLblIdentificador76;
     private javax.swing.JLabel jLblIdentificador9;
     private javax.swing.JLabel jLblListadoCorte;
     private javax.swing.JLabel jLblMinimizar;
@@ -955,6 +1096,9 @@ public class JFraCortes extends javax.swing.JFrame {
     private javax.swing.JLabel jLblSalir;
     private javax.swing.JLabel jLblTitulo5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -967,8 +1111,8 @@ public class JFraCortes extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRdBtnBloque;
     private javax.swing.JRadioButton jRdBtnRTN;
     private javax.swing.JPanel jSBAyuda;
-    private javax.swing.JPanel jSBContrato4;
     private javax.swing.JPanel jSBListadoCorte;
+    private javax.swing.JPanel jSBMenu;
     private javax.swing.JPanel jSBReporteCortes;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPanel jSideBar;

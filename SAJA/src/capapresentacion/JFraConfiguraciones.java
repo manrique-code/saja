@@ -34,8 +34,8 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
     JFraServicios jfs = new JFraServicios();
     JFraEstadoContrato jfec = new JFraEstadoContrato();
     JFraMotivoControlEgreso jfmce = new JFraMotivoControlEgreso();
-    JFraTipoContrato jftc = new JFraTipoContrato();
-    JFraMenu jfm = new JFraMenu();*/
+    JFraTipoContrato jftc = new JFraTipoContrato();*/
+    
     
     
     //JFraTipoPlanPago jftpp = new JFraTipoPlanPago();
@@ -825,8 +825,16 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLblTitulo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblTitulo2MouseClicked
-        /*this.setVisible(false);
-        this.jfm.setVisible(true);*/
+        JFraMenu jfm;
+        try {
+            jfm = new JFraMenu();
+            jfm.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jLblTitulo2MouseClicked
 
     /**

@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -33,7 +35,7 @@ public class JFraMenu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         // Cambiar de color al JFrame
-        //this.getContentPane().setBackground(c);
+        this.getContentPane().setBackground(c);
         
         // Maximizar el JFrame
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -47,32 +49,28 @@ public class JFraMenu extends javax.swing.JFrame {
         // Mostrar el nombre del usuario
         this.jLblUsuario.setText(cll.getNombreUsuario());        
         
-    }
-    
-    
+    }   
     
     // Instancias de los formularios de SAJA 
     JFraLogin jfLogIn = new JFraLogin();
-    //
     
     Color c = new Color(241, 242, 246);
-    
-    
-    //JFraConfiguraciones jfConfig = new JFraConfiguraciones();
-    
-    
-    // Cambiar de icono al pasar el mouse
-    /*BufferedImage image;
-    String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";*/
     
     // Instancias de la capa lógica
     CLLogin cll = new CLLogin();
     
+    public void usuarioSesion(String nombreUsuario){
+        String[] nombre = nombreUsuario.split(" ");
+        jLblUsuario.setText(nombre[0]);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
+        LocalDateTime now = LocalDateTime.now();  
+        jLblFechaActual.setText(String.format("Hoy es: %s", dtf.format(now)));
+    }
+    
     public void cambiarIconoAbonado(boolean mouseEncima){
         BufferedImage image;
         String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
-        if(mouseEncima){
-            
+        if(mouseEncima){            
             
             try {
                 
@@ -120,9 +118,11 @@ public class JFraMenu extends javax.swing.JFrame {
                 Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } /*
+    } 
     
     public void cambiarIconoPagos(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "pagoSeleccionado.png"));
@@ -146,6 +146,8 @@ public class JFraMenu extends javax.swing.JFrame {
     } 
     
     public void cambiarIconoMora(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "moraSeleccionado.png"));
@@ -169,6 +171,8 @@ public class JFraMenu extends javax.swing.JFrame {
     }
     
     public void cambiarIconoPlanPago(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "planpagoSeleccionado.png"));
@@ -192,6 +196,8 @@ public class JFraMenu extends javax.swing.JFrame {
     } 
     
     public void cambiarIconoCortes(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "corteSeleccionado.png"));
@@ -215,6 +221,8 @@ public class JFraMenu extends javax.swing.JFrame {
     } 
 
     public void cambiarIconoEgreso(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "egresoSeleccionado.png"));
@@ -238,6 +246,8 @@ public class JFraMenu extends javax.swing.JFrame {
     }
     
     public void cambiarIconoCodos(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "codoSeleccionado.png"));
@@ -258,7 +268,7 @@ public class JFraMenu extends javax.swing.JFrame {
                 Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } */
+    } 
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -273,6 +283,8 @@ public class JFraMenu extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLblIdentificador16 = new javax.swing.JLabel();
         jLblUsuario = new javax.swing.JLabel();
+        jLblFechaActual = new javax.swing.JLabel();
+        jLblIdentificador18 = new javax.swing.JLabel();
         jScrollMenu = new javax.swing.JScrollPane();
         jPnlMenu = new javax.swing.JPanel();
         jLblIdentificador15 = new javax.swing.JLabel();
@@ -309,6 +321,16 @@ public class JFraMenu extends javax.swing.JFrame {
         jLblUsuario.setForeground(new java.awt.Color(0, 0, 0));
         jLblUsuario.setText("Usuario");
 
+        jLblFechaActual.setBackground(new java.awt.Color(102, 102, 102));
+        jLblFechaActual.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 24)); // NOI18N
+        jLblFechaActual.setForeground(new java.awt.Color(0, 0, 0));
+        jLblFechaActual.setText("Usuario");
+
+        jLblIdentificador18.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador18.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
+        jLblIdentificador18.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador18.setText("Notifcaciones");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -316,9 +338,11 @@ public class JFraMenu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLblIdentificador18, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jLblFechaActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador16, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(jLblIdentificador16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +351,11 @@ public class JFraMenu extends javax.swing.JFrame {
                 .addComponent(jLblIdentificador16, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(538, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLblFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLblIdentificador18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         jSideBarMenu.setViewportView(jPanel3);
@@ -625,27 +653,27 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPlanPagosMouseClicked
 
     private void jPlanPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseEntered
-        //this.cambiarIconoPlanPago(true);
+        this.cambiarIconoPlanPago(true);
     }//GEN-LAST:event_jPlanPagosMouseEntered
 
     private void jPlanPagosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseExited
-        //this.cambiarIconoPlanPago(false);
+        this.cambiarIconoPlanPago(false);
     }//GEN-LAST:event_jPlanPagosMouseExited
 
     private void jContratosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseEntered
-        //this.cambiarIconoContrato(true);
+        this.cambiarIconoContrato(true);
     }//GEN-LAST:event_jContratosMouseEntered
 
     private void jContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseExited
-        //this.cambiarIconoContrato(false);
+        this.cambiarIconoContrato(false);
     }//GEN-LAST:event_jContratosMouseExited
 
     private void jPagoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseEntered
-        //this.cambiarIconoPagos(true);
+        this.cambiarIconoPagos(true);
     }//GEN-LAST:event_jPagoMouseEntered
 
     private void jPagoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseExited
-        //this.cambiarIconoPagos(false);
+        this.cambiarIconoPagos(false);
     }//GEN-LAST:event_jPagoMouseExited
 
     private void jContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseClicked
@@ -653,6 +681,7 @@ public class JFraMenu extends javax.swing.JFrame {
         try {
             jfContratos = new JFraContratos();
             jfContratos.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -660,16 +689,23 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jContratosMouseClicked
 
     private void jPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseClicked
-        JFraCobros jfCbros = new JFraCobros();
-        jfCbros.setVisible(true);
+        JFraCobros jfCbros;
+        try {
+            jfCbros = new JFraCobros();
+            jfCbros.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jPagoMouseClicked
 
     private void jMorasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseEntered
-        //this.cambiarIconoMora(true);
+        this.cambiarIconoMora(true);
     }//GEN-LAST:event_jMorasMouseEntered
 
     private void jMorasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseExited
-        //this.cambiarIconoMora(false);
+        this.cambiarIconoMora(false);
     }//GEN-LAST:event_jMorasMouseExited
 
     private void jMorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseClicked
@@ -677,6 +713,7 @@ public class JFraMenu extends javax.swing.JFrame {
         try {
             jfMora = new JFraMora();
             jfMora.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -684,11 +721,11 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMorasMouseClicked
 
     private void jCortesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseEntered
-        //this.cambiarIconoCortes(true);
+        this.cambiarIconoCortes(true);
     }//GEN-LAST:event_jCortesMouseEntered
 
     private void jCortesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseExited
-        //this.cambiarIconoCortes(false);
+        this.cambiarIconoCortes(false);
     }//GEN-LAST:event_jCortesMouseExited
 
     private void jCortesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseClicked
@@ -696,6 +733,7 @@ public class JFraMenu extends javax.swing.JFrame {
         try {
             jfCortes = new JFraCortes();
             jfCortes.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -703,11 +741,11 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCortesMouseClicked
 
     private void jEgresosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseEntered
-       //this.cambiarIconoEgreso(true);
+       this.cambiarIconoEgreso(true);
     }//GEN-LAST:event_jEgresosMouseEntered
 
     private void jEgresosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseExited
-        //this.cambiarIconoEgreso(false);
+        this.cambiarIconoEgreso(false);
     }//GEN-LAST:event_jEgresosMouseExited
 
     private void jEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseClicked
@@ -715,6 +753,7 @@ public class JFraMenu extends javax.swing.JFrame {
         try {
             jfEgresos = new JFraEgresos();
             jfEgresos.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -722,20 +761,34 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jEgresosMouseClicked
 
     private void jCodosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseEntered
-       // this.cambiarIconoCodos(true);
+       this.cambiarIconoCodos(true);
     }//GEN-LAST:event_jCodosMouseEntered
 
     private void jCodosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseExited
-        //this.cambiarIconoCodos(false);
+        this.cambiarIconoCodos(false);
     }//GEN-LAST:event_jCodosMouseExited
 
     private void jCodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseClicked
-        JFraCodos jfCodos = new JFraCodos();
-        jfCodos.setVisible(true);
+        JFraCodos jfCodos;
+        try {
+            jfCodos = new JFraCodos();
+            jfCodos.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jCodosMouseClicked
 
     private void jLblConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblConfigMouseClicked
-        //this.jfConfig.setVisible(true);
+        try {
+            JFraConfiguraciones jfConfig = new JFraConfiguraciones();
+            jfConfig.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jLblConfigMouseClicked
 
     /**
@@ -785,8 +838,10 @@ public class JFraMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jCortes;
     private javax.swing.JLabel jEgresos;
     private javax.swing.JLabel jLblConfig;
+    private javax.swing.JLabel jLblFechaActual;
     private javax.swing.JLabel jLblIdentificador15;
     private javax.swing.JLabel jLblIdentificador16;
+    private javax.swing.JLabel jLblIdentificador18;
     private javax.swing.JLabel jLblTitulo5;
     private javax.swing.JLabel jLblUsuario;
     private javax.swing.JLabel jMoras;
