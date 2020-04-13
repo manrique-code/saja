@@ -5,8 +5,6 @@
  */
 package capadatos;
 
-import capalogica.CLAbonado;
-import capalogica.CLContrato;
 import capalogica.CLControlPago;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

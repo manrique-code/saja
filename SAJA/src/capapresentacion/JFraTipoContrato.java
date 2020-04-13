@@ -5,8 +5,16 @@
  */
 package capapresentacion;
 
+import capadatos.CDTipoContrato;
+import capalogica.CLTipoContrato;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,7 +25,7 @@ public class JFraTipoContrato extends javax.swing.JFrame {
     /**
      * Creates new form JFraTipoContrato
      */
-    public JFraTipoContrato() {
+    public JFraTipoContrato() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         this.jTfNombreTipoContrato.requestFocus();
@@ -28,6 +36,151 @@ public class JFraTipoContrato extends javax.swing.JFrame {
                                         false,
                                         "HelveticaNowDisplay Regular",
                                         18);
+        mostrarTablaTipoContrato();
+        habilitarBotones(true, false, false);
+        encontrarCorrelativo();
+        this.jTfNombreTipoContrato.requestFocus();
+        this.jLblCancelarEdicion.setVisible(false);
+    }
+    
+    private boolean estadEditando = false;
+    
+    private void limpiarTabla(){
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblTipoContrato.getModel();
+        
+        while(dtm.getRowCount() > 0){
+            dtm.removeRow(0);
+        }
+    }
+    
+    private void mostrarTablaTipoContrato() throws SQLException{
+        limpiarTabla();
+        CDTipoContrato cdtp = new CDTipoContrato();
+        
+        List<CLTipoContrato> miLista = cdtp.obtenerListaTipoContrato();
+        DefaultTableModel temp = (DefaultTableModel) this.jTblTipoContrato.getModel();
+        
+        for(CLTipoContrato cltp: miLista) {
+            Object[] fila = new Object[2];
+            fila[0] = cltp.getIDTipoContrato();
+            fila[1] = cltp.getTipoContrato();
+            temp.addRow(fila);
+        };
+    }
+    
+    private void mostrarTablaPorNombreTipoContrato(String nombreTipoContrato) throws SQLException{
+        limpiarTabla();
+        
+        CDTipoContrato cdtp = new CDTipoContrato();
+        
+        List<CLTipoContrato> miLista = cdtp.obtenerListaNombreTipoContrato(nombreTipoContrato);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblTipoContrato.getModel();
+        
+        for(CLTipoContrato cltp: miLista) {
+            Object[] fila = new Object[2];
+            fila[0] = cltp.getIDTipoContrato();
+            fila[1] = cltp.getTipoContrato();
+            temp.addRow(fila);
+        };
+    }
+    
+    private void habilitarBotones(boolean guardar, boolean editar, boolean eliminar){        
+        this.jBtnGuardar.setEnabled(guardar);
+        this.jBtnGuardar.setVisible(guardar);
+        
+        this.jBtnEditar.setEnabled(editar);
+        this.jBtnEditar.setVisible(editar);
+        
+        this.jBtnEliminar.setEnabled(eliminar);       
+    }
+    
+    private void seleccionarFila(){
+        if(this.jTblTipoContrato.getSelectedRow() != -1){
+            this.jTfIdTipoContrato.setText(String.valueOf(this.jTblTipoContrato.getValueAt(this.jTblTipoContrato.getSelectedRow(), 0)));
+            this.jTfNombreTipoContrato.setText(String.valueOf(this.jTblTipoContrato.getValueAt(this.jTblTipoContrato.getSelectedRow(), 1)));
+            this.jLblCancelarEdicion.setVisible(true);
+        }
+    }
+    
+    private void encontrarCorrelativo() throws SQLException{
+        CDTipoContrato cdtc = new CDTipoContrato();
+        CLTipoContrato cltc = new CLTipoContrato();
+        
+        cltc.setIDTipoContrato(cdtc.autoIncrementableIDTipoContrato());
+        
+        this.jTfIdTipoContrato.setText(String.valueOf(cltc.getIDTipoContrato()));
+    }
+    
+    private void limpiarCajasDeTexto(){
+        this.jTfIdTipoContrato.setText("");
+        this.jTfNombreTipoContrato.setText("");
+    }
+    
+    public void limpiarFormulario() throws SQLException{
+        this.encontrarCorrelativo();
+        this.jTfNombreTipoContrato.setText("");
+        this.habilitarBotones(true, false, false);
+        this.jTfNombreTipoContrato.requestFocus();
+        this.jTblTipoContrato.clearSelection();
+                    
+    }
+    
+    private void insertarTipoContrato(){
+        try{
+            CDTipoContrato cdtc = new CDTipoContrato();
+            CLTipoContrato cltc = new CLTipoContrato();
+            
+            cltc.setTipoContrato(this.jTfNombreTipoContrato.getText().trim());
+            cdtc.insertarTipoContrato(cltc);
+            
+            JOptionPane.showMessageDialog(null, 
+                                          "Se guardó el registro satisfactoriamente...",
+                                          "Saja",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            limpiarCajasDeTexto();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al guardar el tipo de contrato: " + e);      
+        }
+    }
+    
+    private void modificarTipoContrato(){
+        try{
+            CDTipoContrato cdtc = new CDTipoContrato();
+            CLTipoContrato cltc = new CLTipoContrato();          
+            
+            cltc.setTipoContrato(this.jTfNombreTipoContrato.getText().trim());
+            cltc.setIDTipoContrato(Integer.parseInt(this.jTfIdTipoContrato.getText().trim()));
+            
+            cdtc.modificarTipoContrato(cltc);
+            
+            JOptionPane.showMessageDialog(null, 
+                                          "Se modificó el registro satisfactoriamente...",
+                                          "Saja",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            limpiarCajasDeTexto();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al modificar el tipo de contrato: " + e);      
+        }
+    }
+    
+    
+    private void eliminarTipoContrato(){
+        try{
+            CDTipoContrato cdtc = new CDTipoContrato();
+            CLTipoContrato cltc = new CLTipoContrato(); 
+            
+            cltc.setIDTipoContrato(Integer.parseInt(this.jTfIdTipoContrato.getText()));
+            
+            cdtc.eliminarTipoContrato(cltc);
+            
+            JOptionPane.showMessageDialog(null, 
+                                          "Se eliminó el registro satisfactoriamente...",
+                                          "Saja",
+                                          JOptionPane.INFORMATION_MESSAGE);
+            limpiarCajasDeTexto();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar el tipo de contrato: " + e);      
+        }
     }
 
     /**
@@ -45,7 +198,7 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jLblMenu = new javax.swing.JLabel();
         jLblIdentificador = new javax.swing.JLabel();
         jTfIdTipoContrato = new javax.swing.JTextField();
-        jLblNombre = new javax.swing.JLabel();
+        jLblCancelarEdicion = new javax.swing.JLabel();
         jTfNombreTipoContrato = new javax.swing.JTextField();
         jBtnGuardar = new javax.swing.JButton();
         jBtnEditar = new javax.swing.JButton();
@@ -56,8 +209,7 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLblNombre1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,33 +249,39 @@ public class JFraTipoContrato extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
 
-        jLblIdentificador.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador.setBackground(null);
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Identificador");
-        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 30));
+        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 280, 30));
 
         jTfIdTipoContrato.setEditable(false);
-        jTfIdTipoContrato.setBackground(new java.awt.Color(255, 255, 255));
+        jTfIdTipoContrato.setBackground(null);
         jTfIdTipoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
         jTfIdTipoContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTfIdTipoContrato.setText(" 1");
         jTfIdTipoContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfIdTipoContrato.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfIdTipoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
+        jPnlCancelar.add(jTfIdTipoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 302, 40));
 
-        jLblNombre.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
-        jLblNombre.setForeground(new java.awt.Color(0, 0, 0));
-        jLblNombre.setText("Nombre");
-        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 280, 30));
+        jLblCancelarEdicion.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
+        jLblCancelarEdicion.setForeground(new java.awt.Color(9, 132, 227));
+        jLblCancelarEdicion.setText("Cancelar edición");
+        jLblCancelarEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblCancelarEdicion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblCancelarEdicionMouseClicked(evt);
+            }
+        });
+        jPnlCancelar.add(jLblCancelarEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 110, 30));
 
-        jTfNombreTipoContrato.setBackground(new java.awt.Color(255, 255, 255));
+        jTfNombreTipoContrato.setBackground(null);
         jTfNombreTipoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
         jTfNombreTipoContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTfNombreTipoContrato.setToolTipText("Ingrese un tipo de plan de pago");
         jTfNombreTipoContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfNombreTipoContrato.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfNombreTipoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
+        jPnlCancelar.add(jTfNombreTipoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 302, 40));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -132,6 +290,11 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jBtnGuardar.setText("GUARDAR");
         jBtnGuardar.setBorder(null);
         jBtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEditar.setBackground(new java.awt.Color(9, 132, 227));
@@ -141,6 +304,11 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jBtnEditar.setText("EDITAR");
         jBtnEditar.setBorder(null);
         jBtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEliminar.setBackground(new java.awt.Color(9, 132, 227));
@@ -150,6 +318,11 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jBtnEliminar.setText("ELIMINAR");
         jBtnEliminar.setBorder(null);
         jBtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 140, 50));
 
         javax.swing.GroupLayout jPnlSeparatorLayout = new javax.swing.GroupLayout(jPnlSeparator);
@@ -165,7 +338,9 @@ public class JFraTipoContrato extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 1, 360));
 
+        jTblTipoContrato.setBackground(new java.awt.Color(255, 255, 255));
         jTblTipoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 15)); // NOI18N
+        jTblTipoContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTblTipoContrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -174,6 +349,12 @@ public class JFraTipoContrato extends javax.swing.JFrame {
                 "ID", "Nombre"
             }
         ));
+        jTblTipoContrato.setRowHeight(30);
+        jTblTipoContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblTipoContratoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTblTipoContrato);
 
         jPnlCancelar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 350, 310));
@@ -186,6 +367,11 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyReleased(evt);
+            }
+        });
 
         jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
@@ -213,15 +399,11 @@ public class JFraTipoContrato extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 350, 40));
 
-        jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Ingrese aquí los tipos de contrato que puede");
-        jPnlCancelar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
-
-        jLabel7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("tener un abonado.");
-        jPnlCancelar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 280, 20));
+        jLblNombre1.setBackground(java.awt.Color.white);
+        jLblNombre1.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
+        jLblNombre1.setForeground(new java.awt.Color(0, 0, 0));
+        jLblNombre1.setText("Nombre");
+        jPnlCancelar.add(jLblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 280, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +418,106 @@ public class JFraTipoContrato extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+        if(this.jTfNombreTipoContrato.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del tipo de contrato", "Saja", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                this.encontrarCorrelativo();
+                this.habilitarBotones(true, false, false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar el registro: " + ex);
+            }
+        }else{
+            try {
+                this.insertarTipoContrato();
+                this.encontrarCorrelativo();
+                this.mostrarTablaTipoContrato();
+                this.habilitarBotones(true, false, false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar el registro: " + ex);
+            }
+        }
+
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        if(this.jTfNombreTipoContrato.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del tipo de contrato que desea eliminar", "Saja", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                this.encontrarCorrelativo();
+                this.habilitarBotones(true, false, false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al eliminar el registro: " + ex);
+            }
+        }else{
+            try {
+                this.eliminarTipoContrato();
+                this.encontrarCorrelativo();
+                this.mostrarTablaTipoContrato();
+                this.habilitarBotones(true, false, false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al eliminar el registro: " + ex);
+            }
+        }
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        if(this.jTfNombreTipoContrato.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese el nuevo nombre del tipo de contrato", "Saja", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                this.encontrarCorrelativo();
+                this.habilitarBotones(true, false, false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al editar el registro: " + ex);
+            }
+        }else{
+            try {
+                this.modificarTipoContrato();
+                this.encontrarCorrelativo();
+                this.mostrarTablaTipoContrato();
+                this.habilitarBotones(true, false, false);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al editar el registro: " + ex);
+            }
+        }
+    }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jTblTipoContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblTipoContratoMouseClicked
+        seleccionarFila();
+        habilitarBotones(false, true, true);
+        estadEditando = true;
+    }//GEN-LAST:event_jTblTipoContratoMouseClicked
+
+    private void jTfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyReleased
+        try{
+            this.mostrarTablaPorNombreTipoContrato(this.jTfBuscar.getText());
+        }catch (SQLException ex){
+            Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTfBuscarKeyReleased
+
+    private void jLblCancelarEdicionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCancelarEdicionMouseClicked
+        if(estadEditando){
+            int result = JOptionPane.showConfirmDialog(null,
+                                                       "¿Desea cancelar la edición?", 
+                                                       "SAJA",
+                                                       JOptionPane.YES_NO_OPTION);
+            
+            if(result == JOptionPane.YES_OPTION) {
+                try {
+                    limpiarFormulario();
+                    estadEditando = false;
+                    this.jLblCancelarEdicion.setVisible(false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        }else{
+            return;
+        }
+    }//GEN-LAST:event_jLblCancelarEdicionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -267,7 +549,11 @@ public class JFraTipoContrato extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraTipoContrato().setVisible(true);
+                try {
+                    new JFraTipoContrato().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraTipoContrato.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -277,11 +563,10 @@ public class JFraTipoContrato extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblCancelarEdicion;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblMenu;
-    private javax.swing.JLabel jLblNombre;
+    private javax.swing.JLabel jLblNombre1;
     private javax.swing.JLabel jLblTitulo;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPnlBuscar;

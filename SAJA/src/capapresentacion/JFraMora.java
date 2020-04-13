@@ -6,7 +6,16 @@
 package capapresentacion;
 
 import AppPackage.AnimationClass;
+import capadatos.CDMora;
+import capalogica.CLMora;
 import java.awt.Color;
+import static java.lang.Integer.parseInt;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,9 +25,12 @@ public class JFraMora extends javax.swing.JFrame {
 
     /**
      * Creates new form jFraMora
+     * @throws java.sql.SQLException
      */
-    public JFraMora() {
+    public JFraMora() throws SQLException {
         initComponents();
+        llenarTablaListaMora();
+        this.jLblVerMora.setVisible(false);
         this.getContentPane().setBackground(Color.white);
         this.setLocationRelativeTo(null);
         this.jSideBar1.getViewport().setBackground(Color.getColor("52, 74, 94"));
@@ -28,8 +40,190 @@ public class JFraMora extends javax.swing.JFrame {
     AnimationClass sideBar = new AnimationClass();
     
     //Colores del formulario
-    Color celeste = new Color(52,152,219);
-    Color azul = new Color(52,152,219);
+    Color celeste = new Color(52, 152, 219);
+    Color azul = new Color(52, 73, 94);
+    
+    // Metodo para limpiar las tablas
+    private void limpiarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblListaMora.getModel();
+
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+    }
+    
+    // Metodo para limpiar las tablas de meses en mora
+    private void limpiarTablasMesesMora() {
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblMesesMorosos.getModel();
+        
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }  
+    }
+    
+    // Metodo para limpiar las tablas de meses pagados
+    private void limpiarTablasMesesPagados() {
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblMesesPagados.getModel();
+        
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+    }
+    
+    // Metodo para limpiar la tabla de los meses y su valor
+    private void limpiarTablasTotalMora() {
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblTotalMora.getModel();
+        
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+    }
+    
+    // Metodo para llenar la tabla mora 
+    private void llenarTablaListaMora() throws SQLException {
+        limpiarTabla();
+
+        CDMora cdm = new CDMora();
+
+        List<CLMora> miLista = cdm.ListaMora();
+        DefaultTableModel temp = (DefaultTableModel) this.jTblListaMora.getModel();
+
+        for (CLMora clm : miLista) {
+            Object[] fila = new Object[8];
+            fila[0] = clm.getIdContrato();
+            fila[1] = clm.getCodAbonado();
+            fila[2] = clm.getNombre();
+            fila[3] = clm.getBloque();
+            fila[4] = clm.getEtapa();
+            fila[5] = clm.getCasa();
+            fila[6] = clm.getMes();
+            fila[7] = clm.getValor();
+            temp.addRow(fila);
+        };
+    }
+    
+    // Metodo para llenar la tabla meses pagados
+    private void ListaMesesPagados(int idContrato) throws SQLException{
+        limpiarTablasMesesPagados();
+        
+        CDMora cdm = new CDMora();
+        List<CLMora> miLista = cdm.ListaMesesPagados(idContrato);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblMesesPagados.getModel();
+        
+        miLista.stream().map((cl) -> {
+            Object[] fila = new Object[2];
+            fila[0] = cl.getIdMes2();
+            fila[1] = cl.getMes();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
+    // Metodo para mostrar los meses morosos
+    private void ListaMesesMorosos(int idContrato) throws SQLException{
+        limpiarTablasMesesMora();
+        
+        CDMora cdm = new CDMora();
+        List<CLMora> miLista = cdm.ListaMesesMoroso(idContrato);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblMesesMorosos.getModel();
+        
+        miLista.stream().map((cl) -> {
+            Object[] fila = new Object[2];
+            fila[0] = cl.getIdMes2();
+            fila[1] = cl.getMes();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
+    // Metodo para mostrar la tabla el total mora
+    private void ListaTotalMora(int idContrato) throws SQLException{
+        limpiarTablasTotalMora();
+        
+        CDMora cdm = new CDMora();
+        List<CLMora> miLista = cdm.ListaValorMesesMorosos(idContrato);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblTotalMora.getModel();
+        
+        miLista.stream().map((clm) -> {
+            Object[] fila = new Object[3];
+            fila[0] = clm.getIdContrato();
+            fila[1] = clm.getMes();
+            fila[2] = clm.getValor();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
+    // Metodo para mostrar abonados morosos por bloque
+    private void mostrarMoraPorBloque(int bloque) throws SQLException{
+        limpiarTabla();
+        
+        CDMora cda = new CDMora();
+        List<CLMora> miLista = cda.mostrarMoraPorBloque(bloque);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblListaMora.getModel();
+        
+        miLista.stream().map((clm) -> {
+            Object[] fila = new Object[8];
+            fila[0] = clm.getIdContrato();
+            fila[1] = clm.getCodAbonado();
+            fila[2] = clm.getNombre();
+            fila[3] = clm.getBloque();
+            fila[4] = clm.getEtapa();
+            fila[5] = clm.getCasa();
+            fila[6] = clm.getMes();
+            fila[7] = clm.getValor();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
+    // Metodo para mostrar abonador por etapa
+    private void mostrarMoraPorEtapa(int etapa) throws SQLException{
+        limpiarTabla();
+        
+        CDMora cda = new CDMora();
+        List<CLMora> miLista = cda.mostrarMoraPorEtapa(etapa);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblListaMora.getModel();
+        
+        miLista.stream().map((clm) -> {
+            Object[] fila = new Object[8];
+            fila[0] = clm.getIdContrato();
+            fila[1] = clm.getCodAbonado();
+            fila[2] = clm.getNombre();
+            fila[3] = clm.getBloque();
+            fila[4] = clm.getEtapa();
+            fila[5] = clm.getCasa();
+            fila[6] = clm.getMes();
+            fila[7] = clm.getValor();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
+    // Metodo para mostrar el total de todos los meses morosos
+    private void totalMoraPagar(int idContrato) throws SQLException{
+        CDMora cdm = new CDMora();
+        CLMora clm = new CLMora();
+        this.jTfToltaMora.setText(String.valueOf(cdm.mostrarMoraTotalPagar(idContrato)));
+    }
+    
+    // Metodo para seleccionar la mora
+    private void seleccionarMoraAbonado() throws ParseException {
+        if (this.jTblListaMora.getSelectedRow() != -1) {
+            this.jLblNumeroIdentidad.setText(String.valueOf(this.jTblListaMora.getValueAt(this.jTblListaMora.getSelectedRow(), 1)));
+            this.jLblNombreCompleto.setText(String.valueOf(this.jTblListaMora.getValueAt(this.jTblListaMora.getSelectedRow(), 2)));
+            this.jLblBloque.setText(String.valueOf(this.jTblListaMora.getValueAt(this.jTblListaMora.getSelectedRow(), 3)));
+            this.jLblCasa.setText(String.valueOf(this.jTblListaMora.getValueAt(this.jTblListaMora.getSelectedRow(), 5)));
+            this.jLblEtapa.setText(String.valueOf(this.jTblListaMora.getValueAt(this.jTblListaMora.getSelectedRow(), 4)));
+            this.jLblVerMora.setVisible(true);
+            
+        }
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,10 +246,10 @@ public class JFraMora extends javax.swing.JFrame {
         jBtnSideBar = new javax.swing.JLabel();
         jSideBar1 = new javax.swing.JScrollPane();
         jSideBar = new javax.swing.JPanel();
-        jSBAMECobros = new javax.swing.JPanel();
+        jSBListaMora = new javax.swing.JPanel();
         jLblIdentificador = new javax.swing.JLabel();
         jLblIdentificador1 = new javax.swing.JLabel();
-        jSBListadoContrato = new javax.swing.JPanel();
+        jSBDetalleMora = new javax.swing.JPanel();
         jLblIdentificador2 = new javax.swing.JLabel();
         jLblIdentificador3 = new javax.swing.JLabel();
         jSBContrato4 = new javax.swing.JPanel();
@@ -67,52 +261,51 @@ public class JFraMora extends javax.swing.JFrame {
         jSBListadoContrato1 = new javax.swing.JPanel();
         jLblIdentificador4 = new javax.swing.JLabel();
         jLblIdentificador6 = new javax.swing.JLabel();
-        jSBListadoContrato2 = new javax.swing.JPanel();
+        jSBReporteMora = new javax.swing.JPanel();
         jLblIdentificador7 = new javax.swing.JLabel();
         jLblIdentificador8 = new javax.swing.JLabel();
         jTabContrato = new javax.swing.JTabbedPane();
         jPnlListadoPagos = new javax.swing.JPanel();
         jLblIdentificador11 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        jTblListaMora = new javax.swing.JTable();
+        jRbBloque = new javax.swing.JRadioButton();
+        jRbEtapa = new javax.swing.JRadioButton();
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
+        jLblVerMora = new javax.swing.JLabel();
+        jPnlReportes = new javax.swing.JPanel();
         jPnlDetalleMora = new javax.swing.JPanel();
         jLblIdentificador43 = new javax.swing.JLabel();
-        jLblIdentificador44 = new javax.swing.JLabel();
+        jLblBuscarMora = new javax.swing.JLabel();
         jSeparatorY2 = new javax.swing.JPanel();
         jLblIdentificador45 = new javax.swing.JLabel();
-        jLblIdentificador46 = new javax.swing.JLabel();
+        jLblNumeroIdentidad = new javax.swing.JLabel();
         jLblIdentificador47 = new javax.swing.JLabel();
-        jLblIdentificador48 = new javax.swing.JLabel();
+        jLblNombreCompleto = new javax.swing.JLabel();
         jLblIdentificador49 = new javax.swing.JLabel();
-        jLblIdentificador50 = new javax.swing.JLabel();
+        jLblBloque = new javax.swing.JLabel();
         jLblIdentificador51 = new javax.swing.JLabel();
-        jLblIdentificador52 = new javax.swing.JLabel();
+        jLblCasa = new javax.swing.JLabel();
         jLblIdentificador53 = new javax.swing.JLabel();
-        jLblIdentificador54 = new javax.swing.JLabel();
+        jLblEtapa = new javax.swing.JLabel();
         jLblIdentificador55 = new javax.swing.JLabel();
         jLblIdentificador56 = new javax.swing.JLabel();
         jLblIdentificador57 = new javax.swing.JLabel();
         jLblIdentificador59 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblMesesPagados = new javax.swing.JTable();
         jLblIdentificador60 = new javax.swing.JLabel();
-        jTfIdentidad12 = new javax.swing.JTextField();
-        jLblIdentificador61 = new javax.swing.JLabel();
+        jTfToltaMora = new javax.swing.JTextField();
+        jLblGenerarPlanPago = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTblTotalMora = new javax.swing.JTable();
         jLblIdentificador62 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jPnlReportes = new javax.swing.JPanel();
+        jTblMesesMorosos = new javax.swing.JTable();
 
-        jList4.setBackground(new java.awt.Color(255, 255, 255));
         jList4.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
-        jList4.setForeground(new java.awt.Color(0, 0, 0));
         jList4.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -122,14 +315,12 @@ public class JFraMora extends javax.swing.JFrame {
 
         jLblIdentificador63.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador63.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador63.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador63.setText("Meses pagados");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,14 +362,18 @@ public class JFraMora extends javax.swing.JFrame {
 
         jSideBar1.setBackground(new java.awt.Color(52, 73, 94));
         jSideBar1.setBorder(null);
-        jSideBar1.setForeground(new java.awt.Color(0, 0, 0));
 
         jSideBar.setBackground(new java.awt.Color(52, 73, 94));
         jSideBar.setPreferredSize(new java.awt.Dimension(260, 600));
         jSideBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSBAMECobros.setBackground(new java.awt.Color(52, 152, 219));
-        jSBAMECobros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBListaMora.setBackground(new java.awt.Color(52, 152, 219));
+        jSBListaMora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBListaMora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSBListaMoraMouseClicked(evt);
+            }
+        });
 
         jLblIdentificador.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -191,34 +386,34 @@ public class JFraMora extends javax.swing.JFrame {
         jLblIdentificador1.setForeground(new java.awt.Color(255, 255, 255));
         jLblIdentificador1.setText("Lista de mora");
 
-        javax.swing.GroupLayout jSBAMECobrosLayout = new javax.swing.GroupLayout(jSBAMECobros);
-        jSBAMECobros.setLayout(jSBAMECobrosLayout);
-        jSBAMECobrosLayout.setHorizontalGroup(
-            jSBAMECobrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBAMECobrosLayout.createSequentialGroup()
+        javax.swing.GroupLayout jSBListaMoraLayout = new javax.swing.GroupLayout(jSBListaMora);
+        jSBListaMora.setLayout(jSBListaMoraLayout);
+        jSBListaMoraLayout.setHorizontalGroup(
+            jSBListaMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBListaMoraLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLblIdentificador1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jSBAMECobrosLayout.setVerticalGroup(
-            jSBAMECobrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jSBAMECobrosLayout.createSequentialGroup()
+        jSBListaMoraLayout.setVerticalGroup(
+            jSBListaMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSBListaMoraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jSBAMECobrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jSBListaMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jSideBar.add(jSBAMECobros, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 225, 260, -1));
+        jSideBar.add(jSBListaMora, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 225, 260, -1));
 
-        jSBListadoContrato.setBackground(new java.awt.Color(52, 73, 94));
-        jSBListadoContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jSBListadoContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+        jSBDetalleMora.setBackground(new java.awt.Color(52, 73, 94));
+        jSBDetalleMora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBDetalleMora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSBListadoContratoMouseClicked(evt);
+                jSBDetalleMoraMouseClicked(evt);
             }
         });
 
@@ -233,28 +428,28 @@ public class JFraMora extends javax.swing.JFrame {
         jLblIdentificador3.setForeground(new java.awt.Color(255, 255, 255));
         jLblIdentificador3.setText("Detalle mora");
 
-        javax.swing.GroupLayout jSBListadoContratoLayout = new javax.swing.GroupLayout(jSBListadoContrato);
-        jSBListadoContrato.setLayout(jSBListadoContratoLayout);
-        jSBListadoContratoLayout.setHorizontalGroup(
-            jSBListadoContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBListadoContratoLayout.createSequentialGroup()
+        javax.swing.GroupLayout jSBDetalleMoraLayout = new javax.swing.GroupLayout(jSBDetalleMora);
+        jSBDetalleMora.setLayout(jSBDetalleMoraLayout);
+        jSBDetalleMoraLayout.setHorizontalGroup(
+            jSBDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBDetalleMoraLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLblIdentificador3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLblIdentificador2)
                 .addGap(10, 10, 10))
         );
-        jSBListadoContratoLayout.setVerticalGroup(
-            jSBListadoContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jSBListadoContratoLayout.createSequentialGroup()
+        jSBDetalleMoraLayout.setVerticalGroup(
+            jSBDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSBDetalleMoraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jSBListadoContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jSBDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblIdentificador2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jSideBar.add(jSBListadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 299, 260, -1));
+        jSideBar.add(jSBDetalleMora, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 299, 260, -1));
 
         jSBContrato4.setBackground(new java.awt.Color(52, 73, 94));
         jSBContrato4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -335,11 +530,6 @@ public class JFraMora extends javax.swing.JFrame {
 
         jSBListadoContrato1.setBackground(new java.awt.Color(52, 73, 94));
         jSBListadoContrato1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jSBListadoContrato1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSBListadoContrato1MouseClicked(evt);
-            }
-        });
 
         jLblIdentificador4.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador4.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -375,11 +565,11 @@ public class JFraMora extends javax.swing.JFrame {
 
         jSideBar.add(jSBListadoContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 260, -1));
 
-        jSBListadoContrato2.setBackground(new java.awt.Color(52, 73, 94));
-        jSBListadoContrato2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jSBListadoContrato2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jSBReporteMora.setBackground(new java.awt.Color(52, 73, 94));
+        jSBReporteMora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBReporteMora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSBListadoContrato2MouseClicked(evt);
+                jSBReporteMoraMouseClicked(evt);
             }
         });
 
@@ -394,79 +584,93 @@ public class JFraMora extends javax.swing.JFrame {
         jLblIdentificador8.setForeground(new java.awt.Color(255, 255, 255));
         jLblIdentificador8.setText("Reportes de mora");
 
-        javax.swing.GroupLayout jSBListadoContrato2Layout = new javax.swing.GroupLayout(jSBListadoContrato2);
-        jSBListadoContrato2.setLayout(jSBListadoContrato2Layout);
-        jSBListadoContrato2Layout.setHorizontalGroup(
-            jSBListadoContrato2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBListadoContrato2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jSBReporteMoraLayout = new javax.swing.GroupLayout(jSBReporteMora);
+        jSBReporteMora.setLayout(jSBReporteMoraLayout);
+        jSBReporteMoraLayout.setHorizontalGroup(
+            jSBReporteMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBReporteMoraLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLblIdentificador8, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblIdentificador7)
                 .addGap(16, 16, 16))
         );
-        jSBListadoContrato2Layout.setVerticalGroup(
-            jSBListadoContrato2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jSBListadoContrato2Layout.createSequentialGroup()
+        jSBReporteMoraLayout.setVerticalGroup(
+            jSBReporteMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSBReporteMoraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jSBListadoContrato2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jSBReporteMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblIdentificador7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jSideBar.add(jSBListadoContrato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 260, -1));
+        jSideBar.add(jSBReporteMora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 260, -1));
 
         jSideBar1.setViewportView(jSideBar);
 
         jPanel1.add(jSideBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, 270, 625));
 
         jTabContrato.setBackground(new java.awt.Color(255, 255, 255));
-        jTabContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTabContrato.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
 
         jPnlListadoPagos.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlListadoPagos.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLblIdentificador11.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador11.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador11.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador11.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador11.setText("Ver mora por:");
 
-        jTable2.setBackground(new java.awt.Color(255, 255, 255));
-        jTable2.setForeground(new java.awt.Color(0, 0, 0));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTblListaMora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "IDContrato", "COD", "Nombre", "Bloque", "Etapa", "Casa", "Mes", "Cantidad"
             }
-        ));
-        jScrollPane6.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Bloque");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTblListaMora.getTableHeader().setReorderingAllowed(false);
+        jTblListaMora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblListaMoraMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTblListaMora);
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton3.setText("Rango de fecha");
+        jRbBloque.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRbBloque);
+        jRbBloque.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRbBloque.setForeground(new java.awt.Color(0, 0, 0));
+        jRbBloque.setSelected(true);
+        jRbBloque.setText("Bloque");
+
+        jRbEtapa.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRbEtapa);
+        jRbEtapa.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRbEtapa.setForeground(new java.awt.Color(0, 0, 0));
+        jRbEtapa.setText("Etapa");
 
         jPnlBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
         jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyReleased(evt);
+            }
+        });
 
         jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
@@ -490,22 +694,38 @@ public class JFraMora extends javax.swing.JFrame {
             .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jLblVerMora.setBackground(new java.awt.Color(102, 102, 102));
+        jLblVerMora.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jLblVerMora.setForeground(new java.awt.Color(41, 128, 185));
+        jLblVerMora.setText("Ver mora abonado");
+        jLblVerMora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblVerMora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblVerMoraMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPnlListadoPagosLayout = new javax.swing.GroupLayout(jPnlListadoPagos);
         jPnlListadoPagos.setLayout(jPnlListadoPagosLayout);
         jPnlListadoPagosLayout.setHorizontalGroup(
             jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3)
-                        .addGap(143, 143, 143)
-                        .addComponent(jPnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLblVerMora))
+                    .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPnlListadoPagosLayout.createSequentialGroup()
+                                .addComponent(jLblIdentificador11)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRbBloque)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRbEtapa)
+                                .addGap(149, 149, 149)
+                                .addComponent(jPnlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         jPnlListadoPagosLayout.setVerticalGroup(
@@ -516,31 +736,51 @@ public class JFraMora extends javax.swing.JFrame {
                     .addComponent(jPnlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPnlListadoPagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLblIdentificador11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jRbBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRbEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jLblVerMora)
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabContrato.addTab("tab4", jPnlListadoPagos);
 
-        jPnlDetalleMora.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlDetalleMora.setForeground(new java.awt.Color(0, 0, 0));
+        jPnlReportes.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLblIdentificador43.setBackground(new java.awt.Color(102, 102, 102));
+        javax.swing.GroupLayout jPnlReportesLayout = new javax.swing.GroupLayout(jPnlReportes);
+        jPnlReportes.setLayout(jPnlReportesLayout);
+        jPnlReportesLayout.setHorizontalGroup(
+            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 988, Short.MAX_VALUE)
+        );
+        jPnlReportesLayout.setVerticalGroup(
+            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 566, Short.MAX_VALUE)
+        );
+
+        jTabContrato.addTab("tab3", jPnlReportes);
+
+        jPnlDetalleMora.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLblIdentificador43.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador43.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador43.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador43.setText("Número de identidad");
 
-        jLblIdentificador44.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador44.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador44.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador44.setText("Buscar mora aquí");
-        jLblIdentificador44.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblBuscarMora.setBackground(new java.awt.Color(102, 102, 102));
+        jLblBuscarMora.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblBuscarMora.setForeground(new java.awt.Color(41, 128, 185));
+        jLblBuscarMora.setText("Buscar mora aquí");
+        jLblBuscarMora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblBuscarMora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblBuscarMoraMouseClicked(evt);
+            }
+        });
 
         jSeparatorY2.setBackground(new java.awt.Color(153, 153, 153));
-        jSeparatorY2.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jSeparatorY2Layout = new javax.swing.GroupLayout(jSeparatorY2);
         jSeparatorY2.setLayout(jSeparatorY2Layout);
@@ -553,83 +793,82 @@ public class JFraMora extends javax.swing.JFrame {
             .addGap(0, 496, Short.MAX_VALUE)
         );
 
-        jLblIdentificador45.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador45.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador45.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador45.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador45.setText("Información personal");
 
-        jLblIdentificador46.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador46.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador46.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador46.setText("Número de identidad");
+        jLblNumeroIdentidad.setBackground(new java.awt.Color(255, 255, 255));
+        jLblNumeroIdentidad.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblNumeroIdentidad.setForeground(new java.awt.Color(0, 0, 0));
+        jLblNumeroIdentidad.setText("Número de identidad");
 
-        jLblIdentificador47.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador47.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador47.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador47.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador47.setText("Nombre completo");
 
-        jLblIdentificador48.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador48.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador48.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador48.setText("Nombre completo");
+        jLblNombreCompleto.setBackground(new java.awt.Color(255, 255, 255));
+        jLblNombreCompleto.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblNombreCompleto.setForeground(new java.awt.Color(0, 0, 0));
+        jLblNombreCompleto.setText("Nombre completo");
 
-        jLblIdentificador49.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador49.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador49.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador49.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador49.setText("Bloque");
 
-        jLblIdentificador50.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador50.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador50.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador50.setText("Bloque");
+        jLblBloque.setBackground(new java.awt.Color(255, 255, 255));
+        jLblBloque.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblBloque.setForeground(new java.awt.Color(0, 0, 0));
+        jLblBloque.setText("Bloque");
 
-        jLblIdentificador51.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador51.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador51.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador51.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador51.setText("Casa");
 
-        jLblIdentificador52.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador52.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador52.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador52.setText("Casa");
+        jLblCasa.setBackground(new java.awt.Color(255, 255, 255));
+        jLblCasa.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblCasa.setForeground(new java.awt.Color(0, 0, 0));
+        jLblCasa.setText("Casa");
 
-        jLblIdentificador53.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador53.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador53.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador53.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador53.setText("Etapa");
 
-        jLblIdentificador54.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador54.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador54.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador54.setText("Etapa");
+        jLblEtapa.setBackground(new java.awt.Color(255, 255, 255));
+        jLblEtapa.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblEtapa.setForeground(new java.awt.Color(0, 0, 0));
+        jLblEtapa.setText("Etapa");
 
         jLblIdentificador55.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador55.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador55.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hombre-joven-64.png"))); // NOI18N
         jLblIdentificador55.setToolTipText("Masculino");
 
-        jLblIdentificador56.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador56.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador56.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador56.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador56.setText("Resumen de mora");
 
-        jLblIdentificador57.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador57.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador57.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador57.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador57.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador57.setText("Meses pagados");
 
-        jLblIdentificador59.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador59.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador59.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador59.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador59.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador59.setText("Mora total");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblMesesPagados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2"
+                "#", "Mes"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -640,50 +879,48 @@ public class JFraMora extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jTblMesesPagados.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTblMesesPagados);
 
-        jLblIdentificador60.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador60.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador60.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador60.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador60.setText("Total a pagar: ");
 
-        jTfIdentidad12.setEditable(false);
-        jTfIdentidad12.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad12.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad12.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad12.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfToltaMora.setEditable(false);
+        jTfToltaMora.setBackground(new java.awt.Color(255, 255, 255));
+        jTfToltaMora.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfToltaMora.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfToltaMora.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        jLblIdentificador61.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador61.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador61.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador61.setText("Generar plan de pago");
-        jLblIdentificador61.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblGenerarPlanPago.setBackground(new java.awt.Color(102, 102, 102));
+        jLblGenerarPlanPago.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblGenerarPlanPago.setForeground(new java.awt.Color(41, 128, 185));
+        jLblGenerarPlanPago.setText("Generar plan de pago");
+        jLblGenerarPlanPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTblTotalMora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Num Contrato", "Mes", "Valor"
             }
         ));
-        jScrollPane4.setViewportView(jTable3);
+        jTblTotalMora.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(jTblTotalMora);
 
-        jLblIdentificador62.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador62.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador62.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador62.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador62.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador62.setText("Meses adeudados");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTblMesesMorosos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2"
+                "#", "Mes"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -694,7 +931,8 @@ public class JFraMora extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable4);
+        jTblMesesMorosos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(jTblMesesMorosos);
 
         javax.swing.GroupLayout jPnlDetalleMoraLayout = new javax.swing.GroupLayout(jPnlDetalleMora);
         jPnlDetalleMora.setLayout(jPnlDetalleMoraLayout);
@@ -703,18 +941,18 @@ public class JFraMora extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlDetalleMoraLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPnlDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblIdentificador44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblBuscarMora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador46, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblNumeroIdentidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador47, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador48, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblNombreCompleto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador49, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblBloque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador51, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador52, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblCasa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador53, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador54, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblEtapa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPnlDetalleMoraLayout.createSequentialGroup()
                         .addComponent(jLblIdentificador55)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -731,7 +969,7 @@ public class JFraMora extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLblIdentificador60)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTfIdentidad12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTfToltaMora, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPnlDetalleMoraLayout.createSequentialGroup()
                                 .addGroup(jPnlDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPnlDetalleMoraLayout.createSequentialGroup()
@@ -744,7 +982,7 @@ public class JFraMora extends javax.swing.JFrame {
                                 .addGroup(jPnlDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLblIdentificador62, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLblIdentificador61, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jLblGenerarPlanPago, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jScrollPane4))
                         .addGap(64, 64, 64))))
         );
@@ -767,62 +1005,46 @@ public class JFraMora extends javax.swing.JFrame {
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPnlDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblIdentificador61, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblGenerarPlanPago, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblIdentificador59, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPnlDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLblIdentificador60, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfIdentidad12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTfToltaMora, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPnlDetalleMoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSeparatorY2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPnlDetalleMoraLayout.createSequentialGroup()
                             .addComponent(jLblIdentificador45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador44, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblBuscarMora, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLblIdentificador55)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLblIdentificador43, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador46, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblNumeroIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLblIdentificador47, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador48, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLblIdentificador49, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador50, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblBloque, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLblIdentificador51, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador52, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblCasa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLblIdentificador53, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLblIdentificador54, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLblEtapa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabContrato.addTab("tab2", jPnlDetalleMora);
-
-        jPnlReportes.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlReportes.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPnlReportesLayout = new javax.swing.GroupLayout(jPnlReportes);
-        jPnlReportes.setLayout(jPnlReportesLayout);
-        jPnlReportesLayout.setHorizontalGroup(
-            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 988, Short.MAX_VALUE)
-        );
-        jPnlReportesLayout.setVerticalGroup(
-            jPnlReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
-        );
-
-        jTabContrato.addTab("tab3", jPnlReportes);
 
         jPanel1.add(jTabContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 1030, 570));
 
@@ -865,20 +1087,98 @@ public class JFraMora extends javax.swing.JFrame {
         this.jBtnSideBar1.setVisible(true);
     }//GEN-LAST:event_jBtnSideBarMouseClicked
 
-    private void jSBListadoContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBListadoContratoMouseClicked
+    private void jSBDetalleMoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBDetalleMoraMouseClicked
         // TODO add your handling code here:
-        Color celeste = new Color(52,152,219);
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTabContrato.setSelectedIndex(2);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBDetalleMora.setBackground(celeste);
+        this.jSBListaMora.setBackground(azul);
+        this.jSBReporteMora.setBackground(azul);
+    }//GEN-LAST:event_jSBDetalleMoraMouseClicked
+
+    private void jSBReporteMoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBReporteMoraMouseClicked
+        // TODO add your handling code here:
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
         this.jTabContrato.setSelectedIndex(1);
-        this.jSBListadoContrato.setBackground(celeste);
-    }//GEN-LAST:event_jSBListadoContratoMouseClicked
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBDetalleMora.setBackground(azul);
+        this.jSBListaMora.setBackground(azul);
+        this.jSBReporteMora.setBackground(celeste);
+    }//GEN-LAST:event_jSBReporteMoraMouseClicked
 
-    private void jSBListadoContrato1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBListadoContrato1MouseClicked
+    private void jSBListaMoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBListaMoraMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jSBListadoContrato1MouseClicked
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTabContrato.setSelectedIndex(0);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBDetalleMora.setBackground(azul);
+        this.jSBListaMora.setBackground(celeste);
+        this.jSBReporteMora.setBackground(azul);
+    }//GEN-LAST:event_jSBListaMoraMouseClicked
 
-    private void jSBListadoContrato2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBListadoContrato2MouseClicked
+    private void jTblListaMoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblListaMoraMouseClicked
+        try {
+            // TODO add your handling code here:
+            String idContrato;
+            idContrato = (String.valueOf(this.jTblListaMora.getValueAt(this.jTblListaMora.getSelectedRow(), 0)));
+            ListaMesesPagados(parseInt(idContrato));
+            ListaMesesMorosos(parseInt(idContrato));
+            ListaTotalMora(parseInt(idContrato));
+            totalMoraPagar(parseInt(idContrato));
+            seleccionarMoraAbonado();
+        } catch (ParseException ex) {
+            Logger.getLogger(JFraMora.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMora.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTblListaMoraMouseClicked
+
+    private void jLblVerMoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblVerMoraMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jSBListadoContrato2MouseClicked
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTabContrato.setSelectedIndex(2);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBDetalleMora.setBackground(celeste);
+        this.jSBListaMora.setBackground(azul);
+        this.jSBReporteMora.setBackground(azul);
+    }//GEN-LAST:event_jLblVerMoraMouseClicked
+
+    private void jTfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyReleased
+        // TODO add your handling code here:
+        try {
+            if(this.jRbBloque.isSelected()){
+                if(this.jTfBuscar.getText().isEmpty()){
+                    llenarTablaListaMora();
+                }else{
+                    String bloque;
+                    bloque = this.jTfBuscar.getText();
+                    mostrarMoraPorBloque(parseInt(bloque));
+                }
+                }else if(this.jRbEtapa.isSelected()){
+                    String identidad;
+                    identidad = this.jTfBuscar.getText();
+                    mostrarMoraPorEtapa(parseInt(identidad));
+                }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTfBuscarKeyReleased
+
+    private void jLblBuscarMoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblBuscarMoraMouseClicked
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTabContrato.setSelectedIndex(0);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBDetalleMora.setBackground(azul);
+        this.jSBListaMora.setBackground(celeste);
+        this.jSBReporteMora.setBackground(azul);
+    }//GEN-LAST:event_jLblBuscarMoraMouseClicked
 
     /**
      * @param args the command line arguments
@@ -911,7 +1211,11 @@ public class JFraMora extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraMora().setVisible(true);
+                try {
+                    new JFraMora().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraMora.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -921,6 +1225,11 @@ public class JFraMora extends javax.swing.JFrame {
     private javax.swing.JLabel jBtnBuscar;
     private javax.swing.JLabel jBtnSideBar;
     private javax.swing.JLabel jBtnSideBar1;
+    private javax.swing.JLabel jLblBloque;
+    private javax.swing.JLabel jLblBuscarMora;
+    private javax.swing.JLabel jLblCasa;
+    private javax.swing.JLabel jLblEtapa;
+    private javax.swing.JLabel jLblGenerarPlanPago;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblIdentificador1;
     private javax.swing.JLabel jLblIdentificador10;
@@ -929,31 +1238,27 @@ public class JFraMora extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador3;
     private javax.swing.JLabel jLblIdentificador4;
     private javax.swing.JLabel jLblIdentificador43;
-    private javax.swing.JLabel jLblIdentificador44;
     private javax.swing.JLabel jLblIdentificador45;
-    private javax.swing.JLabel jLblIdentificador46;
     private javax.swing.JLabel jLblIdentificador47;
-    private javax.swing.JLabel jLblIdentificador48;
     private javax.swing.JLabel jLblIdentificador49;
     private javax.swing.JLabel jLblIdentificador5;
-    private javax.swing.JLabel jLblIdentificador50;
     private javax.swing.JLabel jLblIdentificador51;
-    private javax.swing.JLabel jLblIdentificador52;
     private javax.swing.JLabel jLblIdentificador53;
-    private javax.swing.JLabel jLblIdentificador54;
     private javax.swing.JLabel jLblIdentificador55;
     private javax.swing.JLabel jLblIdentificador56;
     private javax.swing.JLabel jLblIdentificador57;
     private javax.swing.JLabel jLblIdentificador59;
     private javax.swing.JLabel jLblIdentificador6;
     private javax.swing.JLabel jLblIdentificador60;
-    private javax.swing.JLabel jLblIdentificador61;
     private javax.swing.JLabel jLblIdentificador62;
     private javax.swing.JLabel jLblIdentificador63;
     private javax.swing.JLabel jLblIdentificador7;
     private javax.swing.JLabel jLblIdentificador8;
     private javax.swing.JLabel jLblIdentificador9;
+    private javax.swing.JLabel jLblNombreCompleto;
+    private javax.swing.JLabel jLblNumeroIdentidad;
     private javax.swing.JLabel jLblTitulo2;
+    private javax.swing.JLabel jLblVerMora;
     private javax.swing.JList<String> jList4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -964,13 +1269,13 @@ public class JFraMora extends javax.swing.JFrame {
     private javax.swing.JPanel jPnlDetalleMora;
     private javax.swing.JPanel jPnlListadoPagos;
     private javax.swing.JPanel jPnlReportes;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JPanel jSBAMECobros;
+    private javax.swing.JRadioButton jRbBloque;
+    private javax.swing.JRadioButton jRbEtapa;
     private javax.swing.JPanel jSBContrato4;
-    private javax.swing.JPanel jSBListadoContrato;
+    private javax.swing.JPanel jSBDetalleMora;
+    private javax.swing.JPanel jSBListaMora;
     private javax.swing.JPanel jSBListadoContrato1;
-    private javax.swing.JPanel jSBListadoContrato2;
+    private javax.swing.JPanel jSBReporteMora;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -980,11 +1285,11 @@ public class JFraMora extends javax.swing.JFrame {
     private javax.swing.JPanel jSideBar;
     private javax.swing.JScrollPane jSideBar1;
     private javax.swing.JTabbedPane jTabContrato;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTblListaMora;
+    private javax.swing.JTable jTblMesesMorosos;
+    private javax.swing.JTable jTblMesesPagados;
+    private javax.swing.JTable jTblTotalMora;
     private javax.swing.JTextField jTfBuscar;
-    private javax.swing.JTextField jTfIdentidad12;
+    private javax.swing.JTextField jTfToltaMora;
     // End of variables declaration//GEN-END:variables
 }

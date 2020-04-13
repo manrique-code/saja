@@ -127,4 +127,22 @@ public class CDTipoPlanPago {
         return miLista;
     }
     
+    public ArrayList<String> mostrarTodoTipoPlanPagoActivo() throws SQLException{
+        String sql = "{CALL sp_mostratTipoPlanPagoActivo()}";
+        PreparedStatement ps;
+        ResultSet rs;
+
+        ArrayList<String> listaTipoPlanPago;
+        
+        ps = cn.prepareStatement(sql);
+        rs = ps.executeQuery();
+        
+        listaTipoPlanPago = new ArrayList<>();
+        
+        while(rs.next()){
+            listaTipoPlanPago.add(rs.getString("tipoPlanPago"));
+        }        
+        
+       return listaTipoPlanPago; 
+    }
 }

@@ -27,6 +27,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
      */
     public JFraEstadoContrato() throws SQLException {
         initComponents();
+        this.jLblCancelar.setVisible(false);
         this.setLocationRelativeTo(null);
         this.jTfNombreEstadoContrato.requestFocus();
         PlaceHolder ph = new PlaceHolder(this.jTfBuscar, 
@@ -41,7 +42,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         habilitarBotones(true, false, false, true);
     }
     
-     private boolean estadEditando = false;
+    private boolean estadEditando = false;
     
     private void limpiarTabla(){
         DefaultTableModel dtm = (DefaultTableModel) this.jTblEstadoContrato.getModel();
@@ -67,12 +68,30 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         };
     }
     
+    private void buscarEstadoContratoPorNombre(String estadoContrato) throws SQLException{
+        limpiarTabla();
+        
+        CDEstadoContrato cdc = new CDEstadoContrato();
+        List<CLEstadoContrato> miLista = cdc.mostrarEstadoContratoPorNombre(estadoContrato);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblEstadoContrato.getModel();
+        
+        miLista.stream().map((cl) -> {
+            Object[] fila = new Object[2];
+            fila[0] = cl.getIdEstadoContrato();
+            fila[1] = cl.getEstadoContrato();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
     public void limpiarFormulario() throws SQLException{
         this.ultimoIDEstado();
         this.jTfNombreEstadoContrato.setText("");
+        this.jTfBuscar.setText("");
         this.habilitarBotones(true, false, false, true);
         this.jTfNombreEstadoContrato.requestFocus();
-        this.jTblEstadoContrato.clearSelection();     
+        this.jTblEstadoContrato.clearSelection();
     }
     
     private void insertarEstadoContrato(){
@@ -137,7 +156,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         CDEstadoContrato cdec = new CDEstadoContrato();
         CLEstadoContrato clec = new CLEstadoContrato();
         
-        clec.setIdEstadoContrato(cdec.autoIncrementarColorID());
+        clec.setIdEstadoContrato(cdec.autoIncrementarEstadoContrato());
         
         this.jTfEstadoContrato.setText(String.valueOf(clec.getIdEstadoContrato()));
     }
@@ -187,8 +206,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLblCancelar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -234,7 +252,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Identificador");
-        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
+        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 320, 30));
 
         jTfEstadoContrato.setEditable(false);
         jTfEstadoContrato.setBackground(new java.awt.Color(255, 255, 255));
@@ -243,12 +261,12 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jTfEstadoContrato.setText(" 1");
         jTfEstadoContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfEstadoContrato.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfEstadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
+        jPnlCancelar.add(jTfEstadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 110, 320, 40));
 
         jLblNombre.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLblNombre.setText("Nombre");
-        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 280, 30));
+        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 300, 30));
 
         jTfNombreEstadoContrato.setBackground(new java.awt.Color(255, 255, 255));
         jTfNombreEstadoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -256,7 +274,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jTfNombreEstadoContrato.setToolTipText("Ingrese aquí un estado del contrato");
         jTfNombreEstadoContrato.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfNombreEstadoContrato.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfNombreEstadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
+        jPnlCancelar.add(jTfNombreEstadoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 220, 320, 40));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -313,7 +331,9 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 1, 360));
 
+        jTblEstadoContrato.setBackground(new java.awt.Color(255, 255, 255));
         jTblEstadoContrato.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 15)); // NOI18N
+        jTblEstadoContrato.setForeground(new java.awt.Color(0, 0, 0));
         jTblEstadoContrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -321,7 +341,17 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nombre"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTblEstadoContrato.setRowHeight(30);
+        jTblEstadoContrato.getTableHeader().setReorderingAllowed(false);
         jTblEstadoContrato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTblEstadoContratoMouseClicked(evt);
@@ -334,9 +364,16 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         jPnlBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyReleased(evt);
+            }
+        });
 
         jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
@@ -364,15 +401,16 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 350, 40));
 
-        jLabel7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("permanecer el contrato de un abonado.");
-        jPnlCancelar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 280, 20));
-
-        jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Ingrese aquí los estados en los que puede");
-        jPnlCancelar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
+        jLblCancelar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
+        jLblCancelar.setForeground(new java.awt.Color(41, 128, 185));
+        jLblCancelar.setText("Cancelar edición");
+        jLblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblCancelarMouseClicked(evt);
+            }
+        });
+        jPnlCancelar.add(jLblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -398,7 +436,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
             }else{
                 insertarEstadoContrato();
                 llenarTablaEstados();
-                ultimoIDEstado();          
+                ultimoIDEstado();        
             }    
         } catch (SQLException ex) {
             Logger.getLogger(JFraEstadoContrato.class.getName()).log(Level.SEVERE, null, ex);
@@ -437,7 +475,34 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
         seleccionarEstado();
         habilitarBotones(false, true, true, true);
         estadEditando = true;
+        this.jLblCancelar.setVisible(true);
     }//GEN-LAST:event_jTblEstadoContratoMouseClicked
+
+    private void jLblCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCancelarMouseClicked
+        // TODO add your handling code here:
+        try {
+            limpiarFormulario();
+            habilitarBotones(true, false, false, false);
+            this.jLblCancelar.setVisible(false);
+            llenarTablaEstados();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraEstadoContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLblCancelarMouseClicked
+
+    private void jTfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyReleased
+        // TODO add your handling code here:
+        String estadoContrato;
+        
+        try {
+            estadoContrato = this.jTfBuscar.getText();
+            buscarEstadoContratoPorNombre(estadoContrato);
+            this.jLblCancelar.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraEstadoContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jTfBuscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -486,8 +551,7 @@ public class JFraEstadoContrato extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblCancelar;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblMenu;
     private javax.swing.JLabel jLblNombre;

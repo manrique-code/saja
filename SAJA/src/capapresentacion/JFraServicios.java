@@ -5,8 +5,16 @@
  */
 package capapresentacion;
 
+import capadatos.CDServicios;
+import capalogica.CLServicios;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,10 +25,17 @@ public class JFraServicios extends javax.swing.JFrame {
     /**
      * Creates new form JFraServicios
      */
-    public JFraServicios() {
+    public JFraServicios() throws SQLException {
         initComponents();
+        this.jBtnCancelar.setVisible(false);
+        this.jBtnGuardar.setVisible(true);
+        this.jBtnEditar.setVisible(false);
         this.setLocationRelativeTo(null);
+        findCorrelative();
+        enabledButtons(true,true,false,true);
         this.jTfNombreServicio.requestFocus();
+        
+        llenarTablaServicios();
         PlaceHolder ph = new PlaceHolder(this.jTfBuscar, 
                                         new Color(153,153,153),
                                         Color.BLACK,
@@ -29,6 +44,173 @@ public class JFraServicios extends javax.swing.JFrame {
                                         "HelveticaNowDisplay Regular",
                                         18);
     }
+    // Colores del formulario
+    Color celeste = new Color(52,152,219);
+    Color azul = new Color(52,73,94);
+    
+        // Method to clear the jTable.
+    private void clearTable(){
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblServicio.getModel();
+        
+        while(dtm.getRowCount() > 0){
+            dtm.removeRow(0);
+        }
+    }
+    
+    // LLENAR TABLA SERVICIOS
+    private void llenarTablaServicios() throws SQLException{
+        clearTable();
+        String status;
+        CDServicios cdc = new CDServicios();
+        List<CLServicios> miLista = cdc.listaServicios();
+        DefaultTableModel temp = (DefaultTableModel) this.jTblServicio.getModel();
+        
+       for(CLServicios cl: miLista) {
+            Object[] fila = new Object[3];
+            fila[0] = cl.getIdServicio();
+            fila[1] = cl.getNombreServicio();
+            if(cl.getEstadoServicio() == 1){
+                status = "Activo";
+            }else{
+                status ="Inactivo";
+            }
+            fila[2]= status;
+            temp.addRow(fila);
+        }
+    }
+    
+    // LLENAR TABLA POR SERVICIO
+    private void llenarTablaNombreServicio(String idServicio) throws SQLException{
+        clearTable();
+        
+        CDServicios cdc = new CDServicios();
+        List<CLServicios> miLista = cdc.listaServicioID(idServicio);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblServicio.getModel();
+        
+        miLista.stream().map((cl) -> {
+            String status;
+            Object[] fila = new Object[3];
+            fila[0] = cl.getIdServicio();
+            fila[1] = cl.getNombreServicio();
+            if(cl.getEstadoServicio() == 1){
+                status = "Activo";
+            }else{
+                status ="Inactivo";
+            }
+            fila[2]= status;
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+    
+    // Method to enabled the buttons.
+    private void enabledButtons(boolean add, boolean modify, boolean delete,boolean cancel){
+        this.jBtnGuardar.setEnabled(add);
+        this.jBtnEditar.setEnabled(modify);
+        this.jBtnEliminar.setEnabled(delete);
+        this.jBtnCancelar.setEnabled(cancel);
+        
+    }
+    
+    // Method to fill the TextField with the selected a row of the JTable.
+    private void selectedRow(){
+        if(this.jTblServicio.getSelectedRow() != -1){
+            this.jTfIdServicio.setText(String.valueOf(this.jTblServicio.getValueAt(this.jTblServicio.getSelectedRow(), 0)));
+            this.jTfNombreServicio.setText(String.valueOf(this.jTblServicio.getValueAt(this.jTblServicio.getSelectedRow(), 1)));
+            String estado =  (String.valueOf(this.jTblServicio.getValueAt(this.jTblServicio.getSelectedRow(), 2)));
+            
+            if(estado == "Activo"){
+               this.jChkActivo.setSelected(true);
+            }else{
+                this.jChkActivo.setSelected(false);
+            }
+        }
+    }
+    
+    // Method to consult the correlative ID of the color.
+    private void findCorrelative() throws SQLException{
+        
+        CDServicios cds = new CDServicios();
+        CLServicios cls = new CLServicios();
+        
+        cls.setIdServicio(cds.autoIncrementServicioID());
+        this.jTfIdServicio.setText(String.valueOf(cls.getIdServicio()));
+        
+    }
+    
+    // Method to clear the TextFields.
+    private void clearTextField() throws SQLException{
+        this.jTfIdServicio.setText("");
+        this.jTfNombreServicio.setText("");
+        
+    }
+    
+    // Method to insert the color in the DB.
+    private void insertarServicio(){
+        try{
+            CDServicios cds = new CDServicios();
+            CLServicios cls = new CLServicios();
+            cls.setNombreServicio(this.jTfNombreServicio.getText().trim());
+            if(this.jChkActivo.isSelected()){
+                cls.setEstadoServicio(1);
+            }else{
+                cls.setEstadoServicio(0);
+            }
+            cds.insertarServicio(cls);
+            
+            JOptionPane.showMessageDialog(null, "Se agregó un servicio satisfactoriamente...", "SAJA", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            clearTextField();
+            llenarTablaServicios();
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al guardar el servicio: " + ex);
+        }
+    }
+    
+    // Method to update the color in the DB.
+    private void editarServicio(){
+        try{
+            CDServicios cds = new CDServicios();
+            CLServicios cls = new CLServicios();
+            cls.setIdServicio(Integer.parseInt(this.jTfIdServicio.getText().trim()));
+            cls.setNombreServicio(this.jTfNombreServicio.getText().trim());
+            if(this.jChkActivo.isSelected()){
+                cls.setEstadoServicio(1);
+            }else{
+                cls.setEstadoServicio(0);
+            }
+            cds.editarServicio(cls);
+            
+            JOptionPane.showMessageDialog(null,"Se modificó un servicio satisfactoriamente...", "SAJA", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+            clearTextField();
+            llenarTablaServicios();
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al editar el servicio: " + ex);
+        }
+    }
+    
+    // Method to delete the color in the DB.
+    private void eliminarServicio(){
+        try{
+            CDServicios cds = new CDServicios();
+            CLServicios cls = new CLServicios();
+            cls.setIdServicio(Integer.parseInt(this.jTfIdServicio.getText().trim()));
+            cds.eliminarServicio(cls);
+            
+            JOptionPane.showMessageDialog(null, "Se eliminó un servicio satisfactoriamente...", "SAJA", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            clearTextField();
+            llenarTablaServicios();
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al eliminar el servicio: " + ex);
+        }
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,8 +238,8 @@ public class JFraServicios extends javax.swing.JFrame {
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jBtnCancelar = new javax.swing.JLabel();
+        jChkActivo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,25 +279,25 @@ public class JFraServicios extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
 
-        jLblIdentificador.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Identificador");
-        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
+        jPnlCancelar.add(jLblIdentificador, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 300, 30));
 
         jTfIdServicio.setEditable(false);
         jTfIdServicio.setBackground(new java.awt.Color(255, 255, 255));
         jTfIdServicio.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
         jTfIdServicio.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdServicio.setText(" 1");
         jTfIdServicio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfIdServicio.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfIdServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
+        jPnlCancelar.add(jTfIdServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 302, 40));
 
+        jLblNombre.setBackground(new java.awt.Color(255, 255, 255));
         jLblNombre.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLblNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLblNombre.setText("Nombre");
-        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 300, 30));
+        jPnlCancelar.add(jLblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 300, 30));
 
         jTfNombreServicio.setBackground(new java.awt.Color(255, 255, 255));
         jTfNombreServicio.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -123,7 +305,7 @@ public class JFraServicios extends javax.swing.JFrame {
         jTfNombreServicio.setToolTipText("Ingrese aqui un servicio");
         jTfNombreServicio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTfNombreServicio.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTfNombreServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
+        jPnlCancelar.add(jTfNombreServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 302, 40));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -132,6 +314,11 @@ public class JFraServicios extends javax.swing.JFrame {
         jBtnGuardar.setText("GUARDAR");
         jBtnGuardar.setBorder(null);
         jBtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEditar.setBackground(new java.awt.Color(9, 132, 227));
@@ -141,6 +328,11 @@ public class JFraServicios extends javax.swing.JFrame {
         jBtnEditar.setText("EDITAR");
         jBtnEditar.setBorder(null);
         jBtnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 50));
 
         jBtnEliminar.setBackground(new java.awt.Color(9, 132, 227));
@@ -150,6 +342,11 @@ public class JFraServicios extends javax.swing.JFrame {
         jBtnEliminar.setText("ELIMINAR");
         jBtnEliminar.setBorder(null);
         jBtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
         jPnlCancelar.add(jBtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 140, 50));
 
         javax.swing.GroupLayout jPnlSeparatorLayout = new javax.swing.GroupLayout(jPnlSeparator);
@@ -165,15 +362,31 @@ public class JFraServicios extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 1, 360));
 
+        jTblServicio.setBackground(new java.awt.Color(255, 255, 255));
         jTblServicio.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 15)); // NOI18N
+        jTblServicio.setForeground(new java.awt.Color(0, 0, 0));
         jTblServicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nombre"
+                "ID", "Nombre", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTblServicio.setRowHeight(30);
+        jTblServicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblServicioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTblServicio);
 
         jPnlCancelar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 350, 310));
@@ -182,10 +395,15 @@ public class JFraServicios extends javax.swing.JFrame {
         jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
         jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyReleased(evt);
+            }
+        });
 
         jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
@@ -213,15 +431,29 @@ public class JFraServicios extends javax.swing.JFrame {
 
         jPnlCancelar.add(jPnlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 350, 40));
 
-        jLabel7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("un abonado.");
-        jPnlCancelar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 280, 20));
+        jBtnCancelar.setBackground(new java.awt.Color(255, 255, 255));
+        jBtnCancelar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
+        jBtnCancelar.setForeground(new java.awt.Color(9, 132, 227));
+        jBtnCancelar.setText("Cancelar Acción");
+        jBtnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnCancelarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jBtnCancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jBtnCancelarMouseExited(evt);
+            }
+        });
+        jPnlCancelar.add(jBtnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 110, -1));
 
-        jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Ingrese aquí los servicios que puede contratar");
-        jPnlCancelar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
+        jChkActivo.setBackground(new java.awt.Color(255, 255, 255));
+        jChkActivo.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jChkActivo.setForeground(new java.awt.Color(0, 0, 0));
+        jChkActivo.setText("Activo");
+        jPnlCancelar.add(jChkActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,6 +468,82 @@ public class JFraServicios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnCancelarMouseEntered
+        this.jBtnCancelar.setForeground(celeste);
+    }//GEN-LAST:event_jBtnCancelarMouseEntered
+
+    private void jBtnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnCancelarMouseExited
+        this.jBtnCancelar.setForeground(azul);
+    }//GEN-LAST:event_jBtnCancelarMouseExited
+
+    private void jTblServicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblServicioMouseClicked
+        this.jBtnCancelar.setVisible(true);
+        this.jBtnGuardar.setVisible(false);
+        this.jBtnEditar.setVisible(true);
+        enabledButtons(true,true,true,true);
+        
+        selectedRow();
+    }//GEN-LAST:event_jTblServicioMouseClicked
+
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+        if(this.jTfNombreServicio.getText().trim() !=""){
+            insertarServicio();
+            try {
+                findCorrelative();
+            } catch (SQLException ex) {
+                Logger.getLogger(JFraServicios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        this.jBtnCancelar.setVisible(false);
+        this.jBtnGuardar.setVisible(true);
+        this.jBtnEditar.setVisible(false);
+        if(this.jTfNombreServicio.getText()!= ""){
+            editarServicio();
+            try {
+                findCorrelative();
+            } catch (SQLException ex) {
+                Logger.getLogger(JFraServicios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jBtnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnCancelarMouseClicked
+        this.jBtnGuardar.setVisible(true);
+        this.jBtnCancelar.setVisible(false);
+        this.jBtnEditar.setVisible(false);
+        enabledButtons(true,true,false,true);
+        try {
+            clearTextField();
+            findCorrelative();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraServicios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnCancelarMouseClicked
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        eliminarServicio();
+        try {
+            findCorrelative();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraServicios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        enabledButtons(true,true,false,true);
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jTfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyReleased
+        try {
+            llenarTablaNombreServicio(this.jTfBuscar.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraServicios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTfBuscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -267,18 +575,22 @@ public class JFraServicios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraServicios().setVisible(true);
+                try {
+                    new JFraServicios().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraServicios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jBtnBuscar;
+    private javax.swing.JLabel jBtnCancelar;
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JCheckBox jChkActivo;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblMenu;
     private javax.swing.JLabel jLblNombre;

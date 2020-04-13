@@ -6,9 +6,22 @@
 package capapresentacion;
 
 import AppPackage.AnimationClass;
+import capadatos.CDAbonado;
+import capalogica.CLAbonado;
 import java.awt.Color;
 import com.placeholder.PlaceHolder;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,25 +31,306 @@ public class JFraAbonados extends javax.swing.JFrame {
 
     /**
      * Creates new form JFraAñadirAbonados
+     *
+     * @throws java.sql.SQLException
      */
-    public JFraAbonados() {
+    public JFraAbonados() throws SQLException {
         initComponents();
+        llenarTablaAbonados();
+        this.jLblCancelarEdicion.setVisible(false);
+        this.jLblModificar1.setEnabled(false);
+        this.jLblModificar2.setEnabled(false);
+        this.jLblVerAbonado.setEnabled(false);
+        habilitarBotones(true, false);
+        Date fechaActual = new Date();
+        this.jDtFechaNacimiento.setDate(fechaActual);
+        this.jTblAbonados.getColumnModel().getColumn(8).setMaxWidth(1);
+        this.jTblAbonados.getColumnModel().getColumn(8).setMinWidth(1);
+        this.jTblAbonados.getColumnModel().getColumn(8).setPreferredWidth(1);
         this.getContentPane().setBackground(Color.white);
         this.setLocationRelativeTo(null);
-        PlaceHolder ph = new PlaceHolder(this.jTfBuscar, 
-                                        new Color(153,153,153),
-                                        Color.BLACK,
-                                        "Buscar por RTN",
-                                        false,
-                                        "HelveticaNowDisplay Regular",
-                                        18);
-        //this.jBtnGuardar.setContentAreaFilled(false);
-        //this.jBtnGuardar.setOpaque(false);
-        this.jComboBox1.setOpaque(false);
+        PlaceHolder ph = new PlaceHolder(this.jTfBuscar,
+                new Color(153, 153, 153),
+                Color.BLACK,
+                "Buscar por RTN",
+                false,
+                "HelveticaNowDisplay Regular",
+                18);
+        this.jCboSexo.setOpaque(false);
         this.jLblNombreAbonado.setHorizontalAlignment(SwingConstants.CENTER);
     }
-    
+
     AnimationClass sideBar = new AnimationClass();
+
+    Color celeste = new Color(52, 152, 219);
+    Color azul = new Color(52, 73, 94);
+    String codAbonado;
+    
+    boolean modificar1 = false, modificar2 = false, verAbonado = false;
+
+    
+    // Metodo para limpiar la tabla abonados
+    private void limpiarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblAbonados.getModel();
+
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+    }
+    
+    // Metodo para limpiar la tabla contratos
+    private void limpiarTablaContratos() {
+        DefaultTableModel dtm = (DefaultTableModel) this.jTblContratos.getModel();
+
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+    }
+
+    // Metodo para limpiar los textfield del formulario
+    public void limpiarFormulario() throws SQLException {
+        this.jFtfIdentidad.setText("");
+        this.jTfNombres.setText("");
+        this.jTfApellidos.setText("");
+        this.jFtfTelefono.setText("");
+        this.jTxaDireccion.setText("");
+        this.jTfCorreo.setText("");
+        this.jCboSexo.setSelectedIndex(0);
+
+        this.habilitarBotones(true, false);
+        this.jFtfIdentidad.requestFocus();
+        this.jTblAbonados.clearSelection();
+    }
+
+    // Metodo para habilitar los botones de edicion y guardar
+    public void habilitarBotones(boolean guardar, boolean editar) {
+        this.jBtnGuardar.setEnabled(guardar);
+        this.jBtnModificar.setEnabled(editar);
+    }
+
+    // Metodo para los labels del contrato vuelve a su texto original
+    public void textoOriginal() {
+        this.jLblNombreAbonado.setText("NOMBRE DEL ABONADO AQUÍ");
+        this.jLblFechaNacimiento.setText("Fecha nacimiento");
+        this.jLblTelefono.setText("Número de teléfono");
+        this.jLblCorreo.setText("Correo electrónico");
+        this.jTxaDireccionAbonado.setText("");
+    }
+
+    // Metodo para validar que no vayan datos vacios
+    public boolean validarTextField() {
+        if (this.jFtfIdentidad.getText().length() < 14 || this.jTfApellidos.getText().isEmpty()
+                || this.jTfNombres.getText().isEmpty() || this.jTxaDireccion.getText().isEmpty()
+                || this.jFtfTelefono.getText().length() < 8) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    // Metodo para llenar la tabla abonados
+    private void llenarTablaAbonados() throws SQLException {
+        limpiarTabla();
+
+        CDAbonado cda = new CDAbonado();
+
+        List<CLAbonado> miLista = cda.ListaAbonados();
+        DefaultTableModel temp = (DefaultTableModel) this.jTblAbonados.getModel();
+
+        for (CLAbonado cla : miLista) {
+            Object[] fila = new Object[9];
+            fila[0] = cla.getCodAbonado();
+            fila[1] = cla.getNombres();
+            fila[2] = cla.getApellidos();
+            fila[3] = cla.getFechaNacimiento();
+            fila[4] = cla.getTelefono();
+            fila[5] = cla.getCorreoElectronico();
+            fila[6] = cla.getIdSexo();
+            fila[7] = cla.getDireccion();
+            fila[8] = cla.getNombreCompleto();
+            temp.addRow(fila);
+        };
+    }
+
+    // Metodo para llenar la tabla contratos
+    private void llenarTablaContratoAbonados() throws SQLException {
+        CDAbonado cda = new CDAbonado();
+        String codAbonado = (String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 0)));
+
+        List<CLAbonado> miLista = cda.listaContratoAbonado(codAbonado);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblContratos.getModel();
+
+        for (CLAbonado cla : miLista) {
+            Object[] fila = new Object[5];
+            fila[0] = cla.getIdContrato();
+            fila[1] = cla.getNumCasa();
+            fila[2] = cla.getBloque();
+            fila[3] = cla.getTipoContrato();
+            fila[4] = cla.getEstadoContrato();
+
+            temp.addRow(fila);
+        };
+    }
+
+    // Metodo para buscar abonados por nombre
+    private void mostrarAbonadoPorNombre(String nombre) throws SQLException {
+        limpiarTabla();
+
+        CDAbonado cda = new CDAbonado();
+        List<CLAbonado> miLista = cda.mostrarAbonadoPorNombre(nombre);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblAbonados.getModel();
+
+        miLista.stream().map((cl) -> {
+            Object[] fila = new Object[8];
+            fila[0] = cl.getCodAbonado();
+            fila[1] = cl.getNombres();
+            fila[2] = cl.getApellidos();
+            fila[3] = cl.getFechaNacimiento();
+            fila[4] = cl.getTelefono();
+            fila[5] = cl.getCorreoElectronico();
+            fila[6] = cl.getIdSexo();
+            fila[7] = cl.getDireccion();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+
+    // Metodo para mostrar aboandos por numero de identidad
+    private void mostrarAbonadoPorCod(String codAbonado) throws SQLException {
+        limpiarTabla();
+
+        CDAbonado cda = new CDAbonado();
+        List<CLAbonado> miLista = cda.mostrarAbonadoPorCod(codAbonado);
+        DefaultTableModel temp = (DefaultTableModel) this.jTblAbonados.getModel();
+
+        miLista.stream().map((cl) -> {
+            Object[] fila = new Object[8];
+            fila[0] = cl.getCodAbonado();
+            fila[1] = cl.getNombres();
+            fila[2] = cl.getApellidos();
+            fila[3] = cl.getFechaNacimiento();
+            fila[4] = cl.getTelefono();
+            fila[5] = cl.getCorreoElectronico();
+            fila[6] = cl.getIdSexo();
+            fila[7] = cl.getDireccion();
+            return fila;
+        }).forEachOrdered((fila) -> {
+            temp.addRow(fila);
+        });
+    }
+
+    // Metodo para seleccionar los datos del abonado
+    private void seleccionarAbonado() throws ParseException {
+        try {
+            if (this.jTblAbonados.getSelectedRow() != -1) {
+                this.jFtfIdentidad.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 0)));
+                this.jTfNombres.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 1)));
+                this.jTfApellidos.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 2)));
+                DefaultTableModel model = (DefaultTableModel) jTblAbonados.getModel();
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) model.getValueAt(this.jTblAbonados.getSelectedRow(), 3));
+                this.jDtFechaNacimiento.setDate(date);
+                this.jFtfTelefono.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 4)));
+                this.jTfCorreo.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 5)));
+                this.jCboSexo.setSelectedItem(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 6)));
+                this.jTxaDireccion.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 7)));
+                codAbonado = this.jFtfIdentidad.getText().trim();
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    // Metodo para llenar los datos de los contratos del abonado
+    private void seleccionarContratoAbonado() throws ParseException {
+        try {
+            if (this.jTblAbonados.getSelectedRow() != -1) {
+                this.jLblNombreAbonado.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 8)));
+                DefaultTableModel model = (DefaultTableModel) jTblAbonados.getModel();
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) model.getValueAt(this.jTblAbonados.getSelectedRow(), 3));
+                Date myDate = new Date();
+                this.jLblFechaNacimiento.setText(new SimpleDateFormat("yyyy-MM-dd").format(date));
+                this.jLblTelefono.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 4)));
+                this.jLblCorreo.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 5)));
+                this.jTxaDireccionAbonado.setText(String.valueOf(this.jTblAbonados.getValueAt(this.jTblAbonados.getSelectedRow(), 7)));
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    // Metodo para registrar un abonado
+    private void insertarAbonado() {
+        try {
+
+            CDAbonado cda = new CDAbonado();
+            CLAbonado cla = new CLAbonado();
+
+            cla.setCodAbonado(this.jFtfIdentidad.getText().trim());
+            cla.setNombres(this.jTfNombres.getText().trim());
+            cla.setApellidos(this.jTfApellidos.getText().trim());
+            java.util.Date fecha = jDtFechaNacimiento.getDate();
+            SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            cla.setFechaNacimiento(oDateFormat.format(fecha));
+            cla.setTelefono(this.jFtfTelefono.getText().trim());
+            cla.setCorreoElectronico(this.jTfCorreo.getText().trim());
+            cla.setSexo(this.jCboSexo.getSelectedItem().toString());
+            cla.setDireccion(this.jTxaDireccion.getText().trim());
+
+            cda.insertar(cla);
+
+            JOptionPane.showMessageDialog(null,
+                    "Se ha registrado un abonado...",
+                    "SAJA",
+                    JOptionPane.INFORMATION_MESSAGE);
+            limpiarFormulario();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar el abonado: " + e);
+        }
+    }
+
+    // Metodo para actualizar un abonado
+    private void actualizarAbonado() {
+        try {
+            CDAbonado cda = new CDAbonado();
+            CLAbonado cla = new CLAbonado();
+
+            cla.setCodAbonado(codAbonado);
+            cla.setCodAbonadoModificable(this.jFtfIdentidad.getText().trim());
+            cla.setNombres(this.jTfNombres.getText().trim());
+            cla.setApellidos(this.jTfApellidos.getText().trim());
+            java.util.Date fecha = jDtFechaNacimiento.getDate();
+            SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            cla.setFechaNacimiento(oDateFormat.format(fecha));
+            cla.setTelefono(this.jFtfTelefono.getText().trim());
+            cla.setCorreoElectronico(this.jTfCorreo.getText().trim());
+            cla.setSexo(this.jCboSexo.getSelectedItem().toString());
+            cla.setDireccion(this.jTxaDireccion.getText().trim());
+
+            cda.actualizarAbonado(cla);
+
+            JOptionPane.showMessageDialog(null,
+                    "Se ha actualizado un abonado...",
+                    "SAJA",
+                    JOptionPane.INFORMATION_MESSAGE);
+            limpiarFormulario();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el abonado: " + e);
+        }
+    }
+
+    // Metodo para validar si un correo es valido
+    public boolean isEmail(String correo) {
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[\\w\\-\\_\\+]+(\\.[\\w\\-\\_]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$");
+        mat = pat.matcher(correo);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,55 +368,55 @@ public class JFraAbonados extends javax.swing.JFrame {
         jTbdAbonados = new javax.swing.JTabbedPane();
         jPnlAbandos = new javax.swing.JPanel();
         jLblIdentificador = new javax.swing.JLabel();
-        jTfIdentidad = new javax.swing.JTextField();
-        jTfIdentidad1 = new javax.swing.JTextField();
+        jTfNombres = new javax.swing.JTextField();
         jLblIdentificador1 = new javax.swing.JLabel();
-        jTfIdentidad2 = new javax.swing.JTextField();
+        jTfApellidos = new javax.swing.JTextField();
         jLblIdentificador2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDtFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jLblIdentificador3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCboSexo = new javax.swing.JComboBox<>();
         jLblIdentificador4 = new javax.swing.JLabel();
         jPnlSeparator = new javax.swing.JPanel();
         jLblIdentificador5 = new javax.swing.JLabel();
-        jTfIdentidad3 = new javax.swing.JTextField();
         jLblIdentificador6 = new javax.swing.JLabel();
-        jTfIdentidad4 = new javax.swing.JTextField();
+        jTfCorreo = new javax.swing.JTextField();
         jBtnGuardar = new javax.swing.JButton();
         jLblIdentificador15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTxaDireccion = new javax.swing.JTextArea();
         jBtnModificar = new javax.swing.JButton();
+        jFtfIdentidad = new javax.swing.JFormattedTextField();
+        jFtfTelefono = new javax.swing.JFormattedTextField();
+        jLblCancelarEdicion = new javax.swing.JLabel();
         jPnlDetalleAbonado = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLblNombreAbonado = new javax.swing.JLabel();
         jLblIdentificador18 = new javax.swing.JLabel();
-        jLblIdentificador19 = new javax.swing.JLabel();
+        jLblFechaNacimiento = new javax.swing.JLabel();
         jLblIdentificador20 = new javax.swing.JLabel();
-        jLblIdentificador21 = new javax.swing.JLabel();
+        jLblTelefono = new javax.swing.JLabel();
         jLblIdentificador22 = new javax.swing.JLabel();
-        jLblIdentificador23 = new javax.swing.JLabel();
+        jLblCorreo = new javax.swing.JLabel();
         jLblIdentificador24 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTxaDireccionAbonado = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLblIdentificador25 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jLblIdentificador26 = new javax.swing.JLabel();
-        jLblIdentificador27 = new javax.swing.JLabel();
+        jTblContratos = new javax.swing.JTable();
+        jLblVerContrato = new javax.swing.JLabel();
+        jLblModificar1 = new javax.swing.JLabel();
         jPnlListadoAbonados = new javax.swing.JPanel();
         jPnlBuscar = new javax.swing.JPanel();
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblAbonados = new javax.swing.JTable();
         jLblIdentificador7 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jLblIdentificador16 = new javax.swing.JLabel();
-        jLblIdentificador17 = new javax.swing.JLabel();
+        jRbNombre = new javax.swing.JRadioButton();
+        jRbIdentidad = new javax.swing.JRadioButton();
+        jLblVerAbonado = new javax.swing.JLabel();
+        jLblModificar2 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -131,7 +425,6 @@ public class JFraAbonados extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel4.setMinimumSize(new java.awt.Dimension(800, 700));
         jPanel4.setPreferredSize(new java.awt.Dimension(800, 700));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -171,7 +464,6 @@ public class JFraAbonados extends javax.swing.JFrame {
 
         jSideBar1.setBackground(new java.awt.Color(52, 73, 94));
         jSideBar1.setBorder(null);
-        jSideBar1.setForeground(new java.awt.Color(0, 0, 0));
 
         jSideBar.setBackground(new java.awt.Color(52, 73, 94));
         jSideBar.setPreferredSize(new java.awt.Dimension(260, 600));
@@ -179,6 +471,11 @@ public class JFraAbonados extends javax.swing.JFrame {
 
         jSBContrato.setBackground(new java.awt.Color(52, 152, 219));
         jSBContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSBContratoMouseClicked(evt);
+            }
+        });
 
         jLblIdentificador8.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador8.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -216,11 +513,16 @@ public class JFraAbonados extends javax.swing.JFrame {
 
         jSBListadoContrato.setBackground(new java.awt.Color(52, 73, 94));
         jSBListadoContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBListadoContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSBListadoContratoMouseClicked(evt);
+            }
+        });
 
         jLblIdentificador10.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador10.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador10.setForeground(new java.awt.Color(255, 255, 255));
-        jLblIdentificador10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tabla-blanco32.png"))); // NOI18N
+        jLblIdentificador10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/verabonado-blanco32.png"))); // NOI18N
         jLblIdentificador10.setToolTipText("Listado de abonados");
 
         jLblIdentificador11.setBackground(new java.awt.Color(102, 102, 102));
@@ -330,6 +632,11 @@ public class JFraAbonados extends javax.swing.JFrame {
 
         jSBListadoContrato1.setBackground(new java.awt.Color(52, 73, 94));
         jSBListadoContrato1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBListadoContrato1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSBListadoContrato1MouseClicked(evt);
+            }
+        });
 
         jLblIdentificador28.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador28.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -347,11 +654,11 @@ public class JFraAbonados extends javax.swing.JFrame {
         jSBListadoContrato1Layout.setHorizontalGroup(
             jSBListadoContrato1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSBListadoContrato1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(jLblIdentificador29, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLblIdentificador28)
-                .addGap(10, 10, 10))
+                .addGap(16, 16, 16))
         );
         jSBListadoContrato1Layout.setVerticalGroup(
             jSBListadoContrato1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,79 +670,70 @@ public class JFraAbonados extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jSideBar.add(jSBListadoContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 270, -1));
+        jSideBar.add(jSBListadoContrato1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 260, -1));
 
         jSideBar1.setViewportView(jSideBar);
 
         jPanel4.add(jSideBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 0, 270, 610));
 
         jTbdAbonados.setBackground(new java.awt.Color(255, 255, 255));
-        jTbdAbonados.setForeground(new java.awt.Color(0, 0, 0));
         jTbdAbonados.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
         jTbdAbonados.setFont(new java.awt.Font("HelveticaNowDisplay Hairline", 1, 12)); // NOI18N
         jTbdAbonados.setPreferredSize(new java.awt.Dimension(800, 700));
 
         jPnlAbandos.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlAbandos.setForeground(new java.awt.Color(0, 0, 0));
         jPnlAbandos.setPreferredSize(new java.awt.Dimension(800, 540));
 
-        jLblIdentificador.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador.setText("Número de identidad");
 
-        jTfIdentidad.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfNombres.setBackground(null);
+        jTfNombres.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfNombres.setForeground(new java.awt.Color(0, 0, 0));
+        jTfNombres.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfNombres.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        jTfIdentidad1.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad1.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad1.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad1.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jLblIdentificador1.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador1.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador1.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador1.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador1.setText("Nombres");
 
-        jTfIdentidad2.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad2.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad2.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad2.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfApellidos.setBackground(null);
+        jTfApellidos.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfApellidos.setForeground(new java.awt.Color(0, 0, 0));
+        jTfApellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfApellidos.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        jLblIdentificador2.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador2.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador2.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador2.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador2.setText("Apellidos");
 
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setForeground(new java.awt.Color(0, 0, 0));
-        jDateChooser1.setToolTipText("Elija la fecha de nacimiento del abonado");
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-        jDateChooser1.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
+        jDtFechaNacimiento.setBackground(null);
+        jDtFechaNacimiento.setForeground(new java.awt.Color(0, 0, 0));
+        jDtFechaNacimiento.setToolTipText("Elija la fecha de nacimiento del abonado");
+        jDtFechaNacimiento.setDateFormatString("dd-MM-yyyy");
+        jDtFechaNacimiento.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
 
-        jLblIdentificador3.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador3.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador3.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador3.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador3.setText("Sexo");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
-        jComboBox1.setBorder(null);
+        jCboSexo.setBackground(null);
+        jCboSexo.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jCboSexo.setForeground(new java.awt.Color(0, 0, 0));
+        jCboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        jCboSexo.setBorder(null);
 
-        jLblIdentificador4.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador4.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador4.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador4.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador4.setText("Fecha de nacimiento");
 
         jPnlSeparator.setBackground(new java.awt.Color(153, 153, 153));
-        jPnlSeparator.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPnlSeparatorLayout = new javax.swing.GroupLayout(jPnlSeparator);
         jPnlSeparator.setLayout(jPnlSeparatorLayout);
@@ -448,27 +746,21 @@ public class JFraAbonados extends javax.swing.JFrame {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
-        jLblIdentificador5.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador5.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador5.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador5.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador5.setText("Número de telefono");
 
-        jTfIdentidad3.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad3.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad3.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad3.setSelectionColor(new java.awt.Color(0, 153, 153));
-
-        jLblIdentificador6.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador6.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador6.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador6.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador6.setText("Correo eletrónico");
 
-        jTfIdentidad4.setBackground(new java.awt.Color(255, 255, 255));
-        jTfIdentidad4.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
-        jTfIdentidad4.setForeground(new java.awt.Color(0, 0, 0));
-        jTfIdentidad4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTfIdentidad4.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfCorreo.setBackground(null);
+        jTfCorreo.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jTfCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        jTfCorreo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTfCorreo.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -477,24 +769,24 @@ public class JFraAbonados extends javax.swing.JFrame {
         jBtnGuardar.setText("GUARDAR");
         jBtnGuardar.setBorder(null);
         jBtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jBtnGuardarMouseEntered(evt);
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
             }
         });
 
-        jLblIdentificador15.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador15.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador15.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador15.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador15.setText("Dirección");
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jScrollPane1.setViewportView(jTextArea1);
+        jTxaDireccion.setBackground(null);
+        jTxaDireccion.setColumns(20);
+        jTxaDireccion.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
+        jTxaDireccion.setForeground(new java.awt.Color(0, 0, 0));
+        jTxaDireccion.setRows(5);
+        jTxaDireccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane1.setViewportView(jTxaDireccion);
 
         jBtnModificar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnModificar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -503,9 +795,41 @@ public class JFraAbonados extends javax.swing.JFrame {
         jBtnModificar.setText("MODIFICAR");
         jBtnModificar.setBorder(null);
         jBtnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jBtnModificarMouseEntered(evt);
+        jBtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnModificarActionPerformed(evt);
+            }
+        });
+
+        jFtfIdentidad.setBackground(null);
+        jFtfIdentidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jFtfIdentidad.setColumns(15);
+        jFtfIdentidad.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            jFtfIdentidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFtfIdentidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        jFtfTelefono.setBackground(null);
+        jFtfTelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jFtfTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            jFtfTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFtfTelefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        jLblCancelarEdicion.setBackground(new java.awt.Color(102, 102, 102));
+        jLblCancelarEdicion.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 14)); // NOI18N
+        jLblCancelarEdicion.setForeground(new java.awt.Color(41, 128, 185));
+        jLblCancelarEdicion.setText("Cancelar edición");
+        jLblCancelarEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblCancelarEdicion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblCancelarEdicionMouseClicked(evt);
             }
         });
 
@@ -517,68 +841,72 @@ public class JFraAbonados extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlAbandosLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPnlAbandosLayout.createSequentialGroup()
                         .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPnlAbandosLayout.createSequentialGroup()
                                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLblIdentificador1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLblIdentificador4, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTfIdentidad1))
+                                    .addComponent(jDtFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTfNombres))
                                 .addGap(40, 40, 40)
                                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPnlAbandosLayout.createSequentialGroup()
                                         .addComponent(jLblIdentificador3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jLblIdentificador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTfIdentidad2)
-                                    .addComponent(jComboBox1, 0, 321, Short.MAX_VALUE)))
+                                    .addComponent(jTfApellidos)
+                                    .addComponent(jCboSexo, 0, 306, Short.MAX_VALUE)))
                             .addComponent(jPnlSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPnlAbandosLayout.createSequentialGroup()
-                                .addComponent(jTfIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPnlAbandosLayout.createSequentialGroup()
                                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane1)
                                     .addComponent(jLblIdentificador5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTfIdentidad3)
-                                    .addComponent(jLblIdentificador15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
-                                .addGap(41, 41, 41)
+                                    .addComponent(jLblIdentificador15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                                    .addComponent(jFtfTelefono))
                                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTfIdentidad4)
-                                    .addComponent(jLblIdentificador6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPnlAbandosLayout.createSequentialGroup()
-                                        .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41)
+                                        .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTfCorreo)
+                                            .addComponent(jLblIdentificador6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(jPnlAbandosLayout.createSequentialGroup()
+                                                .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                                .addComponent(jBtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPnlAbandosLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jBtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(100, 100, 100))))
+                                        .addComponent(jLblCancelarEdicion)))))
+                        .addGap(100, 100, 100))
+                    .addGroup(jPnlAbandosLayout.createSequentialGroup()
+                        .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFtfIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPnlAbandosLayout.setVerticalGroup(
             jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlAbandosLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTfIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jFtfIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLblIdentificador2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPnlAbandosLayout.createSequentialGroup()
                         .addComponent(jLblIdentificador1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTfIdentidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfIdentidad2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTfNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLblIdentificador4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLblIdentificador3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPnlSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -586,74 +914,76 @@ public class JFraAbonados extends javax.swing.JFrame {
                     .addComponent(jLblIdentificador5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblIdentificador6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTfIdentidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfIdentidad4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLblIdentificador15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPnlAbandosLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jLblCancelarEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPnlAbandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTbdAbonados.addTab("Registrar abonados     ", new javax.swing.ImageIcon(getClass().getResource("/img/user-negro16.png")), jPnlAbandos); // NOI18N
 
         jPnlDetalleAbonado.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlDetalleAbonado.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/woman-128.png"))); // NOI18N
 
-        jLblNombreAbonado.setBackground(new java.awt.Color(102, 102, 102));
+        jLblNombreAbonado.setBackground(new java.awt.Color(255, 255, 255));
         jLblNombreAbonado.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 22)); // NOI18N
         jLblNombreAbonado.setForeground(new java.awt.Color(0, 0, 0));
         jLblNombreAbonado.setText("NOMBRE DEL ABONADO AQUÍ");
 
-        jLblIdentificador18.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador18.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador18.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador18.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador18.setText("Fecha de nacimiento");
 
-        jLblIdentificador19.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador19.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador19.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador19.setText("Fecha de nacimiento");
+        jLblFechaNacimiento.setBackground(new java.awt.Color(255, 255, 255));
+        jLblFechaNacimiento.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblFechaNacimiento.setForeground(new java.awt.Color(0, 0, 0));
+        jLblFechaNacimiento.setText("Fecha de nacimiento");
 
-        jLblIdentificador20.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador20.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador20.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador20.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador20.setText("Número de teléfono");
 
-        jLblIdentificador21.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador21.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador21.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador21.setText("Fecha de nacimiento");
+        jLblTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jLblTelefono.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jLblTelefono.setText("Número de teléfono");
 
-        jLblIdentificador22.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador22.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador22.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador22.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador22.setText("Correo electrónico");
 
-        jLblIdentificador23.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador23.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
-        jLblIdentificador23.setForeground(new java.awt.Color(0, 0, 0));
-        jLblIdentificador23.setText("Fecha de nacimiento");
+        jLblCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        jLblCorreo.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jLblCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        jLblCorreo.setText("Correo electrónico");
 
-        jLblIdentificador24.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador24.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador24.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador24.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador24.setText("Dirección");
 
-        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        jTxaDireccionAbonado.setEditable(false);
+        jTxaDireccionAbonado.setBackground(new java.awt.Color(255, 255, 255));
+        jTxaDireccionAbonado.setColumns(20);
+        jTxaDireccionAbonado.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
+        jTxaDireccionAbonado.setForeground(new java.awt.Color(0, 0, 0));
+        jTxaDireccionAbonado.setRows(5);
+        jScrollPane3.setViewportView(jTxaDireccionAbonado);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -666,14 +996,15 @@ public class JFraAbonados extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLblIdentificador25.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador25.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador25.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
         jLblIdentificador25.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador25.setText("Contratos que posee el abonado");
 
-        jTable3.setBackground(new java.awt.Color(255, 255, 255));
-        jTable3.setForeground(new java.awt.Color(0, 0, 0));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTblContratos.setBackground(new java.awt.Color(255, 255, 255));
+        jTblContratos.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
+        jTblContratos.setForeground(new java.awt.Color(0, 0, 0));
+        jTblContratos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -682,26 +1013,32 @@ public class JFraAbonados extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable3);
+        jTblContratos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(jTblContratos);
 
-        jLblIdentificador26.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador26.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador26.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador26.setText("Ver contrato");
-        jLblIdentificador26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblVerContrato.setBackground(new java.awt.Color(102, 102, 102));
+        jLblVerContrato.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 20)); // NOI18N
+        jLblVerContrato.setForeground(new java.awt.Color(41, 128, 185));
+        jLblVerContrato.setText("Ver contrato");
+        jLblVerContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLblIdentificador27.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador27.setFont(new java.awt.Font("HelveticaNowDisplay Medium", 0, 20)); // NOI18N
-        jLblIdentificador27.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador27.setText("Modificar abonado");
-        jLblIdentificador27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblModificar1.setBackground(new java.awt.Color(102, 102, 102));
+        jLblModificar1.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 20)); // NOI18N
+        jLblModificar1.setForeground(new java.awt.Color(41, 128, 185));
+        jLblModificar1.setText("Modificar abonado");
+        jLblModificar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblModificar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblModificar1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPnlDetalleAbonadoLayout = new javax.swing.GroupLayout(jPnlDetalleAbonado);
         jPnlDetalleAbonado.setLayout(jPnlDetalleAbonadoLayout);
@@ -711,7 +1048,7 @@ public class JFraAbonados extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
-                        .addComponent(jLblIdentificador27)
+                        .addComponent(jLblModificar1)
                         .addGap(180, 180, 180)
                         .addComponent(jLabel2))
                     .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -720,11 +1057,11 @@ public class JFraAbonados extends javax.swing.JFrame {
                             .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                                 .addComponent(jLblIdentificador24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLblIdentificador22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLblIdentificador20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblIdentificador19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLblFechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLblIdentificador18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(18, 18, 18)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -734,7 +1071,7 @@ public class JFraAbonados extends javax.swing.JFrame {
                                 .addComponent(jLblIdentificador25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlDetalleAbonadoLayout.createSequentialGroup()
                                     .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(jLblIdentificador26))))))
+                                    .addComponent(jLblVerContrato))))))
                 .addGap(41, 41, 41))
         );
         jPnlDetalleAbonadoLayout.setVerticalGroup(
@@ -743,7 +1080,7 @@ public class JFraAbonados extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPnlDetalleAbonadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jLblIdentificador27))
+                    .addComponent(jLblModificar1))
                 .addGap(18, 18, 18)
                 .addComponent(jLblNombreAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -751,15 +1088,15 @@ public class JFraAbonados extends javax.swing.JFrame {
                     .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
                         .addComponent(jLblIdentificador18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblIdentificador19)
+                        .addComponent(jLblFechaNacimiento)
                         .addGap(18, 18, 18)
                         .addComponent(jLblIdentificador20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblIdentificador21)
+                        .addComponent(jLblTelefono)
                         .addGap(18, 18, 18)
                         .addComponent(jLblIdentificador22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblIdentificador23)
+                        .addComponent(jLblCorreo)
                         .addGap(18, 18, 18)
                         .addComponent(jLblIdentificador24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -768,26 +1105,30 @@ public class JFraAbonados extends javax.swing.JFrame {
                     .addGroup(jPnlDetalleAbonadoLayout.createSequentialGroup()
                         .addComponent(jLblIdentificador25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLblIdentificador26)
+                        .addComponent(jLblVerContrato)
                         .addGap(7, 7, 7)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTbdAbonados.addTab("tab3", jPnlDetalleAbonado);
 
         jPnlListadoAbonados.setBackground(new java.awt.Color(255, 255, 255));
-        jPnlListadoAbonados.setForeground(new java.awt.Color(0, 0, 0));
         jPnlListadoAbonados.setPreferredSize(new java.awt.Dimension(800, 540));
 
         jPnlBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jPnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTfBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
+        jTfBuscar.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
         jTfBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jTfBuscar.setBorder(null);
         jTfBuscar.setSelectionColor(new java.awt.Color(0, 153, 153));
+        jTfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfBuscarKeyReleased(evt);
+            }
+        });
 
         jBtnBuscar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnBuscar.setForeground(new java.awt.Color(9, 132, 227));
@@ -814,66 +1155,75 @@ public class JFraAbonados extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblAbonados.setBackground(new java.awt.Color(255, 255, 255));
+        jTblAbonados.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
+        jTblAbonados.setForeground(new java.awt.Color(0, 0, 0));
+        jTblAbonados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0603-2000-00415", "Sergio Manrique Rios Reyes", null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "RTN", "Nombre Completo", "Fecha de Nacimiento", "Dirección", "Teléfono", "Correo"
+                "RTN", "Nombres", "Apellidos", "FechaNacimiento", "Teléfono", "Correo", "Sexo", "Dirección", "NombreCompleto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setRowHeight(30);
-        jTable1.setRowMargin(2);
-        jScrollPane2.setViewportView(jTable1);
+        jTblAbonados.setGridColor(new java.awt.Color(0, 0, 0));
+        jTblAbonados.setRowHeight(30);
+        jTblAbonados.setRowMargin(2);
+        jTblAbonados.getTableHeader().setReorderingAllowed(false);
+        jTblAbonados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblAbonadosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTblAbonados);
 
-        jLblIdentificador7.setBackground(new java.awt.Color(102, 102, 102));
+        jLblIdentificador7.setBackground(new java.awt.Color(255, 255, 255));
         jLblIdentificador7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
         jLblIdentificador7.setForeground(new java.awt.Color(0, 0, 0));
         jLblIdentificador7.setText("Ver abonados por:");
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("A - Z");
+        jRbNombre.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRbNombre);
+        jRbNombre.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRbNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jRbNombre.setSelected(true);
+        jRbNombre.setText("A - Z");
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton3.setText("Fecha");
-        jRadioButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendario-negro16.png"))); // NOI18N
+        jRbIdentidad.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRbIdentidad);
+        jRbIdentidad.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
+        jRbIdentidad.setForeground(new java.awt.Color(0, 0, 0));
+        jRbIdentidad.setText("Identidad");
 
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("HelveticaNowDisplay Light", 0, 14)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton4.setText("Identidad");
-        jRadioButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendario-negro16.png"))); // NOI18N
+        jLblVerAbonado.setBackground(new java.awt.Color(255, 255, 255));
+        jLblVerAbonado.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblVerAbonado.setForeground(new java.awt.Color(41, 128, 185));
+        jLblVerAbonado.setText("Ver abonado");
+        jLblVerAbonado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblVerAbonado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblVerAbonadoMouseClicked(evt);
+            }
+        });
 
-        jLblIdentificador16.setBackground(new java.awt.Color(255, 255, 255));
-        jLblIdentificador16.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador16.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador16.setText("Ver abonado");
-
-        jLblIdentificador17.setBackground(new java.awt.Color(255, 255, 255));
-        jLblIdentificador17.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador17.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador17.setText("Editar abonado");
+        jLblModificar2.setBackground(new java.awt.Color(255, 255, 255));
+        jLblModificar2.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblModificar2.setForeground(new java.awt.Color(41, 128, 185));
+        jLblModificar2.setText("Modificar abonado");
+        jLblModificar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblModificar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblModificar2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPnlListadoAbonadosLayout = new javax.swing.GroupLayout(jPnlListadoAbonados);
         jPnlListadoAbonados.setLayout(jPnlListadoAbonadosLayout);
@@ -888,17 +1238,15 @@ public class JFraAbonados extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jLblIdentificador7)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
+                        .addComponent(jRbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRbIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPnlListadoAbonadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlListadoAbonadosLayout.createSequentialGroup()
-                                .addComponent(jLblIdentificador16)
+                        .addGroup(jPnlListadoAbonadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPnlListadoAbonadosLayout.createSequentialGroup()
+                                .addComponent(jLblVerAbonado)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLblIdentificador17))
+                                .addComponent(jLblModificar2))
                             .addComponent(jPnlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(40, 40, 40))
         );
@@ -909,14 +1257,13 @@ public class JFraAbonados extends javax.swing.JFrame {
                 .addGroup(jPnlListadoAbonadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlListadoAbonadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLblIdentificador7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jRbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRbIdentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPnlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPnlListadoAbonadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblIdentificador17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblIdentificador16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLblModificar2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblVerAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addGap(34, 34, 34))
@@ -940,28 +1287,205 @@ public class JFraAbonados extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBtnGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnGuardarMouseEntered
-        // TODO add your handling code here:
-        //this.jBtnGuardar.setOpaque(true);
-    }//GEN-LAST:event_jBtnGuardarMouseEntered
-
     private void jBtnSideBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSideBarMouseClicked
         // TODO add your handling code here:
-        this.sideBar.jTextAreaXRight(-210, 0 , 5, 5, jSideBar1);
+        this.sideBar.jTextAreaXRight(-210, 0, 5, 5, jSideBar1);
         this.jBtnSideBar.setVisible(false);
         this.jBtnSideBar1.setVisible(true);
     }//GEN-LAST:event_jBtnSideBarMouseClicked
 
     private void jBtnSideBar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSideBar1MouseClicked
         // TODO add your handling code here:
-        this.sideBar.jTextAreaXLeft(0, -210 , 5, 5, jSideBar1);
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTbdAbonados.setSelectedIndex(0);
         this.jBtnSideBar1.setVisible(false);
         this.jBtnSideBar.setVisible(true);
     }//GEN-LAST:event_jBtnSideBar1MouseClicked
 
-    private void jBtnModificarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnModificarMouseEntered
+    private void jSBListadoContrato1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBListadoContrato1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnModificarMouseEntered
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTbdAbonados.setSelectedIndex(2);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBListadoContrato1.setBackground(celeste);
+        this.jSBListadoContrato.setBackground(azul);
+        this.jSBContrato.setBackground(azul);
+    }//GEN-LAST:event_jSBListadoContrato1MouseClicked
+
+    private void jSBListadoContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBListadoContratoMouseClicked
+        // TODO add your handling code here:
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTbdAbonados.setSelectedIndex(1);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBListadoContrato1.setBackground(azul);
+        this.jSBListadoContrato.setBackground(celeste);
+        this.jSBContrato.setBackground(azul);
+    }//GEN-LAST:event_jSBListadoContratoMouseClicked
+
+    private void jSBContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBContratoMouseClicked
+        // TODO add your handling code here:
+        this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+        this.jTbdAbonados.setSelectedIndex(0);
+        this.jBtnSideBar1.setVisible(false);
+        this.jBtnSideBar.setVisible(true);
+        this.jSBListadoContrato1.setBackground(azul);
+        this.jSBListadoContrato.setBackground(azul);
+        this.jSBContrato.setBackground(celeste);
+    }//GEN-LAST:event_jSBContratoMouseClicked
+
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+        try {
+            if (validarTextField()) {
+                limpiarTabla();
+                insertarAbonado();
+                llenarTablaAbonados();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "No debe haber ningun campo vacio.",
+                        "SAJA",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jBtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarActionPerformed
+        try {
+            if (validarTextField()) {
+                this.jLblCancelarEdicion.setVisible(false);
+                limpiarTabla();
+                actualizarAbonado();
+                llenarTablaAbonados();
+                habilitarBotones(true, false);
+                modificar1 = false;
+                modificar2 = false;
+                verAbonado = false;
+                this.jLblModificar1.setEnabled(false);
+                this.jLblModificar2.setEnabled(false);
+                this.jLblVerAbonado.setEnabled(false);
+                this.jTxaDireccionAbonado.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "No debe haber ningun campo vacio.",
+                        "SAJA",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBtnModificarActionPerformed
+
+    private void jTblAbonadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblAbonadosMouseClicked
+        try {
+            modificar1 = true; 
+            modificar2 = true; 
+            verAbonado = true;
+            this.jLblModificar1.setEnabled(true);
+            this.jLblModificar2.setEnabled(true);
+            this.jLblVerAbonado.setEnabled(true);
+            limpiarTablaContratos();
+            seleccionarContratoAbonado();
+            llenarTablaContratoAbonados();
+            habilitarBotones(false, true);
+        } catch (SQLException | ParseException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTblAbonadosMouseClicked
+
+    private void jLblModificar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblModificar1MouseClicked
+        try {
+            if(modificar1 == true){
+                this.jLblCancelarEdicion.setVisible(true);
+                seleccionarAbonado();
+                llenarTablaAbonados();
+                habilitarBotones(false, true);
+                this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+                this.jTbdAbonados.setSelectedIndex(0);
+                this.jBtnSideBar1.setVisible(false);
+                this.jBtnSideBar.setVisible(true);
+                this.jSBListadoContrato1.setBackground(azul);
+                this.jSBListadoContrato.setBackground(azul);
+                this.jSBContrato.setBackground(celeste);
+            }
+        } catch (ParseException | SQLException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLblModificar1MouseClicked
+
+    private void jLblModificar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblModificar2MouseClicked
+        try {
+            if(modificar1 == true){
+                this.jLblCancelarEdicion.setVisible(true);
+                seleccionarAbonado();
+                habilitarBotones(false, true);
+                textoOriginal();
+                this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+                this.jTbdAbonados.setSelectedIndex(0);
+                this.jBtnSideBar1.setVisible(false);
+                this.jBtnSideBar.setVisible(true);
+                this.jSBListadoContrato1.setBackground(azul);
+                this.jSBListadoContrato.setBackground(azul);
+                this.jSBContrato.setBackground(celeste);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLblModificar2MouseClicked
+
+    private void jLblVerAbonadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblVerAbonadoMouseClicked
+        try {
+            if (this.verAbonado == true){
+                seleccionarContratoAbonado();
+                this.sideBar.jTextAreaXLeft(0, -210, 5, 5, jSideBar1);
+                this.jTbdAbonados.setSelectedIndex(1);
+                this.jBtnSideBar1.setVisible(false);
+                this.jBtnSideBar.setVisible(true);
+                this.jSBListadoContrato1.setBackground(azul);
+                this.jSBListadoContrato.setBackground(celeste);
+                this.jSBContrato.setBackground(azul);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLblVerAbonadoMouseClicked
+
+    private void jTfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfBuscarKeyReleased
+        try {
+            if (this.jRbNombre.isSelected()) {
+                String nombre;
+                nombre = this.jTfBuscar.getText();
+                mostrarAbonadoPorNombre(nombre);
+            } else if (this.jRbIdentidad.isSelected()) {
+                String identidad;
+                identidad = this.jTfBuscar.getText();
+                mostrarAbonadoPorCod(identidad);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTfBuscarKeyReleased
+
+    private void jLblCancelarEdicionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCancelarEdicionMouseClicked
+        try {
+            limpiarTablaContratos();
+            limpiarFormulario();
+            modificar1 = false; 
+            modificar2 = false; 
+            verAbonado = false;
+            this.jLblModificar1.setEnabled(false);
+            this.jLblModificar2.setEnabled(false);
+            this.jLblVerAbonado.setEnabled(false);
+            this.jLblCancelarEdicion.setVisible(false);
+            textoOriginal();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLblCancelarEdicionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -977,7 +1501,7 @@ public class JFraAbonados extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                } 
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(JFraAbonados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -994,7 +1518,11 @@ public class JFraAbonados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraAbonados().setVisible(true);
+                try {
+                    new JFraAbonados().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -1006,9 +1534,14 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JButton jBtnModificar;
     private javax.swing.JLabel jBtnSideBar;
     private javax.swing.JLabel jBtnSideBar1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> jCboSexo;
+    private com.toedter.calendar.JDateChooser jDtFechaNacimiento;
+    private javax.swing.JFormattedTextField jFtfIdentidad;
+    private javax.swing.JFormattedTextField jFtfTelefono;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLblCancelarEdicion;
+    private javax.swing.JLabel jLblCorreo;
+    private javax.swing.JLabel jLblFechaNacimiento;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblIdentificador1;
     private javax.swing.JLabel jLblIdentificador10;
@@ -1017,19 +1550,12 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador13;
     private javax.swing.JLabel jLblIdentificador14;
     private javax.swing.JLabel jLblIdentificador15;
-    private javax.swing.JLabel jLblIdentificador16;
-    private javax.swing.JLabel jLblIdentificador17;
     private javax.swing.JLabel jLblIdentificador18;
-    private javax.swing.JLabel jLblIdentificador19;
     private javax.swing.JLabel jLblIdentificador2;
     private javax.swing.JLabel jLblIdentificador20;
-    private javax.swing.JLabel jLblIdentificador21;
     private javax.swing.JLabel jLblIdentificador22;
-    private javax.swing.JLabel jLblIdentificador23;
     private javax.swing.JLabel jLblIdentificador24;
     private javax.swing.JLabel jLblIdentificador25;
-    private javax.swing.JLabel jLblIdentificador26;
-    private javax.swing.JLabel jLblIdentificador27;
     private javax.swing.JLabel jLblIdentificador28;
     private javax.swing.JLabel jLblIdentificador29;
     private javax.swing.JLabel jLblIdentificador3;
@@ -1039,8 +1565,13 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador7;
     private javax.swing.JLabel jLblIdentificador8;
     private javax.swing.JLabel jLblIdentificador9;
+    private javax.swing.JLabel jLblModificar1;
+    private javax.swing.JLabel jLblModificar2;
     private javax.swing.JLabel jLblNombreAbonado;
+    private javax.swing.JLabel jLblTelefono;
     private javax.swing.JLabel jLblTitulo2;
+    private javax.swing.JLabel jLblVerAbonado;
+    private javax.swing.JLabel jLblVerContrato;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1052,9 +1583,8 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JPanel jPnlListadoAbonados;
     private javax.swing.JPanel jPnlSeparator;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRbIdentidad;
+    private javax.swing.JRadioButton jRbNombre;
     private javax.swing.JPanel jSBContrato;
     private javax.swing.JPanel jSBContrato4;
     private javax.swing.JPanel jSBListadoContrato;
@@ -1065,16 +1595,14 @@ public class JFraAbonados extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel jSideBar;
     private javax.swing.JScrollPane jSideBar1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTabbedPane jTbdAbonados;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTable jTblAbonados;
+    private javax.swing.JTable jTblContratos;
+    private javax.swing.JTextField jTfApellidos;
     private javax.swing.JTextField jTfBuscar;
-    private javax.swing.JTextField jTfIdentidad;
-    private javax.swing.JTextField jTfIdentidad1;
-    private javax.swing.JTextField jTfIdentidad2;
-    private javax.swing.JTextField jTfIdentidad3;
-    private javax.swing.JTextField jTfIdentidad4;
+    private javax.swing.JTextField jTfCorreo;
+    private javax.swing.JTextField jTfNombres;
+    private javax.swing.JTextArea jTxaDireccion;
+    private javax.swing.JTextArea jTxaDireccionAbonado;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,10 +57,10 @@ public class CDEstadoContrato {
         }
     }
     
-    public int autoIncrementarColorID() throws SQLException{
+    public int autoIncrementarEstadoContrato() throws SQLException{
         int idEstadoContrato = 0;
         
-        String sql = "{CALL sp_autoIncrementarIDEstado()}";        
+        String sql = "{CALL sp_autoIncrementableEstadoContrato()}";        
        
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -100,4 +101,32 @@ public class CDEstadoContrato {
         return miLista;
     }
     
+    public List<CLEstadoContrato> mostrarEstadoContratoPorNombre(String nombre) throws SQLException {
+        String sql;
+
+        sql = "{call sp_mostrarEstadoContratoPorNombre(?)}";
+
+        List<CLEstadoContrato> miLista = null;
+
+        try (PreparedStatement ps = cn.prepareCall(sql)) {
+            cn.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ps.executeQuery();
+            
+            ResultSet rs = ps.executeQuery();
+            miLista = new ArrayList<>();
+
+            while (rs.next()) {
+                CLEstadoContrato cl = new CLEstadoContrato();
+
+                cl.setIdEstadoContrato(rs.getInt("idEstadoContrato"));
+                cl.setEstadoContrato(rs.getString("estadoContrato"));
+                miLista.add(cl);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return miLista;
+    }
 }

@@ -9,6 +9,7 @@ import capadatos.CDTipoPlanPago;
 import capalogica.CLTipoPlanPago;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
+import java.awt.Frame;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,7 +32,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.jTxtNombreTipoPlanPago.requestFocus();
         llenarTabla();
-        habilitarBotones(true, false, false, true);
+        habilitarBotones(true, false, false, true, false);
         siguienteId();
         PlaceHolder ph = new PlaceHolder(this.jTfBuscar, 
                                         new Color(153,153,153),
@@ -84,7 +85,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         } 
     }
     
-    public void habilitarBotones(boolean guardar, boolean editar, boolean eliminar, boolean buscar){
+    public void habilitarBotones(boolean guardar, boolean editar, boolean eliminar, boolean buscar, boolean cancelar){
         this.jBtnGuardar.setEnabled(guardar);
         this.jBtnGuardar.setVisible(guardar);
         
@@ -94,6 +95,9 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         this.jBtnEliminar.setEnabled(eliminar);
         
         this.jBtnBuscar.setEnabled(buscar);
+        
+        this.jLblCancelar.setVisible(cancelar);
+        this.jLblCancelar.setEnabled(cancelar);
     }
     
     public void siguienteId() throws SQLException{
@@ -180,7 +184,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
     public void limpiarFormulario() throws SQLException{
         this.siguienteId();
         this.jTxtNombreTipoPlanPago.setText("");
-        this.habilitarBotones(true, false, false, true);
+        this.habilitarBotones(true, false, false, true, false);
         this.jTxtNombreTipoPlanPago.requestFocus();
         this.jTblTipoPlanPago.clearSelection();
                     
@@ -198,10 +202,11 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jPnlCancelar = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLblTitulo = new javax.swing.JLabel();
-        jLblTitulo1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLblRegresar = new javax.swing.JLabel();
+        jLblCerrar = new javax.swing.JLabel();
+        jLblMinimizar = new javax.swing.JLabel();
+        jLblCancelar = new javax.swing.JLabel();
         jTxtNombreTipoPlanPago = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jBtnGuardar = new javax.swing.JButton();
         jBtnEditar = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
@@ -213,9 +218,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jTfBuscar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JLabel();
         jTxtIdTipoPlanPago = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -236,37 +239,72 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jLblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLblTitulo.setText("Tipo de planes de pago");
 
-        jLblTitulo1.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
-        jLblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
-        jLblTitulo1.setText("Menú");
-        jLblTitulo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblRegresar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
+        jLblRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        jLblRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/regresar-blanco24.png"))); // NOI18N
+        jLblRegresar.setText("Regresar");
+        jLblRegresar.setToolTipText("Regresar a las configuraciones");
+        jLblRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblCerrar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
+        jLblCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        jLblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-blanco24.png"))); // NOI18N
+        jLblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblCerrarMouseClicked(evt);
+            }
+        });
+
+        jLblMinimizar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
+        jLblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        jLblMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar-blanco24.png"))); // NOI18N
+        jLblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblMinimizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(54, 54, 54)
                 .addComponent(jLblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
-                .addComponent(jLblTitulo1)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addComponent(jLblRegresar)
+                .addGap(53, 53, 53)
+                .addComponent(jLblMinimizar)
+                .addGap(18, 18, 18)
+                .addComponent(jLblCerrar)
+                .addGap(35, 35, 35))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addComponent(jLblTitulo1)))
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLblRegresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPnlCancelar.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
 
-        jLabel1.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Nombre");
-        jPnlCancelar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 280, 30));
+        jLblCancelar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
+        jLblCancelar.setForeground(new java.awt.Color(41, 128, 185));
+        jLblCancelar.setText("Cancelar edición");
+        jLblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblCancelarMouseClicked(evt);
+            }
+        });
+        jPnlCancelar.add(jLblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 110, 30));
 
         jTxtNombreTipoPlanPago.setBackground(new java.awt.Color(255, 255, 255));
         jTxtNombreTipoPlanPago.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 18)); // NOI18N
@@ -274,12 +312,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jTxtNombreTipoPlanPago.setToolTipText("Ingrese un tipo de plan de pago");
         jTxtNombreTipoPlanPago.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTxtNombreTipoPlanPago.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTxtNombreTipoPlanPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 302, 40));
-
-        jLabel5.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel5.setText("eliminarlo.");
-        jPnlCancelar.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 280, 20));
+        jPnlCancelar.add(jTxtNombreTipoPlanPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 302, 40));
 
         jBtnGuardar.setBackground(new java.awt.Color(9, 132, 227));
         jBtnGuardar.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
@@ -349,7 +382,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTblTipoPlanPago);
 
-        jPnlCancelar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 350, 270));
+        jPnlCancelar.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 350, 300));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -368,7 +401,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Cód. Tipo Pago");
-        jPnlCancelar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 30));
+        jPnlCancelar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 300, 30));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -421,22 +454,12 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jTxtIdTipoPlanPago.setToolTipText("");
         jTxtIdTipoPlanPago.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTxtIdTipoPlanPago.setSelectionColor(new java.awt.Color(0, 153, 153));
-        jPnlCancelar.add(jTxtIdTipoPlanPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 302, 40));
+        jPnlCancelar.add(jTxtIdTipoPlanPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 302, 40));
 
-        jLabel8.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel8.setText("Seleccione un elemento de la tabla para editarlo o");
-        jPnlCancelar.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, 20));
-
-        jLabel9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Ingrese aquí los tipos de planes de pago que");
-        jPnlCancelar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
-
-        jLabel7.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("desea ofrecer a los abonados.");
-        jPnlCancelar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 280, 20));
+        jLabel2.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nombre");
+        jPnlCancelar.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 300, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -455,12 +478,13 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
     private void jTblTipoPlanPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblTipoPlanPagoMouseClicked
         // TODO add your handling code here:
         filaSeleccionada();
-        habilitarBotones(false, true, true, true);
+        habilitarBotones(false, true, true, true, true);
         estadEditando = true;
     }//GEN-LAST:event_jTblTipoPlanPagoMouseClicked
 
     private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
         // TODO add your handling code here:
+        CLTipoPlanPago cltpp = new CLTipoPlanPago();
         
         try {
             
@@ -468,7 +492,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
                 insertarTipoPlanPago();
                 siguienteId();
                 llenarTabla();
-                habilitarBotones(true, false, false, true);
+                habilitarBotones(true, false, false, true, false);
             } else {
                 
                 JOptionPane.showMessageDialog(null,
@@ -487,24 +511,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
 
     private void jPnlCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPnlCancelarMouseClicked
         // TODO add your handling code here:
-        if(estadEditando){
-            int result = JOptionPane.showConfirmDialog(null,
-                                                       "¿Desea cancelar la edición?", 
-                                                       "SAJA",
-                                                       JOptionPane.YES_NO_OPTION);
-            
-            if(result == JOptionPane.YES_OPTION) {
-                try {
-                    limpiarFormulario();
-                    estadEditando = false;
-                } catch (SQLException ex) {
-                    Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-        }else{
-            return;
-        }
+        
     }//GEN-LAST:event_jPnlCancelarMouseClicked
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
@@ -515,7 +522,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
                 actualizarTipoPlanPago();
                 siguienteId();
                 llenarTabla();
-                habilitarBotones(true, false, false, true);
+                habilitarBotones(true, false, false, true, true);
             } else {
                 
                 JOptionPane.showMessageDialog(null,
@@ -539,7 +546,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
             eliminarTipoPlanPago();
             siguienteId();
             llenarTabla();
-            habilitarBotones(true, false, false, true);
+            habilitarBotones(true, false, false, true, true);
             
         } catch (SQLException ex) {
             Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
@@ -563,6 +570,35 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
             Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTfBuscarKeyReleased
+
+    private void jLblCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCancelarMouseClicked
+        if(estadEditando){
+            int result = JOptionPane.showConfirmDialog(null,
+                                                       "¿Desea cancelar la edición?", 
+                                                       "SAJA",
+                                                       JOptionPane.YES_NO_OPTION);
+            
+            if(result == JOptionPane.YES_OPTION) {
+                try {
+                    limpiarFormulario();
+                    estadEditando = false;
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraTipoPlanPago.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        }else{
+            return;
+        }
+    }//GEN-LAST:event_jLblCancelarMouseClicked
+
+    private void jLblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCerrarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLblCerrarMouseClicked
+
+    private void jLblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblMinimizarMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLblMinimizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -608,14 +644,13 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblCancelar;
+    private javax.swing.JLabel jLblCerrar;
+    private javax.swing.JLabel jLblMinimizar;
+    private javax.swing.JLabel jLblRegresar;
     private javax.swing.JLabel jLblTitulo;
-    private javax.swing.JLabel jLblTitulo1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

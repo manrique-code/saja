@@ -5,15 +5,14 @@
  */
 package capalogica;
 
-import java.sql.Date;
-
 /**
  *
  * @author Juan
  */
 public class CLAbonado {
-    private String codAbonado,nombres,apellidos,telefono,correoElectronico,direccion,Sexo;
-    private Date fechaNacimiento;
+    private String codAbonado,nombres,apellidos,telefono,correoElectronico,direccion,Sexo
+                   ,fechaNacimiento,estadoContrato, tipoContrato, codAbonadoModificable,nombreCompleto;
+    private int numCasa,bloque,idContrato;
 
     public String getCodAbonado() {
         return codAbonado;
@@ -63,11 +62,11 @@ public class CLAbonado {
         this.direccion = direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -78,6 +77,60 @@ public class CLAbonado {
     public void setSexo(String Sexo) {
         this.Sexo = Sexo;
     }
-    
-    
+
+    public String getEstadoContrato() {
+        return estadoContrato;
+    }
+
+    public void setEstadoContrato(String estadoContrato) {
+        this.estadoContrato = estadoContrato;
+    }
+
+    public String getTipoContrato() {
+        return tipoContrato;
+    }
+
+    public void setTipoContrato(String tipoContrato) {
+        this.tipoContrato = tipoContrato;
+    }
+
+    public int getNumCasa() {
+        return numCasa;
+    }
+
+    public void setNumCasa(int numCasa) {
+        this.numCasa = numCasa;
+    }
+
+    public int getBloque() {
+        return bloque;
+    }
+
+    public void setBloque(int bloque) {
+        this.bloque = bloque;
+    }
+
+    public int getIdContrato() {
+        return idContrato;
+    }
+
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
+    }
+
+    public String getCodAbonadoModificable() {
+        return codAbonadoModificable;
+    }
+
+    public void setCodAbonadoModificable(String codAbonadoModificable) {
+        this.codAbonadoModificable = codAbonadoModificable;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
 }
