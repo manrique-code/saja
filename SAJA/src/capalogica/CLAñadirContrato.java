@@ -24,7 +24,7 @@ public class CLAñadirContrato {
     String NombreServicio;
     Float PrecioServicio;
     int IdContratoServicio;
-
+    
     public int getIdContratoServicio() {
         return IdContratoServicio;
     }
@@ -32,7 +32,6 @@ public class CLAñadirContrato {
     public void setIdContratoServicio(int IdContratoServicio) {
         this.IdContratoServicio = IdContratoServicio;
     }
-
     
     
     public String getNombreServicio() {

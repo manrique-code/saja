@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Frame;
 
 /**
  *
@@ -238,6 +239,8 @@ public class JFraEgresos extends javax.swing.JFrame {
         jLblTitulo2 = new javax.swing.JLabel();
         jBtnSideBar1 = new javax.swing.JLabel();
         jBtnSideBar = new javax.swing.JLabel();
+        jLblMinimizar2 = new javax.swing.JLabel();
+        jLblSalir = new javax.swing.JLabel();
         jSideBar1 = new javax.swing.JScrollPane();
         jSideBar = new javax.swing.JPanel();
         jSBAMEEgresos = new javax.swing.JPanel();
@@ -378,6 +381,7 @@ public class JFraEgresos extends javax.swing.JFrame {
         jSeparatorX5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -416,6 +420,30 @@ public class JFraEgresos extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jBtnSideBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 60));
+
+        jLblMinimizar2.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
+        jLblMinimizar2.setForeground(new java.awt.Color(255, 255, 255));
+        jLblMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar-blanco24.png"))); // NOI18N
+        jLblMinimizar2.setToolTipText("Minimizar la ventana");
+        jLblMinimizar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblMinimizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblMinimizar2MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLblMinimizar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, 60));
+
+        jLblSalir.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
+        jLblSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jLblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-blanco24.png"))); // NOI18N
+        jLblSalir.setToolTipText("Cerrar la ventana");
+        jLblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblSalirMouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, -1, 60));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
 
@@ -843,7 +871,7 @@ public class JFraEgresos extends javax.swing.JFrame {
         jLblIdentificador45.setText("Tipo de egreso");
 
         jLblCancelarEdicion.setBackground(new java.awt.Color(41, 128, 185));
-        jLblCancelarEdicion.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 18)); // NOI18N
+        jLblCancelarEdicion.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 16)); // NOI18N
         jLblCancelarEdicion.setForeground(new java.awt.Color(41, 128, 185));
         jLblCancelarEdicion.setText("Cancelar edición");
         jLblCancelarEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -858,23 +886,28 @@ public class JFraEgresos extends javax.swing.JFrame {
         jPnlEgresosLayout.setHorizontalGroup(
             jPnlEgresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlEgresosLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
                 .addGroup(jPnlEgresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDCFechaEgreso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCboMotivoEgreso, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLblIdentificador42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlEgresosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLblIdentificador43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlEgresosLayout.createSequentialGroup()
-                        .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLblIdentificador45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPnlEgresosLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPnlEgresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDCFechaEgreso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCboMotivoEgreso, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblIdentificador42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlEgresosLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLblIdentificador43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlEgresosLayout.createSequentialGroup()
+                                .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLblIdentificador45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPnlEgresosLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLblCancelarEdicion)))
                 .addGap(45, 45, 45)
                 .addComponent(jPnlSeparatorY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -882,8 +915,7 @@ public class JFraEgresos extends javax.swing.JFrame {
                     .addGroup(jPnlEgresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPnlEgresosLayout.createSequentialGroup()
-                            .addComponent(jLblCancelarEdicion)
-                            .addGap(109, 109, 109)
+                            .addGap(234, 234, 234)
                             .addComponent(jLblIDEgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLblVerEgresos)))
@@ -913,7 +945,9 @@ public class JFraEgresos extends javax.swing.JFrame {
                         .addComponent(jLblIdentificador41, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(1, 1, 1)
+                        .addComponent(jLblCancelarEdicion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPnlEgresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -925,11 +959,10 @@ public class JFraEgresos extends javax.swing.JFrame {
                                 .addComponent(jLblIDEgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlEgresosLayout.createSequentialGroup()
                                 .addComponent(jLblIdentificador40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLblCancelarEdicion)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabContrato.addTab("tab1", jPnlEgresos);
@@ -2294,6 +2327,14 @@ public class JFraEgresos extends javax.swing.JFrame {
         this.jSBListadoEgresos.setBackground(celeste);
     }//GEN-LAST:event_jLblVerEgresosMouseClicked
 
+    private void jLblMinimizar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblMinimizar2MouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLblMinimizar2MouseClicked
+
+    private void jLblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblSalirMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLblSalirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2430,6 +2471,8 @@ public class JFraEgresos extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador7;
     private javax.swing.JLabel jLblIdentificador8;
     private javax.swing.JLabel jLblIdentificador9;
+    private javax.swing.JLabel jLblMinimizar2;
+    private javax.swing.JLabel jLblSalir;
     private javax.swing.JLabel jLblTitulo2;
     private javax.swing.JLabel jLblVerEgresos;
     private javax.swing.JPanel jMotivoEgreso;

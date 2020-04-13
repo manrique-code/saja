@@ -7,6 +7,7 @@ package capapresentacion;
 
 import AppPackage.AnimationClass;
 import java.awt.Color;
+import java.awt.Frame;
 
 /**
  *
@@ -42,6 +43,8 @@ public class JFraCodos extends javax.swing.JFrame {
         jLblTitulo2 = new javax.swing.JLabel();
         jBtnSideBar1 = new javax.swing.JLabel();
         jBtnSideBar = new javax.swing.JLabel();
+        jLblMinimizar2 = new javax.swing.JLabel();
+        jLblSalir = new javax.swing.JLabel();
         jSideBar1 = new javax.swing.JScrollPane();
         jSideBar = new javax.swing.JPanel();
         jSBAMECobros = new javax.swing.JPanel();
@@ -67,6 +70,7 @@ public class JFraCodos extends javax.swing.JFrame {
         jBtnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -106,6 +110,30 @@ public class JFraCodos extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jBtnSideBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 60));
+
+        jLblMinimizar2.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
+        jLblMinimizar2.setForeground(new java.awt.Color(255, 255, 255));
+        jLblMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar-blanco24.png"))); // NOI18N
+        jLblMinimizar2.setToolTipText("Minimizar la ventana");
+        jLblMinimizar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblMinimizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblMinimizar2MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLblMinimizar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, 60));
+
+        jLblSalir.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
+        jLblSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jLblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-blanco24.png"))); // NOI18N
+        jLblSalir.setToolTipText("Cerrar la ventana");
+        jLblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblSalirMouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, -1, 60));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
 
@@ -419,6 +447,14 @@ public class JFraCodos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jSBListadoContrato1MouseClicked
 
+    private void jLblMinimizar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblMinimizar2MouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLblMinimizar2MouseClicked
+
+    private void jLblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblSalirMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLblSalirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -471,6 +507,8 @@ public class JFraCodos extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador5;
     private javax.swing.JLabel jLblIdentificador6;
     private javax.swing.JLabel jLblIdentificador9;
+    private javax.swing.JLabel jLblMinimizar2;
+    private javax.swing.JLabel jLblSalir;
     private javax.swing.JLabel jLblTitulo2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

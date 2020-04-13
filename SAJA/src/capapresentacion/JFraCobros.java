@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Frame;
 
 /**
  *
@@ -26,7 +27,7 @@ public class JFraCobros extends javax.swing.JFrame {
     /**
      * Creates new form jFraCobros
      */
-    public JFraCobros() {
+    public JFraCobros() throws SQLException{
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setLocationRelativeTo(null);
@@ -47,6 +48,8 @@ public class JFraCobros extends javax.swing.JFrame {
     Color celeste = new Color(52,152,219);
     Color azul = new Color(52,73,94);
     private boolean estadEditando = false;
+    
+    JFraMenu jfm = new JFraMenu();
     
     // Método para limpiar la tabla contratos de la ventana modal jDialog1
     private void limpiarTablaDatosContrato(){
@@ -163,12 +166,12 @@ public class JFraCobros extends javax.swing.JFrame {
         List<CLCobros> miLista = cdc.mostrarMesesPagados(RTN);
         DefaultTableModel temp = (DefaultTableModel) this.jTblMesesPagados.getModel();
         
-       for(CLCobros clc: miLista) {
+      /* for(CLCobros clc: miLista) {
             Object[] fila = new Object[2];
             fila[0] = clc.getMesPagado();
             fila[1] = clc.getPrecio();
             temp.addRow(fila);
-        }
+        }*/
     }
     
     // Método para llenar la tabla de pago meses por mes
@@ -285,12 +288,21 @@ public class JFraCobros extends javax.swing.JFrame {
         jTfRTN1 = new javax.swing.JTextField();
         jBtnBuscarContratoRTN3 = new javax.swing.JButton();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        jDfMenu = new javax.swing.JDialog();
+        jPanel15 = new javax.swing.JPanel();
+        jLblIdentificador59 = new javax.swing.JLabel();
+        jLblIdentificador71 = new javax.swing.JLabel();
+        jLblIdentificador73 = new javax.swing.JLabel();
+        jBtnSi = new javax.swing.JButton();
+        JBtnNo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLblTitulo2 = new javax.swing.JLabel();
         jBtnSideBar1 = new javax.swing.JLabel();
         jBtnSideBar = new javax.swing.JLabel();
+        jLblMinimizar2 = new javax.swing.JLabel();
+        jLblSalir = new javax.swing.JLabel();
         jSideBar1 = new javax.swing.JScrollPane();
         jSideBar = new javax.swing.JPanel();
         jSBAMECobros = new javax.swing.JPanel();
@@ -354,7 +366,7 @@ public class JFraCobros extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTxtAEstado = new javax.swing.JTextArea();
         jLblIdentificador52 = new javax.swing.JLabel();
-        jLblIdentificador53 = new javax.swing.JLabel();
+        jLblGenerarPlanPago = new javax.swing.JLabel();
         jLblIdentificador54 = new javax.swing.JLabel();
         jBtnEditar1 = new javax.swing.JButton();
         jLblIdentificador55 = new javax.swing.JLabel();
@@ -719,7 +731,103 @@ public class JFraCobros extends javax.swing.JFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
         );
 
+        jDfMenu.setTitle("Confirmar acción");
+        jDfMenu.setAlwaysOnTop(true);
+        jDfMenu.setModal(true);
+        jDfMenu.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        jDfMenu.setUndecorated(true);
+        jDfMenu.setSize(new java.awt.Dimension(300, 200));
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jLblIdentificador59.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador59.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblIdentificador59.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu-negro24.png"))); // NOI18N
+        jLblIdentificador59.setText("¿Regresar al menú?");
+        jLblIdentificador59.setIconTextGap(10);
+
+        jLblIdentificador71.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador71.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jLblIdentificador71.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador71.setText("Si no guardó el registro actual, su");
+
+        jLblIdentificador73.setBackground(new java.awt.Color(255, 255, 255));
+        jLblIdentificador73.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 16)); // NOI18N
+        jLblIdentificador73.setForeground(new java.awt.Color(0, 0, 0));
+        jLblIdentificador73.setText("progreso se perderá.");
+
+        jBtnSi.setBackground(new java.awt.Color(41, 128, 185));
+        jBtnSi.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        jBtnSi.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSi.setText("SI");
+        jBtnSi.setBorder(null);
+        jBtnSi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSiActionPerformed(evt);
+            }
+        });
+
+        JBtnNo.setBackground(new java.awt.Color(41, 128, 185));
+        JBtnNo.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 0, 16)); // NOI18N
+        JBtnNo.setForeground(new java.awt.Color(255, 255, 255));
+        JBtnNo.setText("NO");
+        JBtnNo.setBorder(null);
+        JBtnNo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBtnNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnNoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblIdentificador73)
+                    .addComponent(jLblIdentificador59)
+                    .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                            .addComponent(jBtnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(JBtnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLblIdentificador71)))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLblIdentificador59)
+                .addGap(18, 18, 18)
+                .addComponent(jLblIdentificador71)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLblIdentificador73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnSi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBtnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
+        );
+
+        javax.swing.GroupLayout jDfMenuLayout = new javax.swing.GroupLayout(jDfMenu.getContentPane());
+        jDfMenu.getContentPane().setLayout(jDfMenuLayout);
+        jDfMenuLayout.setHorizontalGroup(
+            jDfMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDfMenuLayout.setVerticalGroup(
+            jDfMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -759,6 +867,30 @@ public class JFraCobros extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jBtnSideBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 60));
+
+        jLblMinimizar2.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
+        jLblMinimizar2.setForeground(new java.awt.Color(255, 255, 255));
+        jLblMinimizar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar-blanco24.png"))); // NOI18N
+        jLblMinimizar2.setToolTipText("Minimizar la ventana");
+        jLblMinimizar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblMinimizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblMinimizar2MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLblMinimizar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, 60));
+
+        jLblSalir.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 30)); // NOI18N
+        jLblSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jLblSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-blanco24.png"))); // NOI18N
+        jLblSalir.setToolTipText("Cerrar la ventana");
+        jLblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblSalirMouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 0, -1, 60));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
 
@@ -1399,13 +1531,18 @@ public class JFraCobros extends javax.swing.JFrame {
         jPnlFinanzaAbonado.add(jLblIdentificador52);
         jLblIdentificador52.setBounds(341, 26, 64, 64);
 
-        jLblIdentificador53.setBackground(new java.awt.Color(102, 102, 102));
-        jLblIdentificador53.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
-        jLblIdentificador53.setForeground(new java.awt.Color(41, 128, 185));
-        jLblIdentificador53.setText("Generar plan de pago");
-        jLblIdentificador53.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPnlFinanzaAbonado.add(jLblIdentificador53);
-        jLblIdentificador53.setBounds(720, 380, 195, 21);
+        jLblGenerarPlanPago.setBackground(new java.awt.Color(102, 102, 102));
+        jLblGenerarPlanPago.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
+        jLblGenerarPlanPago.setForeground(new java.awt.Color(41, 128, 185));
+        jLblGenerarPlanPago.setText("Generar plan de pago");
+        jLblGenerarPlanPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblGenerarPlanPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblGenerarPlanPagoMouseClicked(evt);
+            }
+        });
+        jPnlFinanzaAbonado.add(jLblGenerarPlanPago);
+        jLblGenerarPlanPago.setBounds(720, 380, 195, 21);
 
         jLblIdentificador54.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador54.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -1460,7 +1597,6 @@ public class JFraCobros extends javax.swing.JFrame {
         jPnlFinanzaAbonado.add(jRBRTN);
         jRBRTN.setBounds(180, 60, 100, 30);
 
-        jTblMesesPagados.setBackground(null);
         jTblMesesPagados.setForeground(new java.awt.Color(0, 0, 0));
         jTblMesesPagados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2330,6 +2466,40 @@ public class JFraCobros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLblCancelarEdicionMouseClicked
 
+    private void jLblMinimizar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblMinimizar2MouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLblMinimizar2MouseClicked
+
+    private void jLblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblSalirMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLblSalirMouseClicked
+
+    private void jLblGenerarPlanPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblGenerarPlanPagoMouseClicked
+        try {
+            JFraPlanPago jfpp = new JFraPlanPago();
+            this.dispose();
+            jfpp.mostratVentana(true, 
+                                jTfIdentidad.getText(),
+                                jTfNombreCompleto.getText(),
+                                jTfBloque.getText(),
+                                jTfCasa.getText());
+            jfpp.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraCobros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jLblGenerarPlanPagoMouseClicked
+
+    private void jBtnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSiActionPerformed
+        this.dispose();
+        this.jDfMenu.dispose();
+        jfm.setVisible(true);
+    }//GEN-LAST:event_jBtnSiActionPerformed
+
+    private void JBtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnNoActionPerformed
+        this.jDfMenu.dispose();
+    }//GEN-LAST:event_JBtnNoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2361,12 +2531,17 @@ public class JFraCobros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraCobros().setVisible(true);
+                try {
+                    new JFraCobros().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraCobros.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnNo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -2394,12 +2569,14 @@ public class JFraCobros extends javax.swing.JFrame {
     private javax.swing.JButton jBtnGuardar8;
     private javax.swing.JButton jBtnSeleccionar;
     private javax.swing.JButton jBtnSeleccionar1;
+    private javax.swing.JButton jBtnSi;
     private javax.swing.JLabel jBtnSideBar;
     private javax.swing.JLabel jBtnSideBar1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDCFecha1;
     private com.toedter.calendar.JDateChooser jDCFecha2;
+    private javax.swing.JDialog jDfMenu;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLblBloque;
@@ -2407,6 +2584,7 @@ public class JFraCobros extends javax.swing.JFrame {
     private javax.swing.JLabel jLblCancelarEdicion;
     private javax.swing.JLabel jLblCasa;
     private javax.swing.JLabel jLblCasa1;
+    private javax.swing.JLabel jLblGenerarPlanPago;
     private javax.swing.JLabel jLblIdentificador;
     private javax.swing.JLabel jLblIdentificador1;
     private javax.swing.JLabel jLblIdentificador10;
@@ -2447,21 +2625,26 @@ public class JFraCobros extends javax.swing.JFrame {
     private javax.swing.JLabel jLblIdentificador50;
     private javax.swing.JLabel jLblIdentificador51;
     private javax.swing.JLabel jLblIdentificador52;
-    private javax.swing.JLabel jLblIdentificador53;
     private javax.swing.JLabel jLblIdentificador54;
     private javax.swing.JLabel jLblIdentificador55;
     private javax.swing.JLabel jLblIdentificador57;
     private javax.swing.JLabel jLblIdentificador58;
+    private javax.swing.JLabel jLblIdentificador59;
     private javax.swing.JLabel jLblIdentificador6;
     private javax.swing.JLabel jLblIdentificador7;
+    private javax.swing.JLabel jLblIdentificador71;
+    private javax.swing.JLabel jLblIdentificador73;
     private javax.swing.JLabel jLblIdentificador8;
     private javax.swing.JLabel jLblIdentificador9;
+    private javax.swing.JLabel jLblMinimizar2;
     private javax.swing.JLabel jLblNumPagado;
     private javax.swing.JLabel jLblRTN;
     private javax.swing.JLabel jLblRTN1;
+    private javax.swing.JLabel jLblSalir;
     private javax.swing.JLabel jLblTitulo2;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

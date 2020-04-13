@@ -18,7 +18,7 @@ public class CLContrato {
     String Bloque;
     int Usuario;
     String abonado;
-    int idContrato;
+    int idContrato, ventanaMostrando;
 
     public String getNumCasa() {
         return numCasa;

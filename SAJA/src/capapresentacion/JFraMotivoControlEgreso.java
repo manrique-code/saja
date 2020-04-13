@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package capapresentacion;
+import java.awt.Frame;
 
 /**
  *
@@ -16,6 +17,7 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
      */
     public JFraMotivoControlEgreso() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,7 +32,9 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jPnlCancelar = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLblTitulo = new javax.swing.JLabel();
-        jLblMenu = new javax.swing.JLabel();
+        jLblRegresar = new javax.swing.JLabel();
+        jLblMinimizar = new javax.swing.JLabel();
+        jLblCerrar = new javax.swing.JLabel();
         jLblIdentificador = new javax.swing.JLabel();
         jTfIdMotivoControlEgreso = new javax.swing.JTextField();
         jLblNombre = new javax.swing.JLabel();
@@ -48,6 +52,7 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPnlCancelar.setBackground(new java.awt.Color(255, 255, 255));
         jPnlCancelar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,10 +63,32 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jLblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLblTitulo.setText("Motivo de egreso");
 
-        jLblMenu.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
-        jLblMenu.setForeground(new java.awt.Color(255, 255, 255));
-        jLblMenu.setText("Menú");
-        jLblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblRegresar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
+        jLblRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        jLblRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/regresar-blanco24.png"))); // NOI18N
+        jLblRegresar.setText("Regresar");
+        jLblRegresar.setToolTipText("Regresar a las configuraciones");
+        jLblRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblMinimizar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
+        jLblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        jLblMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimizar-blanco24.png"))); // NOI18N
+        jLblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblMinimizarMouseClicked(evt);
+            }
+        });
+
+        jLblCerrar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
+        jLblCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        jLblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-blanco24.png"))); // NOI18N
+        jLblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblCerrarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -70,17 +97,26 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jLblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 414, Short.MAX_VALUE)
-                .addComponent(jLblMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addComponent(jLblRegresar)
+                .addGap(53, 53, 53)
+                .addComponent(jLblMinimizar)
+                .addGap(18, 18, 18)
+                .addComponent(jLblCerrar)
                 .addGap(30, 30, 30))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                    .addComponent(jLblMenu)))
+                .addComponent(jLblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLblRegresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLblMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPnlCancelar.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 60));
@@ -225,6 +261,14 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblMinimizarMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_jLblMinimizarMouseClicked
+
+    private void jLblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCerrarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLblCerrarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -267,9 +311,11 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
     private javax.swing.JButton jBtnGuardar;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLblCerrar;
     private javax.swing.JLabel jLblIdentificador;
-    private javax.swing.JLabel jLblMenu;
+    private javax.swing.JLabel jLblMinimizar;
     private javax.swing.JLabel jLblNombre;
+    private javax.swing.JLabel jLblRegresar;
     private javax.swing.JLabel jLblTitulo;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPnlBuscar;

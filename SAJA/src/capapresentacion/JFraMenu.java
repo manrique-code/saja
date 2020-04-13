@@ -42,35 +42,40 @@ public class JFraMenu extends javax.swing.JFrame {
         this.jSideBarMenu.getViewport().setBackground(Color.getColor("223, 228, 234"));
         
         // Cambiar el color del Scroll del Menú
-        //this.jScrollMenu.getViewport().setBackground(c);
+        this.jScrollMenu.getViewport().setBackground(c);
 
         // Mostrar el nombre del usuario
-        //this.jLblUsuario.setText(cll.getNombreUsuario());        
+        this.jLblUsuario.setText(cll.getNombreUsuario());        
         
     }
     
     
     
     // Instancias de los formularios de SAJA 
-    //JFraLogin jfLogIn = new JFraLogin();
-    //JFraAbonados jfAbonados = new JFraAbonados();
-    //JFraPlanPago jfPlanPago = new JFraPlanPago();
-    //Color c = new Color(241, 242, 246);
+    JFraLogin jfLogIn = new JFraLogin();
+    //
+    
+    Color c = new Color(241, 242, 246);
     
     
     //JFraConfiguraciones jfConfig = new JFraConfiguraciones();
     
     
     // Cambiar de icono al pasar el mouse
-    //BufferedImage image;
-    //String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
+    /*BufferedImage image;
+    String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";*/
     
     // Instancias de la capa lógica
-    //CLLogin cll = new CLLogin();
+    CLLogin cll = new CLLogin();
     
-    /*public void cambiarIconoAbonado(boolean mouseEncima){
+    public void cambiarIconoAbonado(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
+            
+            
             try {
+                
                 image = ImageIO.read(new File(pathImagenes + "abonadoSeleccionado.png"));
                 ImageIcon i = new ImageIcon(image);
                 this.jAbonados.setIcon(i);
@@ -92,6 +97,8 @@ public class JFraMenu extends javax.swing.JFrame {
     }
 
     public void cambiarIconoContrato(boolean mouseEncima){
+        BufferedImage image;
+        String pathImagenes = "C:\\Users\\Manrique\\Desktop\\Desarrollo de Software\\3 Parcial\\SAJA JAVA\\SAJA JAVA\\SAJA\\src\\img\\";
         if(mouseEncima){
             try {
                 image = ImageIO.read(new File(pathImagenes + "contratosSeleccionado.png"));
@@ -113,7 +120,7 @@ public class JFraMenu extends javax.swing.JFrame {
                 Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } 
+    } /*
     
     public void cambiarIconoPagos(boolean mouseEncima){
         if(mouseEncima){
@@ -589,20 +596,32 @@ public class JFraMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jAbonadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAbonadosMouseEntered
-        //this.cambiarIconoAbonado(true);
+        this.cambiarIconoAbonado(true);
     }//GEN-LAST:event_jAbonadosMouseEntered
 
     private void jAbonadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAbonadosMouseExited
-        //this.cambiarIconoAbonado(false);
+        this.cambiarIconoAbonado(false);
     }//GEN-LAST:event_jAbonadosMouseExited
 
     private void jAbonadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAbonadosMouseClicked
-        //jfAbonados.setVisible(true);
+        try {
+            JFraAbonados jfAbonados = new JFraAbonados();           
+            jfAbonados.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jAbonadosMouseClicked
 
     private void jPlanPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseClicked
-        /*
-        jfPlanPago.setVisible(true);*/
+        try {
+            JFraPlanPago jfPlanPago = new JFraPlanPago();
+            jfPlanPago.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jPlanPagosMouseClicked
 
     private void jPlanPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPlanPagosMouseEntered
@@ -630,13 +649,19 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPagoMouseExited
 
     private void jContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jContratosMouseClicked
-       /* JFraContratos jfContratos = new JFraContratos();
-        jfContratos.setVisible(true);*/
+       JFraContratos jfContratos;
+        try {
+            jfContratos = new JFraContratos();
+            jfContratos.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jContratosMouseClicked
 
     private void jPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPagoMouseClicked
-        /*JFraCobros jfCbros = new JFraCobros();
-        jfCbros.setVisible(true);*/
+        JFraCobros jfCbros = new JFraCobros();
+        jfCbros.setVisible(true);
     }//GEN-LAST:event_jPagoMouseClicked
 
     private void jMorasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseEntered
@@ -648,8 +673,14 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMorasMouseExited
 
     private void jMorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMorasMouseClicked
-        /*JFraMora jfMora = new JFraMora();
-        jfMora.setVisible(true);*/
+        JFraMora jfMora;
+        try {
+            jfMora = new JFraMora();
+            jfMora.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jMorasMouseClicked
 
     private void jCortesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseEntered
@@ -661,8 +692,14 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCortesMouseExited
 
     private void jCortesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCortesMouseClicked
-        /*JFraCortes jfCortes = new JFraCortes();
-        jfCortes.setVisible(true);*/
+        JFraCortes jfCortes;
+        try {
+            jfCortes = new JFraCortes();
+            jfCortes.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jCortesMouseClicked
 
     private void jEgresosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseEntered
@@ -674,8 +711,14 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jEgresosMouseExited
 
     private void jEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEgresosMouseClicked
-        /*JFraEgresos jfEgresos = new JFraEgresos();
-        jfEgresos.setVisible(true);*/
+        JFraEgresos jfEgresos;
+        try {
+            jfEgresos = new JFraEgresos();
+            jfEgresos.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jEgresosMouseClicked
 
     private void jCodosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseEntered
@@ -687,8 +730,8 @@ public class JFraMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCodosMouseExited
 
     private void jCodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCodosMouseClicked
-        /*JFraCodos jfCodos = new JFraCodos();
-        jfCodos.setVisible(true);*/
+        JFraCodos jfCodos = new JFraCodos();
+        jfCodos.setVisible(true);
     }//GEN-LAST:event_jCodosMouseClicked
 
     private void jLblConfigMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblConfigMouseClicked
@@ -706,7 +749,7 @@ public class JFraMenu extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
