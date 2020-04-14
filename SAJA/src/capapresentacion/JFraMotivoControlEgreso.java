@@ -5,6 +5,9 @@
  */
 package capapresentacion;
 import java.awt.Frame;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,10 +18,12 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
     /**
      * Creates new form JFraMotivoControlEgreso
      */
-    public JFraMotivoControlEgreso() {
+    public JFraMotivoControlEgreso() throws SQLException{
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    JFraConfiguraciones jfc = new JFraConfiguraciones();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +72,11 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         jLblRegresar.setText("Regresar");
         jLblRegresar.setToolTipText("Regresar a las configuraciones");
         jLblRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblRegresarMouseClicked(evt);
+            }
+        });
 
         jLblMinimizar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
         jLblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -257,6 +267,11 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLblCerrarMouseClicked
 
+    private void jLblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblRegresarMouseClicked
+        jfc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLblRegresarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -287,7 +302,11 @@ public class JFraMotivoControlEgreso extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFraMotivoControlEgreso().setVisible(true);
+                try {
+                    new JFraMotivoControlEgreso().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JFraMotivoControlEgreso.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -49,6 +49,8 @@ public class JFraServicios extends javax.swing.JFrame {
     Color celeste = new Color(52,152,219);
     Color azul = new Color(52,73,94);
     
+    JFraConfiguraciones jfc = new JFraConfiguraciones();
+    
         // Method to clear the jTable.
     private void clearTable(){
         DefaultTableModel dtm = (DefaultTableModel) this.jTblServicio.getModel();
@@ -262,6 +264,11 @@ public class JFraServicios extends javax.swing.JFrame {
         jLblRegresar.setText("Regresar");
         jLblRegresar.setToolTipText("Regresar a las configuraciones");
         jLblRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblRegresarMouseClicked(evt);
+            }
+        });
 
         jLblMinimizar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
         jLblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -587,6 +594,11 @@ public class JFraServicios extends javax.swing.JFrame {
     private void jLblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblCerrarMouseClicked
         this.dispose();
     }//GEN-LAST:event_jLblCerrarMouseClicked
+
+    private void jLblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblRegresarMouseClicked
+        jfc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLblRegresarMouseClicked
 
     /**
      * @param args the command line arguments

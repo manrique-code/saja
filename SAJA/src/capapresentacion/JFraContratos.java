@@ -81,8 +81,6 @@ public class JFraContratos extends javax.swing.JFrame {
                                String estadoContrato,
                                String direccionPegue){
         if(mostrar){
-            CLAñadirContrato clc = new CLAñadirContrato();
-            CLAbonado cla = new CLAbonado();
             this.jTabContrato.setSelectedIndex(2);
             jLblNombreAbonado.setText(nombreAbonado);
             jLblNumeroIdentidad.setText(numeroIdentidad);

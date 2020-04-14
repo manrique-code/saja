@@ -59,6 +59,7 @@ public class JFraMenu extends javax.swing.JFrame {
     // Instancias de la capa lógica
     CLLogin cll = new CLLogin();
     
+    // Método que nos muestra el usuario actual que inicio sesión
     public void usuarioSesion(String nombreUsuario){
         String[] nombre = nombreUsuario.split(" ");
         jLblUsuario.setText(nombre[0]);

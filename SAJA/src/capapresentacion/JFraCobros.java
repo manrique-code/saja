@@ -987,6 +987,11 @@ public class JFraCobros extends javax.swing.JFrame {
 
         jSBContrato4.setBackground(new java.awt.Color(52, 73, 94));
         jSBContrato4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSBContrato4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSBContrato4MouseClicked(evt);
+            }
+        });
 
         jLblIdentificador9.setBackground(new java.awt.Color(102, 102, 102));
         jLblIdentificador9.setFont(new java.awt.Font("HelveticaNowDisplay Bold", 1, 20)); // NOI18N
@@ -2499,6 +2504,11 @@ public class JFraCobros extends javax.swing.JFrame {
     private void JBtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnNoActionPerformed
         this.jDfMenu.dispose();
     }//GEN-LAST:event_JBtnNoActionPerformed
+
+    private void jSBContrato4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBContrato4MouseClicked
+        this.jDfMenu.setLocationRelativeTo(null);
+        this.jDfMenu.setVisible(true);
+    }//GEN-LAST:event_jSBContrato4MouseClicked
 
     /**
      * @param args the command line arguments

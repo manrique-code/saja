@@ -1338,6 +1338,7 @@ public class JFraMora extends javax.swing.JFrame {
             jfpp = new JFraPlanPago();
             this.dispose();
             jfpp.mostratVentana(true, jLblNumeroIdentidad.getText(), jLblNombreCompleto.getText(), jLblBloque.getText(), jLblCasa.getText());
+            jfpp.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(JFraMora.class.getName()).log(Level.SEVERE, null, ex);
         }        

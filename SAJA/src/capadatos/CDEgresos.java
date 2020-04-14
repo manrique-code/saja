@@ -32,7 +32,7 @@ public class CDEgresos {
     // Método para insertar un egreso
     public void insertarControlEgreso(CLEgresos cle) throws SQLException {
 
-        String sql = "{call sp_insertarControlEgreso(?,?,?,?,?)}";
+        String sql = "{call sp_insertarControlEgresoFra(?,?,?,?,?)}";
 
         try {
             ps = cn.prepareCall(sql);
@@ -50,7 +50,7 @@ public class CDEgresos {
     // Método para modificar un egreso
     public void modificarControlEgreso(CLEgresos cle) throws SQLException{
         
-        String sql = "{call sp_actualizarControlEgreso(?,?,?,?,?,?)}";
+        String sql = "{call sp_actualizarControlEgresoFra(?,?,?,?,?,?)}";
         
         try {
             ps = cn.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class CDEgresos {
         }
     }
     
-    // Pendiente...
+    // Método para deshabilitar un egreso, pendiente...
     public void eliminarControlEgreso(CLEgresos cle) throws SQLException{
         
         String sql = "{call sp_eliminarControlEgreso(?)}";

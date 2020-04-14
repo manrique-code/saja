@@ -1655,6 +1655,7 @@ public class JFraAbonados extends javax.swing.JFrame {
 
     private void jLblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblSalirMouseClicked
         this.dispose();
+        jfm.setVisible(true);
     }//GEN-LAST:event_jLblSalirMouseClicked
 
     private void jLblVerContratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblVerContratoMouseClicked
@@ -1670,9 +1671,8 @@ public class JFraAbonados extends javax.swing.JFrame {
                                String.valueOf(this.jTblContratos.getValueAt(this.jTblContratos.getSelectedRow(), 3)),
                                String.valueOf(this.jTblContratos.getValueAt(this.jTblContratos.getSelectedRow(), 4)),
                                jTxaDireccionAbonado.getText());
-            jfc.setVisible(true); 
-                     
-            
+            jfc.setVisible(true);
+                                
         } catch (SQLException ex) {
             Logger.getLogger(JFraAbonados.class.getName()).log(Level.SEVERE, null, ex);
         }

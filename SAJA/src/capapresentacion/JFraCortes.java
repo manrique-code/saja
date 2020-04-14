@@ -1000,17 +1000,17 @@ public class JFraCortes extends javax.swing.JFrame {
 
     private void jBtnSi2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSi2ActionPerformed
         this.dispose();
-        this.jDfMenu.dispose();
+        this.jDfMenu2.dispose();
         jfm.setVisible(true);
     }//GEN-LAST:event_jBtnSi2ActionPerformed
 
     private void JBtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnNoActionPerformed
-        this.jDfMenu.dispose();
+        this.jDfMenu2.dispose();
     }//GEN-LAST:event_JBtnNoActionPerformed
 
     private void jSBMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSBMenuMouseClicked
-        this.jDfMenu.setLocationRelativeTo(null);
-        this.jDfMenu.setVisible(true);
+        this.jDfMenu2.setLocationRelativeTo(null);
+        this.jDfMenu2.setVisible(true);
     }//GEN-LAST:event_jSBMenuMouseClicked
 
     

@@ -49,7 +49,7 @@ public class JFraUsuario extends javax.swing.JFrame {
     Color azul = new Color(52,73,94);
     
     JFraMenu jfm = new JFraMenu(); 
-    
+    JFraConfiguraciones jfc = new JFraConfiguraciones();
     //METODO PARA DAR PERMISO DE MODIFICACION
     
     private boolean permisoUsuario() throws SQLException{
@@ -1276,6 +1276,7 @@ public class JFraUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jLblMinimizar2MouseClicked
 
     private void jLblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblSalirMouseClicked
+        jfc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLblSalirMouseClicked
 

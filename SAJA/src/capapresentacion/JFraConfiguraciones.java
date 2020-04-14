@@ -5,7 +5,6 @@
  */
 package capapresentacion;
 
-import AppPackage.AnimationClass;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,18 +24,9 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setLocationRelativeTo(null);
-        this.jScrollPane1.getViewport().setBackground(Color.getColor("255, 255, 255"));
-        
+        this.jScrollPane1.getViewport().setBackground(Color.getColor("255, 255, 255"));        
     }
-    
-    /*JFraTipoPlanPago jftpp = new JFraTipoPlanPago();
-    JFraUsuario jfu = new JFraUsuario();
-    JFraServicios jfs = new JFraServicios();
-    JFraEstadoContrato jfec = new JFraEstadoContrato();
-    JFraMotivoControlEgreso jfmce = new JFraMotivoControlEgreso();
-    JFraTipoContrato jftc = new JFraTipoContrato();*/
-    
-    
+
     
     //JFraTipoPlanPago jftpp = new JFraTipoPlanPago();
     
@@ -179,6 +169,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         jBtnEditar1.setText("USUARIOS");
         jBtnEditar1.setBorder(null);
         jBtnEditar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnEditar1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
@@ -256,6 +251,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         jBtnEditar2.setText("ESTADO");
         jBtnEditar2.setBorder(null);
         jBtnEditar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditar2ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
@@ -343,6 +343,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         jBtnEditar3.setText("TIPO");
         jBtnEditar3.setBorder(null);
         jBtnEditar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditar3ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
@@ -406,6 +411,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         jBtnEditar4.setText("MOTIVO");
         jBtnEditar4.setBorder(null);
         jBtnEditar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditar4ActionPerformed(evt);
+            }
+        });
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
@@ -506,6 +516,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         jBtnEditar5.setText("TIPO");
         jBtnEditar5.setBorder(null);
         jBtnEditar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditar5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jTipoPlanPagoLayout = new javax.swing.GroupLayout(jTipoPlanPago);
         jTipoPlanPago.setLayout(jTipoPlanPagoLayout);
@@ -554,6 +569,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
         jBtnEditar7.setText("SERVICIOS");
         jBtnEditar7.setBorder(null);
         jBtnEditar7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEditar7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditar7ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("HelveticaNowDisplay Regular", 0, 14)); // NOI18N
@@ -834,8 +854,72 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
             Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
     }//GEN-LAST:event_jLblTitulo2MouseClicked
+
+    private void jBtnEditar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnEditar1MouseClicked
+        JFraUsuario jfu;
+        try {
+            jfu = new JFraUsuario();
+            jfu.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }//GEN-LAST:event_jBtnEditar1MouseClicked
+
+    private void jBtnEditar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditar7ActionPerformed
+        JFraServicios jfs;
+        try {
+            jfs = new JFraServicios();
+            jfs.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jBtnEditar7ActionPerformed
+
+    private void jBtnEditar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditar2ActionPerformed
+        JFraEstadoContrato jfec;
+        try {
+            jfec = new JFraEstadoContrato();
+            jfec.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jBtnEditar2ActionPerformed
+
+    private void jBtnEditar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditar3ActionPerformed
+        JFraTipoContrato jftc;
+        try {
+            jftc = new JFraTipoContrato();
+            jftc.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jBtnEditar3ActionPerformed
+
+    private void jBtnEditar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditar5ActionPerformed
+        JFraTipoPlanPago jftpp;
+        try {
+            jftpp = new JFraTipoPlanPago();
+            jftpp.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(JFraConfiguraciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jBtnEditar5ActionPerformed
+
+    private void jBtnEditar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditar4ActionPerformed
+        JFraMotivoControlEgreso jfmce = new JFraMotivoControlEgreso();
+        jfmce.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBtnEditar4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -853,15 +937,11 @@ public class JFraConfiguraciones extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFraConfiguraciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFraConfiguraciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFraConfiguraciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFraConfiguraciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */

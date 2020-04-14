@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +25,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
 
     /**
      * Creates new form JFraTipoPlanPago
+     * @throws java.sql.SQLException
      */
     public JFraTipoPlanPago() throws SQLException{
         initComponents();
@@ -44,6 +44,7 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
     }
     
     private boolean estadEditando = false;
+    JFraConfiguraciones jfc = new JFraConfiguraciones();
     
     public void vaciarTabla(){
         DefaultTableModel dtm = (DefaultTableModel) this.jTblTipoPlanPago.getModel();
@@ -77,12 +78,14 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         List<CLTipoPlanPago> miLista = cdtpp.mostrarTipoPlanPagoPorID(nombreTPP);
         DefaultTableModel dtm = (DefaultTableModel) this.jTblTipoPlanPago.getModel();
         
-        for(CLTipoPlanPago cltpp: miLista){
+        miLista.stream().map((cltpp) -> {
             Object[] fila = new Object[2];
             fila[0] = cltpp.getIdTipoPlanPago();
             fila[1] = cltpp.getNombreTipoPlanPago();
-            dtm.addRow(fila);  
-        } 
+            return fila;
+        }).forEachOrdered((fila) -> { 
+            dtm.addRow(fila);
+        });
     }
     
     public void habilitarBotones(boolean guardar, boolean editar, boolean eliminar, boolean buscar, boolean cancelar){
@@ -245,6 +248,11 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
         jLblRegresar.setText("Regresar");
         jLblRegresar.setToolTipText("Regresar a las configuraciones");
         jLblRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLblRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblRegresarMouseClicked(evt);
+            }
+        });
 
         jLblCerrar.setFont(new java.awt.Font("HelveticaNowDisplay ExtraBold", 0, 25)); // NOI18N
         jLblCerrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -599,6 +607,11 @@ public class JFraTipoPlanPago extends javax.swing.JFrame {
     private void jLblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblMinimizarMouseClicked
         this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_jLblMinimizarMouseClicked
+
+    private void jLblRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblRegresarMouseClicked
+          jfc.setVisible(true);
+        this.dispose();                   
+    }//GEN-LAST:event_jLblRegresarMouseClicked
 
     /**
      * @param args the command line arguments
